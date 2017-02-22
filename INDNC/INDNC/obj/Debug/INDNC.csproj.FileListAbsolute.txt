@@ -7,3 +7,10 @@ C:\Users\mio\software\INDNC\INDNC\obj\Debug\INDNC.csproj.GenerateResource.Cache
 C:\Users\mio\software\INDNC\INDNC\obj\Debug\INDNC.exe
 C:\Users\mio\software\INDNC\INDNC\obj\Debug\INDNC.pdb
 C:\Users\mio\software\INDNC\INDNC\obj\Debug\INDNC.FormMain.resources
+C:\Users\mio\software\INDNC\INDNC\bin\Debug\ServiceStack.Common.dll
+C:\Users\mio\software\INDNC\INDNC\bin\Debug\ServiceStack.Interfaces.dll
+C:\Users\mio\software\INDNC\INDNC\bin\Debug\ServiceStack.Redis.dll
+C:\Users\mio\software\INDNC\INDNC\bin\Debug\ServiceStack.Text.dll
+C:\Users\mio\software\INDNC\INDNC\bin\Debug\ServiceStack.Common.xml
+C:\Users\mio\software\INDNC\INDNC\bin\Debug\ServiceStack.Redis.xml
+C:\Users\mio\software\INDNC\INDNC\bin\Debug\ServiceStack.Text.xml
