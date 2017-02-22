@@ -62,7 +62,7 @@ namespace INDNC
             this.textBox1.Location = new System.Drawing.Point(106, 35);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(36, 23);
-            this.textBox1.TabIndex = 1;
+            this.textBox1.TabIndex = 0;
             this.textBox1.Text = "192";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -102,7 +102,7 @@ namespace INDNC
             this.textBox3.Location = new System.Drawing.Point(226, 35);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(36, 23);
-            this.textBox3.TabIndex = 1;
+            this.textBox3.TabIndex = 2;
             this.textBox3.Text = "1";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -122,7 +122,7 @@ namespace INDNC
             this.textBox4.Location = new System.Drawing.Point(286, 35);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(36, 23);
-            this.textBox4.TabIndex = 1;
+            this.textBox4.TabIndex = 3;
             this.textBox4.Text = "1";
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -142,7 +142,7 @@ namespace INDNC
             this.textBox5.Location = new System.Drawing.Point(460, 35);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(56, 23);
-            this.textBox5.TabIndex = 1;
+            this.textBox5.TabIndex = 4;
             this.textBox5.Text = "6379";
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -162,7 +162,7 @@ namespace INDNC
             this.textBox6.Location = new System.Drawing.Point(651, 34);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(117, 23);
-            this.textBox6.TabIndex = 1;
+            this.textBox6.TabIndex = 5;
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button1
@@ -171,9 +171,10 @@ namespace INDNC
             this.button1.Location = new System.Drawing.Point(819, 31);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(96, 28);
-            this.button1.TabIndex = 2;
+            this.button1.TabIndex = 6;
             this.button1.Text = "连接服务器";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // button2
             // 
@@ -181,9 +182,10 @@ namespace INDNC
             this.button2.Location = new System.Drawing.Point(964, 31);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(96, 28);
-            this.button2.TabIndex = 2;
+            this.button2.TabIndex = 7;
             this.button2.Text = "断开服务器";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // FormMain
             // 
