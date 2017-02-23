@@ -1,7 +1,24 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="INDNC.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ip1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">127</Value>
+    </Setting>
+    <Setting Name="IP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">127</Value>
+    </Setting>
+    <Setting Name="ip2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ip3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ip4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="port" Type="System.String" Scope="User">
+      <Value Profile="(Default)">6379</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

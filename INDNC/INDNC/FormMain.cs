@@ -25,21 +25,29 @@ namespace INDNC
         {
             for(int i = 1; i <= 4; ++i)
             {
+                //检验输入是否为数字，数字是否介于0~255之间
                 int tmp = -1;
                 TextBox objText = (TextBox)this.Controls["textBox" + i.ToString()];
                 if (int.TryParse(objText.Text, out tmp) != true)
+                {
                     MessageBox.Show("错误:服务器IP地址输入错误，请重新输入！", "ERROR");
-                else if(!(tmp>=0 && tmp<=255))
+                    return;
+                }
+                else if(!(tmp>=0 && tmp <= 255))
+                {
                     MessageBox.Show("错误:服务器IP地址输入错误，请重新输入！", "ERROR");
+                    return;
+                }
+                    
             }
 
             serverlink.ServerIPAddress = textBox1.Text + '.' + textBox2.Text + '.' + textBox3.Text + '.' + textBox4.Text;
             int port = 0;
-            //if(int.TryParse(textBox5.Text,out port) != true)
-            //{
-            //    MessageBox.Show("错误:服务器端口输入错误，请重新输入！", "ERROR");
-            //    return;
-            //}
+            if (int.TryParse(textBox5.Text, out port) != true)
+            {
+                MessageBox.Show("错误:服务器端口号输入错误，请重新输入！", "ERROR");
+                return;
+            }
             serverlink.ServerPort = port;
             serverlink.ServerPassword = textBox6.Text;
             serverlink.Link(ref (Client));
@@ -48,7 +56,7 @@ namespace INDNC
 
         private void button2_Click(object sender, EventArgs e)
         {
-            serverlink.Link(ref (Client));
+            //serverlink.Link(ref (Client));
             
             MessageBox.Show("2");
         }
@@ -57,6 +65,11 @@ namespace INDNC
         {
             if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
                 e.Handled = false;
+            else if(e.KeyChar == (char)13)
+            {
+                button1.Focus();
+                button1_Click_1(sender, e);
+            }
             else
             {
                 e.Handled = true;
@@ -68,6 +81,11 @@ namespace INDNC
         {
             if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
                 e.Handled = false;
+            else if (e.KeyChar == (char)13)
+            {
+                button1.Focus();
+                button1_Click_1(sender, e);
+            }
             else
             {
                 e.Handled = true;
@@ -79,6 +97,11 @@ namespace INDNC
         {
             if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
                 e.Handled = false;
+            else if (e.KeyChar == (char)13)
+            {
+                button1.Focus();
+                button1_Click_1(sender, e);
+            }
             else
             {
                 e.Handled = true;
@@ -90,6 +113,11 @@ namespace INDNC
         {
             if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
                 e.Handled = false;
+            else if (e.KeyChar == (char)13)
+            {
+                button1.Focus();
+                button1_Click_1(sender, e);
+            }
             else
             {
                 e.Handled = true;
@@ -99,12 +127,26 @@ namespace INDNC
 
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
+            if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8 )
                 e.Handled = false;
+            else if (e.KeyChar == (char)13)
+            {
+                button1.Focus();
+                button1_Click_1(sender, e);
+            }
             else
             {
                 e.Handled = true;
                 MessageBox.Show("请输入数字", "ERROR");
+            }
+        }
+
+        private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                button1.Focus();
+                button1_Click_1(sender, e);
             }
         }
     }
@@ -119,7 +161,12 @@ namespace INDNC
         {
             try
             {
+                long tmp = -1;
                 Client = new RedisClient(ServerIPAddress, ServerPort, ServerPassword, DBNo);
+                tmp = Client.DbSize;
+                if(tmp!=-1)
+                    Properties.Settings.Default.Save();
+                MessageBox.Show(tmp.ToString());
             }
             catch(Exception ex)
             {
@@ -129,7 +176,7 @@ namespace INDNC
                 ServerPassword = null;
                 DBNo = 0;
                 return 1;
-            }
+            } 
 
             return 0;
         }

@@ -31,19 +31,19 @@ namespace INDNC
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -56,18 +56,6 @@ namespace INDNC
             this.label1.TabIndex = 0;
             this.label1.Text = "服务器IP";
             // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox1.Location = new System.Drawing.Point(106, 35);
-            this.textBox1.MaxLength = 3;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(36, 23);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "192";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -77,18 +65,6 @@ namespace INDNC
             this.label2.Size = new System.Drawing.Size(14, 14);
             this.label2.TabIndex = 0;
             this.label2.Text = ".";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox2.Location = new System.Drawing.Point(166, 35);
-            this.textBox2.MaxLength = 3;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(36, 23);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "168";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // label3
             // 
@@ -100,18 +76,6 @@ namespace INDNC
             this.label3.TabIndex = 0;
             this.label3.Text = ".";
             // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox3.Location = new System.Drawing.Point(226, 35);
-            this.textBox3.MaxLength = 3;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(36, 23);
-            this.textBox3.TabIndex = 2;
-            this.textBox3.Text = "1";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -122,18 +86,6 @@ namespace INDNC
             this.label4.TabIndex = 0;
             this.label4.Text = ".";
             // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox4.Location = new System.Drawing.Point(286, 35);
-            this.textBox4.MaxLength = 3;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(36, 23);
-            this.textBox4.TabIndex = 3;
-            this.textBox4.Text = "1";
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -143,18 +95,6 @@ namespace INDNC
             this.label5.Size = new System.Drawing.Size(77, 14);
             this.label5.TabIndex = 0;
             this.label5.Text = "服务器端口";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox5.Location = new System.Drawing.Point(460, 35);
-            this.textBox5.MaxLength = 6;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(56, 23);
-            this.textBox5.TabIndex = 4;
-            this.textBox5.Text = "6379";
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
             // 
             // label6
             // 
@@ -172,9 +112,11 @@ namespace INDNC
             this.textBox6.Location = new System.Drawing.Point(651, 34);
             this.textBox6.MaxLength = 20;
             this.textBox6.Name = "textBox6";
+            this.textBox6.PasswordChar = '*';
             this.textBox6.Size = new System.Drawing.Size(117, 23);
             this.textBox6.TabIndex = 5;
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
             // 
             // button1
             // 
@@ -197,6 +139,71 @@ namespace INDNC
             this.button2.Text = "断开服务器";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "ip4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox4.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox4.Location = new System.Drawing.Point(286, 35);
+            this.textBox4.MaxLength = 3;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(36, 23);
+            this.textBox4.TabIndex = 3;
+            this.textBox4.Text = global::INDNC.Properties.Settings.Default.ip4;
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
+            // 
+            // textBox3
+            // 
+            this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "ip3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox3.Location = new System.Drawing.Point(226, 35);
+            this.textBox3.MaxLength = 3;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(36, 23);
+            this.textBox3.TabIndex = 2;
+            this.textBox3.Text = global::INDNC.Properties.Settings.Default.ip3;
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
+            // 
+            // textBox2
+            // 
+            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "ip2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox2.Location = new System.Drawing.Point(166, 35);
+            this.textBox2.MaxLength = 3;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(36, 23);
+            this.textBox2.TabIndex = 1;
+            this.textBox2.Text = global::INDNC.Properties.Settings.Default.ip2;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
+            // 
+            // textBox5
+            // 
+            this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "port", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox5.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox5.Location = new System.Drawing.Point(460, 35);
+            this.textBox5.MaxLength = 6;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(56, 23);
+            this.textBox5.TabIndex = 4;
+            this.textBox5.Text = global::INDNC.Properties.Settings.Default.port;
+            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
+            // 
+            // textBox1
+            // 
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "ip1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox1.Location = new System.Drawing.Point(106, 35);
+            this.textBox1.MaxLength = 3;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(36, 23);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = global::INDNC.Properties.Settings.Default.ip1;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // FormMain
             // 
