@@ -57,8 +57,18 @@ namespace INDNC
         private void button2_Click(object sender, EventArgs e)
         {
             //serverlink.Link(ref (Client));
+            try
+            {
+                //Client.Dispose();
+                Client.KillClient(serverlink.ServerIPAddress);
+                long tmp = Client.DbSize;
+                MessageBox.Show(tmp.ToString());
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("ERROR:" + ex.Message, "Error");
+            }
             
-            MessageBox.Show("2");
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
