@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ServiceStack.Redis;
+using System.IO;
 
 namespace INDNC
 {
@@ -22,13 +23,23 @@ namespace INDNC
         RedisClient Client = new RedisClient();
         private void button1_Click_1(object sender, EventArgs e)
         {
+            for(int i = 1; i <= 4; ++i)
+            {
+                int tmp = -1;
+                TextBox objText = (TextBox)this.Controls["textBox" + i.ToString()];
+                if (int.TryParse(objText.Text, out tmp) != true)
+                    MessageBox.Show("错误:服务器IP地址输入错误，请重新输入！", "ERROR");
+                else if(!(tmp>=0 && tmp<=255))
+                    MessageBox.Show("错误:服务器IP地址输入错误，请重新输入！", "ERROR");
+            }
+
             serverlink.ServerIPAddress = textBox1.Text + '.' + textBox2.Text + '.' + textBox3.Text + '.' + textBox4.Text;
             int port = 0;
-            if(int.TryParse(textBox5.Text,out port) != true)
-            {
-                MessageBox.Show("错误:服务器端口输入错误，请重新输入！", "ERROR");
-                return;
-            }
+            //if(int.TryParse(textBox5.Text,out port) != true)
+            //{
+            //    MessageBox.Show("错误:服务器端口输入错误，请重新输入！", "ERROR");
+            //    return;
+            //}
             serverlink.ServerPort = port;
             serverlink.ServerPassword = textBox6.Text;
             serverlink.Link(ref (Client));
@@ -40,6 +51,61 @@ namespace INDNC
             serverlink.Link(ref (Client));
             
             MessageBox.Show("2");
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
+                e.Handled = false;
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("请输入数字", "ERROR");
+            }       
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
+                e.Handled = false;
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("请输入数字", "ERROR");
+            }
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
+                e.Handled = false;
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("请输入数字", "ERROR");
+            }
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
+                e.Handled = false;
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("请输入数字", "ERROR");
+            }
+        }
+
+        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
+                e.Handled = false;
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("请输入数字", "ERROR");
+            }
         }
     }
     public partial class ServerLink
@@ -68,5 +134,12 @@ namespace INDNC
             return 0;
         }
 
+    }
+
+    public enum ERRORMESSAGE
+    {
+        NOERR=0,
+        IPERR,
+        PortERR
     }
 }
