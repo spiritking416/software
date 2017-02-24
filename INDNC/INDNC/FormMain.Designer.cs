@@ -230,7 +230,7 @@ namespace INDNC
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Location = new System.Drawing.Point(0, 71);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1096, 564);
+            this.panel1.Size = new System.Drawing.Size(1096, 566);
             this.panel1.TabIndex = 9;
             // 
             // FormMain

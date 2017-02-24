@@ -52,6 +52,12 @@ namespace INDNC
             serverlink.ServerPassword = textBox6.Text;
             serverlink.Link(ref (Client));
             MessageBox.Show("1");
+
+            UserControlMachineState machinestate = new UserControlMachineState();
+            machinestate.Visible = true;
+            machinestate.Dock = DockStyle.Fill;
+            machinestate.ListViewDraw();
+            this.panel1.Controls.Add(machinestate);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -195,8 +201,6 @@ namespace INDNC
 
     public enum ERRORMESSAGE
     {
-        NOERR=0,
-        IPERR,
-        PortERR
+        NOERR=0
     }
 }

@@ -14,3 +14,4 @@ C:\Users\mio\software\INDNC\INDNC\bin\Debug\ServiceStack.Text.dll
 C:\Users\mio\software\INDNC\INDNC\bin\Debug\ServiceStack.Common.xml
 C:\Users\mio\software\INDNC\INDNC\bin\Debug\ServiceStack.Redis.xml
 C:\Users\mio\software\INDNC\INDNC\bin\Debug\ServiceStack.Text.xml
+C:\Users\mio\software\INDNC\INDNC\obj\Debug\INDNC.UserControlMachineState.resources
