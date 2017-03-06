@@ -38,7 +38,6 @@ namespace INDNC
             this.label6 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -47,6 +46,7 @@ namespace INDNC
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,17 +132,6 @@ namespace INDNC
             this.button1.Text = "连接服务器";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button2.Location = new System.Drawing.Point(961, 37);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(96, 28);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "断开服务器";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox4
             // 
@@ -233,6 +222,17 @@ namespace INDNC
             this.panel1.Size = new System.Drawing.Size(1096, 566);
             this.panel1.TabIndex = 9;
             // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button2.Location = new System.Drawing.Point(961, 37);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(96, 28);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "断开服务器";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -281,10 +281,10 @@ namespace INDNC
         private Label label6;
         private TextBox textBox6;
         private Button button1;
-        private Button button2;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem 文件FToolStripMenuItem;
         private Panel panel1;
+        private Button button2;
     }
 }
 

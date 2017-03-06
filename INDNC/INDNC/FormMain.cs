@@ -19,8 +19,21 @@ namespace INDNC
             InitializeComponent();
         }
 
+        
+
         ServerLink serverlink = new ServerLink();
-        RedisClient Client = new RedisClient();
+        RedisClient Client;
+        bool ClientDispose = false;
+        UserControlMachineState machinestate;
+
+        public struct machine
+        {
+            UInt16 MachineIndex;
+            String MachineState;
+            String MachineAlarm;
+            
+        }
+
         private void button1_Click_1(object sender, EventArgs e)
         {
             for(int i = 1; i <= 4; ++i)
@@ -40,35 +53,46 @@ namespace INDNC
                 }
                     
             }
-
-            serverlink.ServerIPAddress = textBox1.Text + '.' + textBox2.Text + '.' + textBox3.Text + '.' + textBox4.Text;
+            serverlink.ServerIPAddressName= textBox1.Text + '.' + textBox2.Text + '.' + textBox3.Text + '.' + textBox4.Text;
+            //serverlink.ServerIPAddress = textBox1.Text + '.' + textBox2.Text + '.' + textBox3.Text + '.' + textBox4.Text;
             int port = 0;
             if (int.TryParse(textBox5.Text, out port) != true)
             {
                 MessageBox.Show("错误:服务器端口号输入错误，请重新输入！", "ERROR");
                 return;
             }
-            serverlink.ServerPort = port;
-            serverlink.ServerPassword = textBox6.Text;
-            serverlink.Link(ref (Client));
+            serverlink.ServerPortName = port;
+            serverlink.ServerPasswordName = textBox6.Text;
+            try
+            {
+                serverlink.Link(ref (Client));
+                ClientDispose = false;
+            }
+            catch(Exception)
+            {
+                return;
+            }
             MessageBox.Show("1");
 
-            UserControlMachineState machinestate = new UserControlMachineState();
+            machinestate = new UserControlMachineState();
             machinestate.Visible = true;
             machinestate.Dock = DockStyle.Fill;
-            machinestate.ListViewDraw();
+            machinestate.ListViewDraw(ref (Client), ref (serverlink));
             this.panel1.Controls.Add(machinestate);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //serverlink.Link(ref (Client));
+            if (ClientDispose)
+                return;
+            //MessageBox.Show(Client.Lists);
             try
             {
-                //Client.Dispose();
-                Client.KillClient(serverlink.ServerIPAddress);
+                Client.Dispose();
+                ClientDispose = true;
                 long tmp = Client.DbSize;
                 MessageBox.Show(tmp.ToString());
+                machinestate.Visible = false;
             }
             catch(Exception ex)
             {
@@ -168,11 +192,34 @@ namespace INDNC
     }
     public partial class ServerLink
     {
-        public String ServerIPAddress = null;
-        public int ServerPort = 0;
-        public String ServerPassword = null;
-        public long DBNo = 0;
+        private String ServerIPAddress = null;
+        private int ServerPort = 0;
+        private String ServerPassword = null;
+        private long DBNo = 0;
 
+        public String ServerIPAddressName
+        {
+            get{ return ServerIPAddress; }
+            set { ServerIPAddress = value; }
+        }
+
+        public int ServerPortName
+        {
+            get { return ServerPort; }
+            set { ServerPort = value; }
+        }
+
+        public String ServerPasswordName
+        {
+            get { return ServerPassword; }
+            set { ServerPassword = value; }
+        }
+
+        public long DBNoName
+        {
+            get { return DBNo; }
+            set { DBNo = value; }
+        }
         public UInt16 Link(ref RedisClient Client)
         {
             try
@@ -182,7 +229,7 @@ namespace INDNC
                 tmp = Client.DbSize;
                 if(tmp!=-1)
                     Properties.Settings.Default.Save();
-                MessageBox.Show(tmp.ToString());
+                //MessageBox.Show(tmp.ToString());
             }
             catch(Exception ex)
             {
@@ -203,4 +250,5 @@ namespace INDNC
     {
         NOERR=0
     }
+
 }

@@ -1,7 +1,6 @@
 C:\Users\mio\software\INDNC\INDNC\bin\Debug\INDNC.exe.config
 C:\Users\mio\software\INDNC\INDNC\bin\Debug\INDNC.exe
 C:\Users\mio\software\INDNC\INDNC\bin\Debug\INDNC.pdb
-C:\Users\mio\software\INDNC\INDNC\obj\Debug\INDNC.csprojResolveAssemblyReference.cache
 C:\Users\mio\software\INDNC\INDNC\obj\Debug\INDNC.Properties.Resources.resources
 C:\Users\mio\software\INDNC\INDNC\obj\Debug\INDNC.csproj.GenerateResource.Cache
 C:\Users\mio\software\INDNC\INDNC\obj\Debug\INDNC.exe
@@ -15,3 +14,4 @@ C:\Users\mio\software\INDNC\INDNC\bin\Debug\ServiceStack.Common.xml
 C:\Users\mio\software\INDNC\INDNC\bin\Debug\ServiceStack.Redis.xml
 C:\Users\mio\software\INDNC\INDNC\bin\Debug\ServiceStack.Text.xml
 C:\Users\mio\software\INDNC\INDNC\obj\Debug\INDNC.UserControlMachineState.resources
+C:\Users\mio\software\INDNC\INDNC\obj\Debug\INDNC.csprojResolveAssemblyReference.cache
