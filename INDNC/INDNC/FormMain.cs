@@ -8,10 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ServiceStack.Redis;
-using System.IO;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace INDNC
 {
+    public struct MySQLPara
+    {
+        public string MySQLID;
+        public string MySQLHostID;
+        public string MySQLPassword;
+        public string MySQLDatabase;
+        public bool connectvalid;
+
+    }
     public partial class FormMain : Form
     {
         public FormMain()
@@ -30,10 +40,14 @@ namespace INDNC
         UserControlMachineState machinestate;
         RedisManager redismanager = new RedisManager();
         UInt16 lineno = 0;  //生产线编号
+        MySQLPara mysqlpara = new MySQLPara();
+        MySQLParaSetting mysqlparasetting = new MySQLParaSetting();
+
+        //MySqlConnection mysqlconnetion = new MySqlConnection();
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-
+            mysqlpara = mysqlparasetting.mysqlpara;
             //服务器连接ip,por,password设置
             for (int i = 1; i <= 4; ++i)
             {
@@ -290,6 +304,12 @@ namespace INDNC
             this.toolStripMenuItem2.CheckState = global::INDNC.Properties.Settings.Default.line2;
             this.toolStripMenuItem3.CheckState = global::INDNC.Properties.Settings.Default.line3;
             this.toolStripMenuItem4.CheckState = global::INDNC.Properties.Settings.Default.line4;
+        }
+
+        private void mySQL数据库ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mysqlparasetting.Show();
+            
         }
     }
     public partial struct ServerPara

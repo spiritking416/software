@@ -15,3 +15,6 @@ C:\Users\mio\software\INDNC\INDNC\bin\Debug\ServiceStack.Redis.xml
 C:\Users\mio\software\INDNC\INDNC\bin\Debug\ServiceStack.Text.xml
 C:\Users\mio\software\INDNC\INDNC\obj\Debug\INDNC.UserControlMachineState.resources
 C:\Users\mio\software\INDNC\INDNC\obj\Debug\INDNC.csprojResolveAssemblyReference.cache
+C:\Users\mio\software\INDNC\INDNC\bin\Debug\MySql.Data.dll
+C:\Users\mio\software\INDNC\INDNC\bin\Debug\MySql.Data.xml
+C:\Users\mio\software\INDNC\INDNC\obj\Debug\INDNC.MySQLParaSetting.resources

@@ -25,7 +25,7 @@ namespace INDNC.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("127")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string ip1 {
             get {
                 return ((string)(this["ip1"]));
@@ -85,7 +85,7 @@ namespace INDNC.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("6379")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string port {
             get {
                 return ((string)(this["port"]));
