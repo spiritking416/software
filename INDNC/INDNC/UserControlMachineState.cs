@@ -18,26 +18,50 @@ namespace INDNC
             InitializeComponent();
         }
 
-        public void ListViewDraw(ref RedisClient Client,ref ServerLink serverlink)
+        public bool ListViewDraw(ref RedisClient Client,ref UInt16 lineno)
         {
-            this.listView1.BeginUpdate();
 
-            this.listView1.Columns.Add("机床号",274, HorizontalAlignment.Left);
-            this.listView1.Columns.Add("机床状态", 274, HorizontalAlignment.Left);
-            this.listView1.Columns.Add("当前告警", 274, HorizontalAlignment.Left);
-            this.listView1.Columns.Add("发生时间", 274, HorizontalAlignment.Left);
+            try
+            {
+                if (lineno == 0)
+                    throw new Exception("未选择生产线路！");
+                this.listView1.BeginUpdate();
 
-            //ListViewItem lvi = new ListViewItem("A1");
-            //lvi.SubItems.Add("A2");
-            //this.listView1.Items.Add(lvi);
+                this.listView1.Columns.Add("机床号", 273, HorizontalAlignment.Left);
+                this.listView1.Columns.Add("机床状态", 273, HorizontalAlignment.Left);
+                this.listView1.Columns.Add("当前告警", 273, HorizontalAlignment.Left);
+                this.listView1.Columns.Add("发生时间", 273, HorizontalAlignment.Left);
 
+
+                ListViewItem listviewitem = new ListViewItem("A1");
+                listviewitem.SubItems.Add("A2");
+
+                this.listView1.Items.Add(listviewitem);
+
+
+
+
+                this.listView1.EndUpdate();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR:" + ex.Message, "ERROR");
+                return false;
+            }
+
+
+            return true;
+            /*
             for(int i=0; i<16; ++i)
             {
                 try
                 {
-                    serverlink.DBNoName = i;
-                    serverlink.Link(ref (Client));
+                    serverpara.DBNoName = i;
+                    Client.Dispose();
+                    if (!serverlink.Link(ref (Client)))
+                        return;
                     string MachineSNC = Client.Get<string>("Machine");
+
                     ListViewItem listitem = new ListViewItem(MachineSNC);
                     this.listView1.Items.Add(listitem);
                 }
@@ -45,9 +69,9 @@ namespace INDNC
                 {
                     break;
                 }
-            }
+            }*/
 
-            this.listView1.EndUpdate();
+            
 
             /*this.listView1.Items.Add("A1");
             this.listView1.Items[0].SubItems.Add("A2");

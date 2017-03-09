@@ -94,5 +94,53 @@ namespace INDNC.Properties {
                 this["port"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Checked")]
+        public global::System.Windows.Forms.CheckState line1 {
+            get {
+                return ((global::System.Windows.Forms.CheckState)(this["line1"]));
+            }
+            set {
+                this["line1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Unchecked")]
+        public global::System.Windows.Forms.CheckState line2 {
+            get {
+                return ((global::System.Windows.Forms.CheckState)(this["line2"]));
+            }
+            set {
+                this["line2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Unchecked")]
+        public global::System.Windows.Forms.CheckState line3 {
+            get {
+                return ((global::System.Windows.Forms.CheckState)(this["line3"]));
+            }
+            set {
+                this["line3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Unchecked")]
+        public global::System.Windows.Forms.CheckState line4 {
+            get {
+                return ((global::System.Windows.Forms.CheckState)(this["line4"]));
+            }
+            set {
+                this["line4"] = value;
+            }
+        }
     }
 }
