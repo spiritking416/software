@@ -54,17 +54,15 @@ namespace INDNC
                 {
                     throw new Exception("连接服务器失败!");
                 }
+                MessageBox.Show("测试连接本地Redis数据库成功！", "提示");
                 redispara.connectvalid = true;
+                this.Close();
             }
             catch(Exception ex)
             { 
                 MessageBox.Show("ERROR:" + ex.Message, "ERROR");
                 redispara.connectvalid = false;
-            }
-            finally
-            {
-                this.Close();
-            }
+            }    
         }
     }
 }

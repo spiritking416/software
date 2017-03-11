@@ -38,5 +38,8 @@
     <Setting Name="localport" Type="System.String" Scope="User">
       <Value Profile="(Default)">6379</Value>
     </Setting>
+    <Setting Name="LineCount" Type="System.String" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

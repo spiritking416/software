@@ -166,5 +166,17 @@ namespace INDNC.Properties {
                 this["localport"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public string LineCount {
+            get {
+                return ((string)(this["LineCount"]));
+            }
+            set {
+                this["LineCount"] = value;
+            }
+        }
     }
 }

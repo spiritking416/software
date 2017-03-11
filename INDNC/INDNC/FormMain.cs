@@ -86,6 +86,7 @@ namespace INDNC
 
             try
             {
+                //读取本地Redis服务器参数
                 FileStream fs = new FileStream(@"../LocalRedisPara.conf", FileMode.OpenOrCreate);
                 StreamReader sr = new StreamReader(fs);
                 string str = sr.ReadLine();
@@ -97,6 +98,22 @@ namespace INDNC
                 int offsetIP = str.IndexOf("RedisIP=");
                 int offsetPort = str.IndexOf("RedisPort=");
                 int offsetPW = str.IndexOf("RedisPassword=");
+                if(offsetIP<0 || offsetPort<0 || offsetPW < 0)
+                {
+                    throw new Exception("本地Redis服务器参数配置错误！");
+                }
+
+                offsetIP += 8;
+                offsetPort += 10;
+                offsetPW += 14;
+
+                int i = str.IndexOf(';');
+                redispara.RedisIP = str.Substring(offsetIP, i- offsetIP);
+                i = str.IndexOf(';', i + 1);
+                redispara.RedisPort = str.Substring(offsetPort, i - offsetPort);
+                i = str.IndexOf('\0', i + 1);
+                redispara.RedisPassword = str.Substring(offsetPW);
+                redispara.connectvalid = true;
 
                 //从连接池获得只读连接客户端
                 RedisClient Client = (RedisClient)redismanager.GetReadOnlyClient(ref (serverpara.DBNo), ref (host));
@@ -146,7 +163,6 @@ namespace INDNC
                 }
                 redismanager.dispose();
                 redispara.dispose();
-                   
             }
             finally
             {
@@ -351,8 +367,6 @@ namespace INDNC
                     //关闭流
                     sw.Close();
                     fs.Close();
-                    //button2_Click(sender, e);
-                    button1_Click(sender, e);
                 }
                 catch (IOException ex)
                 {

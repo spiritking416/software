@@ -184,7 +184,7 @@ namespace INDNC
             this.toolStripMenuItem3,
             this.toolStripMenuItem4});
             this.生产线路ToolStripMenuItem.Name = "生产线路ToolStripMenuItem";
-            this.生产线路ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.生产线路ToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
             this.生产线路ToolStripMenuItem.Text = "生产线路(&L)";
             // 
             // toolStripMenuItem1
@@ -223,8 +223,8 @@ namespace INDNC
             // 本地数据库参数ToolStripMenuItem
             // 
             this.本地数据库参数ToolStripMenuItem.Name = "本地数据库参数ToolStripMenuItem";
-            this.本地数据库参数ToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
-            this.本地数据库参数ToolStripMenuItem.Text = "本地数据库参数(&D)";
+            this.本地数据库参数ToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.本地数据库参数ToolStripMenuItem.Text = "本地Redis数据库参数(&D)";
             this.本地数据库参数ToolStripMenuItem.Click += new System.EventHandler(this.mySQL数据库ToolStripMenuItem_Click);
             // 
             // panel1
