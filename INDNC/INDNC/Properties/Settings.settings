@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ip1" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">127</Value>
     </Setting>
     <Setting Name="IP" Type="System.String" Scope="User">
       <Value Profile="(Default)">127</Value>
@@ -31,6 +31,12 @@
     </Setting>
     <Setting Name="line4" Type="System.Windows.Forms.CheckState" Scope="User">
       <Value Profile="(Default)">Unchecked</Value>
+    </Setting>
+    <Setting Name="localip" Type="System.String" Scope="User">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="localport" Type="System.String" Scope="User">
+      <Value Profile="(Default)">6379</Value>
     </Setting>
   </Settings>
 </SettingsFile>

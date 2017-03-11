@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 namespace INDNC
 {
-    partial class MySQLParaSetting
+    partial class RedisParaSetting
     {
         /// <summary>
         /// Required designer variable.
@@ -29,27 +29,14 @@ namespace INDNC
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox1.Location = new System.Drawing.Point(167, 25);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.MaxLength = 50;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(157, 27);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
             // 
@@ -60,7 +47,7 @@ namespace INDNC
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 18);
             this.label1.TabIndex = 5;
-            this.label1.Text = "服务器ID";
+            this.label1.Text = "服务器IP";
             // 
             // label5
             // 
@@ -69,9 +56,9 @@ namespace INDNC
             this.label5.Location = new System.Drawing.Point(49, 78);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 18);
+            this.label5.Size = new System.Drawing.Size(98, 18);
             this.label5.TabIndex = 9;
-            this.label5.Text = "用户ID";
+            this.label5.Text = "服务器端口";
             // 
             // label2
             // 
@@ -84,54 +71,23 @@ namespace INDNC
             this.label2.TabIndex = 9;
             this.label2.Text = "密码";
             // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox2.Location = new System.Drawing.Point(167, 75);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox2.MaxLength = 50;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(157, 27);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(49, 178);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 18);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "数据库ID";
-            // 
             // textBox3
             // 
+            this.textBox3.AcceptsTab = true;
             this.textBox3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox3.Location = new System.Drawing.Point(167, 125);
             this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.MaxLength = 50;
             this.textBox3.Name = "textBox3";
+            this.textBox3.PasswordChar = '*';
             this.textBox3.Size = new System.Drawing.Size(157, 27);
             this.textBox3.TabIndex = 2;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox4.Location = new System.Drawing.Point(167, 175);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox4.MaxLength = 50;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(157, 27);
-            this.textBox4.TabIndex = 3;
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(134, 229);
+            this.button1.Location = new System.Drawing.Point(135, 182);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 33);
             this.button1.TabIndex = 4;
@@ -139,25 +95,49 @@ namespace INDNC
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // MySQLParaSetting
+            // textBox2
+            // 
+            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "localport", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox2.Location = new System.Drawing.Point(167, 75);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox2.MaxLength = 50;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(157, 27);
+            this.textBox2.TabIndex = 1;
+            this.textBox2.Text = global::INDNC.Properties.Settings.Default.localport;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox1
+            // 
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "localip", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox1.Location = new System.Drawing.Point(167, 25);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.MaxLength = 50;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(157, 27);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = global::INDNC.Properties.Settings.Default.localip;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // RedisParaSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(377, 286);
+            this.ClientSize = new System.Drawing.Size(385, 231);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "MySQLParaSetting";
+            this.Name = "RedisParaSetting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MySQL参数设置";
+            this.Text = "Redis本地服务器参数设置";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,9 +149,7 @@ namespace INDNC
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button button1;
     }
 }

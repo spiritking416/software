@@ -13,7 +13,7 @@ namespace INDNC
         /// 清理所有正在使用的资源。
         /// </summary>
         /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
-        protected override void Dispose(bool disposing)
+         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
             {
@@ -46,6 +46,7 @@ namespace INDNC
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.本地数据库参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -53,7 +54,6 @@ namespace INDNC
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.mySQL数据库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -146,7 +146,7 @@ namespace INDNC
             this.button1.TabIndex = 6;
             this.button1.Text = "连接服务器";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // menuStrip1
             // 
@@ -171,7 +171,7 @@ namespace INDNC
             // 
             this.参数PToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.生产线路ToolStripMenuItem,
-            this.mySQL数据库ToolStripMenuItem});
+            this.本地数据库参数ToolStripMenuItem});
             this.参数PToolStripMenuItem.Name = "参数PToolStripMenuItem";
             this.参数PToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
             this.参数PToolStripMenuItem.Text = "参数(&P)";
@@ -192,7 +192,7 @@ namespace INDNC
             this.toolStripMenuItem1.Checked = true;
             this.toolStripMenuItem1.CheckState = global::INDNC.Properties.Settings.Default.line1;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(163, 26);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem1.Text = "生产线一(&1)";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -200,7 +200,7 @@ namespace INDNC
             // 
             this.toolStripMenuItem2.CheckState = global::INDNC.Properties.Settings.Default.line2;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(163, 26);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem2.Text = "生产线二(&2)";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
@@ -208,7 +208,7 @@ namespace INDNC
             // 
             this.toolStripMenuItem3.CheckState = global::INDNC.Properties.Settings.Default.line3;
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(163, 26);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem3.Text = "生产线二(&3)";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
@@ -216,9 +216,16 @@ namespace INDNC
             // 
             this.toolStripMenuItem4.CheckState = global::INDNC.Properties.Settings.Default.line4;
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(163, 26);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem4.Text = "生产线二(&4)";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            // 
+            // 本地数据库参数ToolStripMenuItem
+            // 
+            this.本地数据库参数ToolStripMenuItem.Name = "本地数据库参数ToolStripMenuItem";
+            this.本地数据库参数ToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.本地数据库参数ToolStripMenuItem.Text = "本地数据库参数(&D)";
+            this.本地数据库参数ToolStripMenuItem.Click += new System.EventHandler(this.mySQL数据库ToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -311,13 +318,6 @@ namespace INDNC
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
-            // mySQL数据库ToolStripMenuItem
-            // 
-            this.mySQL数据库ToolStripMenuItem.Name = "mySQL数据库ToolStripMenuItem";
-            this.mySQL数据库ToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
-            this.mySQL数据库ToolStripMenuItem.Text = "MySQL数据库(&D)";
-            this.mySQL数据库ToolStripMenuItem.Click += new System.EventHandler(this.mySQL数据库ToolStripMenuItem_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -344,12 +344,12 @@ namespace INDNC
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "FormMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VVMessageBox.Show(\"ERROR:\" + ex.Message, \"ERROR\");";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.StartPosition = FormStartPosition.CenterScreen;
 
         }
 
@@ -378,7 +378,7 @@ namespace INDNC
         private ToolStripMenuItem toolStripMenuItem2;
         private ToolStripMenuItem toolStripMenuItem3;
         private ToolStripMenuItem toolStripMenuItem4;
-        private ToolStripMenuItem mySQL数据库ToolStripMenuItem;
+        private ToolStripMenuItem 本地数据库参数ToolStripMenuItem;
     }
 }
 

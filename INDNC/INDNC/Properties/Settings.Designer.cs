@@ -25,7 +25,7 @@ namespace INDNC.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("127")]
         public string ip1 {
             get {
                 return ((string)(this["ip1"]));
@@ -140,6 +140,30 @@ namespace INDNC.Properties {
             }
             set {
                 this["line4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
+        public string localip {
+            get {
+                return ((string)(this["localip"]));
+            }
+            set {
+                this["localip"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6379")]
+        public string localport {
+            get {
+                return ((string)(this["localport"]));
+            }
+            set {
+                this["localport"] = value;
             }
         }
     }

@@ -8,19 +8,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ServiceStack.Redis;
-using MySql.Data;
-using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace INDNC
 {
-    public struct MySQLPara
+    public struct RedisPara
     {
-        public string MySQLID;
-        public string MySQLHostID;
-        public string MySQLPassword;
-        public string MySQLDatabase;
+        public string RedisIP;
+        public string RedisPort;
+        public string RedisPassword;
         public bool connectvalid;
 
+        public void dispose()
+        {
+            RedisIP = null;
+            RedisPort = null;
+            RedisPassword = null;
+            connectvalid = false;
+        }
     }
     public partial class FormMain : Form
     {
@@ -29,25 +34,25 @@ namespace INDNC
             InitializeComponent();
         }
 
-        public struct machine
+        /*public struct machine
         {
             UInt16 MachineIndex;
             String MachineState;
             String MachineAlarm;
             
-        }
+        }*/
 
         UserControlMachineState machinestate;
-        RedisManager redismanager = new RedisManager();
         UInt16 lineno = 0;  //生产线编号
-        MySQLPara mysqlpara = new MySQLPara();
-        MySQLParaSetting mysqlparasetting = new MySQLParaSetting();
+        RedisManager redismanager = new RedisManager();
+        RedisPara redispara = new RedisPara();
 
         //MySqlConnection mysqlconnetion = new MySqlConnection();
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            mysqlpara = mysqlparasetting.mysqlpara;
+            
+            //redispara = redisparasetting.redisparaName;
             //服务器连接ip,por,password设置
             for (int i = 1; i <= 4; ++i)
             {
@@ -81,6 +86,18 @@ namespace INDNC
 
             try
             {
+                FileStream fs = new FileStream(@"../LocalRedisPara.conf", FileMode.OpenOrCreate);
+                StreamReader sr = new StreamReader(fs);
+                string str = sr.ReadLine();
+                //关闭流
+                sr.Close();
+                fs.Close();
+                if (str == null || str == "")
+                    throw new Exception("本地Redis服务器参数配置错误！");
+                int offsetIP = str.IndexOf("RedisIP=");
+                int offsetPort = str.IndexOf("RedisPort=");
+                int offsetPW = str.IndexOf("RedisPassword=");
+
                 //从连接池获得只读连接客户端
                 RedisClient Client = (RedisClient)redismanager.GetReadOnlyClient(ref (serverpara.DBNo), ref (host));
                 if (Client==null ||　!Client.Ping())
@@ -127,7 +144,8 @@ namespace INDNC
                     machinestate.Visible = false;
                     machinestate = null;
                 }
-                redismanager.dispose(); 
+                redismanager.dispose();
+                redispara.dispose();
                    
             }
             finally
@@ -160,7 +178,7 @@ namespace INDNC
             else if(e.KeyChar == (char)13)
             {
                 button1.Focus();
-                button1_Click_1(sender, e);
+                button1_Click(sender, e);
             }
             else
             {
@@ -176,7 +194,7 @@ namespace INDNC
             else if (e.KeyChar == (char)13)
             {
                 button1.Focus();
-                button1_Click_1(sender, e);
+                button1_Click(sender, e);
             }
             else
             {
@@ -192,7 +210,7 @@ namespace INDNC
             else if (e.KeyChar == (char)13)
             {
                 button1.Focus();
-                button1_Click_1(sender, e);
+                button1_Click(sender, e);
             }
             else
             {
@@ -208,7 +226,7 @@ namespace INDNC
             else if (e.KeyChar == (char)13)
             {
                 button1.Focus();
-                button1_Click_1(sender, e);
+                button1_Click(sender, e);
             }
             else
             {
@@ -224,7 +242,7 @@ namespace INDNC
             else if (e.KeyChar == (char)13)
             {
                 button1.Focus();
-                button1_Click_1(sender, e);
+                button1_Click(sender, e);
             }
             else
             {
@@ -238,7 +256,7 @@ namespace INDNC
             if (e.KeyChar == (char)13)
             {
                 button1.Focus();
-                button1_Click_1(sender, e);
+                button1_Click(sender, e);
             }
         }
 
@@ -308,8 +326,39 @@ namespace INDNC
 
         private void mySQL数据库ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mysqlparasetting.Show();
-            
+            RedisParaSetting redisparasetting = new RedisParaSetting();
+            redisparasetting.ShowDialog();
+            RedisPara tmp = new RedisPara();
+            tmp = redisparasetting.redisparaName;
+            if (tmp.connectvalid)
+            {
+                if (tmp.RedisPassword == "")
+                    tmp.RedisPassword = "null";
+                if (tmp.RedisIP == "")
+                    tmp.RedisIP = "null";
+                if (tmp.RedisPort == "")
+                    tmp.RedisPort = "null";
+
+                if (tmp.RedisIP == redispara.RedisIP && tmp.RedisPort == redispara.RedisPort && tmp.RedisPassword == redispara.RedisPassword)
+                    return;
+                try
+                {
+                    FileStream fs = new FileStream(@"../LocalRedisPara.conf", FileMode.Create);
+                    StreamWriter sw = new StreamWriter(fs);
+                    sw.Write("RedisIP="+tmp.RedisIP+";RedisPort="+tmp.RedisPort+";RedisPassword="+tmp.RedisPassword);
+                    //清空缓冲区
+                    sw.Flush();
+                    //关闭流
+                    sw.Close();
+                    fs.Close();
+                    //button2_Click(sender, e);
+                    button1_Click(sender, e);
+                }
+                catch (IOException ex)
+                {
+                    MessageBox.Show("ERROR:" + ex.Message, "ERROR");
+                }
+            }
         }
     }
     public partial struct ServerPara
@@ -386,7 +435,7 @@ namespace INDNC
     {
         private static PooledRedisClientManager _prcm;
 
-        public RedisManager(ref long initialDb, ref String readWriteHosts)
+        public RedisManager(ref long initialDb, ref string[] readWriteHosts)
         {
             _prcm = new PooledRedisClientManager(initialDb, readWriteHosts);
         }

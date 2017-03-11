@@ -7,49 +7,59 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using MySql.Data;
-using System.IO;
+using System.Data.Odbc;
+using ServiceStack.Redis;
 
 namespace INDNC
 {
-    public partial class MySQLParaSetting : Form
+    public partial class RedisParaSetting : Form
     {
-        public  MySQLPara mysqlpara = new MySQLPara();
-        
-        public MySQLParaSetting()
+        RedisPara redispara = new RedisPara();
+
+        public RedisPara redisparaName
+        {
+            get { return redispara; }
+        }
+
+
+        public RedisParaSetting()
         {
             InitializeComponent();
+            redispara.connectvalid = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            mysqlpara.MySQLID = textBox1.Text;
-            mysqlpara.MySQLHostID = textBox2.Text;
-            mysqlpara.MySQLPassword = textBox3.Text;
-            mysqlpara.MySQLDatabase = textBox4.Text;
+            redispara.connectvalid = false;  
+            String IP = textBox1.Text;
+            int port = 0;
 
-            string constr = "server=" + mysqlpara.MySQLID + ";User Id=" + mysqlpara.MySQLHostID + ";password=" + mysqlpara.MySQLPassword + ";Database="+ mysqlpara.MySQLDatabase;
+            redispara.RedisIP = textBox1.Text;
+            redispara.RedisPort = textBox2.Text;
+            redispara.RedisPassword = textBox3.Text;
+
+            if (int.TryParse(textBox2.Text, out port) != true)
+            {
+                MessageBox.Show("错误:服务器端口号输入错误，请重新输入！", "ERROR");
+                return;
+            }
+            String password = textBox3.Text;
+            long initialDb = 0;
+            string[] host = { redispara.RedisPassword + '@' + redispara.RedisIP + ':' + redispara.RedisPort };
             try
             {
-                MySqlConnection mysqlconnection = new MySqlConnection(constr);
-                if (mysqlconnection.Ping())  
+                RedisManager redismanager = new RedisManager(ref (initialDb), ref (host));
+                RedisClient Client = (RedisClient)redismanager.GetReadOnlyClient(ref (initialDb), ref (host));
+                if (!Client.Ping())
                 {
-                    mysqlpara.connectvalid = true;
-                    FileStream fs1 = new FileStream("../../MySQLPara.txt", FileMode.OpenOrCreate, FileAccess.Write);//创建写入文件 
-                    StreamWriter sw = new StreamWriter(fs1);
-                    sw.WriteLine(mysqlpara.MySQLID + " " + mysqlpara.MySQLHostID+ " " + mysqlpara.MySQLPassword+ " " + mysqlpara.MySQLDatabase);//开始写入值
-                    sw.Close();
-                    fs1.Close();
-                  
+                    throw new Exception("连接服务器失败!");
                 }
-                else
-                    mysqlpara.connectvalid = false;
+                redispara.connectvalid = true;
             }
             catch(Exception ex)
-            {
+            { 
                 MessageBox.Show("ERROR:" + ex.Message, "ERROR");
-                mysqlpara.connectvalid = false;
+                redispara.connectvalid = false;
             }
             finally
             {
