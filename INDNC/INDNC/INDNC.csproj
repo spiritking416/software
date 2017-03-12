@@ -63,6 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddOrDelSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddOrDelSetting.Designer.cs">
+      <DependentUpon>AddOrDelSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,9 @@
     <Compile Include="UserControlMachineState.Designer.cs">
       <DependentUpon>UserControlMachineState.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddOrDelSetting.resx">
+      <DependentUpon>AddOrDelSetting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

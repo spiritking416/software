@@ -19,3 +19,4 @@ C:\Users\mio\software\INDNC\INDNC\bin\Debug\MySql.Data.dll
 C:\Users\mio\software\INDNC\INDNC\bin\Debug\MySql.Data.xml
 C:\Users\mio\software\INDNC\INDNC\obj\Debug\INDNC.RedisParaSetting.resources
 C:\Users\mio\software\INDNC\INDNC\obj\Debug\INDNC.LineParaSetting.resources
+C:\Users\mio\software\INDNC\INDNC\obj\Debug\INDNC.AddOrDelSetting.resources

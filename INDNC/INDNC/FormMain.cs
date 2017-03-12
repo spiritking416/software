@@ -415,6 +415,12 @@ namespace INDNC
         {
 
         }
+
+        private void 添加或删除设备ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddOrDelSetting addordelsetting = new AddOrDelSetting();
+            addordelsetting.ShowDialog();
+        }
     }
     public partial struct ServerPara
     {

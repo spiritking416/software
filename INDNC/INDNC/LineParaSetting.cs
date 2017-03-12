@@ -79,7 +79,6 @@ namespace INDNC
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERROR");
-                //MessageBox.Show("ERROR:生产线索引输入错误！", "ERROR");
             }
         }
 
@@ -98,13 +97,12 @@ namespace INDNC
                     LineNo = 0;
                     throw new Exception("错误:生产线数量输入错误，请重新输入！");
                 }
-                //MessageBox.Show(comboBox1.SelectedIndex.ToString());
                 Properties.Settings.Default.Save();
                 this.Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("ERROR:生产线索引输入错误！", "ERROR");
+                MessageBox.Show(ex.Message, "ERROR");
             }  
         }
     }
