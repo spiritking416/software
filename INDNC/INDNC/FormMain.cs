@@ -29,9 +29,41 @@ namespace INDNC
     }
     public partial class FormMain : Form
     {
+
+        UserControlMachineState machinestate;
+        RedisManager redismanager = new RedisManager();
+        RedisPara redispara = new RedisPara();
+        UInt16 LineCount = 0;  //生产线数量
+        UInt16 LineNo = 0;  //生产线编号
+
         public FormMain()
         {
             InitializeComponent();
+            Initialize();
+        }
+
+        public void Initialize()
+        {
+            //LineNo、LineCount初始化
+            string lineindex = global::INDNC.Properties.Settings.Default.LineIndex;
+            string linecount = global::INDNC.Properties.Settings.Default.LineCount;
+            int offset = lineindex.IndexOf("生产线路") + 4;
+            string countstring = lineindex.Substring(offset);
+            try
+            {
+                if (UInt16.TryParse(countstring, out LineNo) != true)
+                    throw new Exception();
+                if (UInt16.TryParse(linecount, out LineCount) != true)
+                    throw new Exception();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR:软件初始化错误，请设置相关参数！", "ERROR");
+            }
+
+            
+
+
         }
 
         /*public struct machine
@@ -42,10 +74,6 @@ namespace INDNC
             
         }*/
 
-        UserControlMachineState machinestate;
-        UInt16 lineno = 0;  //生产线编号
-        RedisManager redismanager = new RedisManager();
-        RedisPara redispara = new RedisPara();
 
         //MySqlConnection mysqlconnetion = new MySqlConnection();
 
@@ -132,7 +160,7 @@ namespace INDNC
                 machinestate.Visible = true;
                 machinestate.Dock = DockStyle.Fill;
 
-                if (this.toolStripMenuItem1.CheckState == CheckState.Checked)
+                /*if (this.toolStripMenuItem1.CheckState == CheckState.Checked)
                     lineno = 1;
                 else if (this.toolStripMenuItem2.CheckState == CheckState.Checked)
                     lineno = 2;
@@ -141,9 +169,9 @@ namespace INDNC
                 else if (this.toolStripMenuItem4.CheckState == CheckState.Checked)
                     lineno = 4;
                 else
-                    lineno = 0;
+                    lineno = 0;*/
 
-                    if (!machinestate.ListViewDraw(ref (Client),ref (lineno)))
+                if (!machinestate.ListViewDraw(ref (Client), ref (LineNo)))
                 {
                     throw new Exception();
                 }
@@ -373,6 +401,19 @@ namespace INDNC
                     MessageBox.Show("ERROR:" + ex.Message, "ERROR");
                 }
             }
+        }
+
+        private void 产线设备参数SToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LineParaSetting lineparasetting = new LineParaSetting();
+            lineparasetting.ShowDialog();
+            LineNo = lineparasetting.LineNoName;
+            LineCount = lineparasetting.LineCountName;
+        }
+
+        private void 生产线路ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
     public partial struct ServerPara

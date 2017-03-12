@@ -69,11 +69,17 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="MySQL参数设置.cs">
+    <Compile Include="LineParaSetting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MySQL参数设置.Designer.cs">
-      <DependentUpon>MySQL参数设置.cs</DependentUpon>
+    <Compile Include="LineParaSetting.Designer.cs">
+      <DependentUpon>LineParaSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LocalRedisParaSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LocalRedisParaSetting.Designer.cs">
+      <DependentUpon>LocalRedisParaSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,8 +92,11 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MySQL参数设置.resx">
-      <DependentUpon>MySQL参数设置.cs</DependentUpon>
+    <EmbeddedResource Include="LineParaSetting.resx">
+      <DependentUpon>LineParaSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalRedisParaSetting.resx">
+      <DependentUpon>LocalRedisParaSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

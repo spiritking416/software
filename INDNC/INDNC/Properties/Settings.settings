@@ -39,7 +39,10 @@
       <Value Profile="(Default)">6379</Value>
     </Setting>
     <Setting Name="LineCount" Type="System.String" Scope="User">
-      <Value Profile="(Default)">5</Value>
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LineIndex" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
