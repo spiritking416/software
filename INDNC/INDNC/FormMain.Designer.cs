@@ -364,7 +364,7 @@ namespace INDNC
             this.MaximizeBox = false;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "VVMessageBox.Show(\"ERROR:\" + ex.Message, \"ERROR\");";
+            this.Text = "INDNC";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

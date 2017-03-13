@@ -61,9 +61,44 @@ namespace INDNC
                 MessageBox.Show("ERROR:软件初始化错误，请设置相关参数！", "ERROR");
             }
 
-            
+            //redispara初始化
 
+            try
+            {
+                //读取本地Redis服务器参数
+                FileStream fs = new FileStream(@"../LocalRedisPara.conf", FileMode.OpenOrCreate);
+                StreamReader sr = new StreamReader(fs);
+                string str = sr.ReadLine();
+                //关闭流
+                sr.Close();
+                fs.Close();
+                if (str == null || str == "")
+                    throw new Exception("ERROR:本地Redis服务器参数配置错误！");
+                int offsetIP = str.IndexOf("RedisIP=");
+                int offsetPort = str.IndexOf("RedisPort=");
+                int offsetPW = str.IndexOf("RedisPassword=");
+                if (offsetIP < 0 || offsetPort < 0 || offsetPW < 0)
+                {
+                    throw new Exception("ERROR:本地Redis服务器参数配置错误！");
+                }
 
+                offsetIP += 8;
+                offsetPort += 10;
+                offsetPW += 14;
+
+                int i = str.IndexOf(';');
+                redispara.RedisIP = str.Substring(offsetIP, i - offsetIP);
+                i = str.IndexOf(';', i + 1);
+                redispara.RedisPort = str.Substring(offsetPort, i - offsetPort);
+                i = str.IndexOf('\0', i + 1);
+                redispara.RedisPassword = str.Substring(offsetPW);
+                redispara.connectvalid = true;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR:" + ex.Message, "ERROR");
+            }
         }
 
         /*public struct machine
@@ -75,7 +110,7 @@ namespace INDNC
         }*/
 
 
-        //MySqlConnection mysqlconnetion = new MySqlConnection();
+                //MySqlConnection mysqlconnetion = new MySqlConnection();
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -114,6 +149,7 @@ namespace INDNC
 
             try
             {
+                /*
                 //读取本地Redis服务器参数
                 FileStream fs = new FileStream(@"../LocalRedisPara.conf", FileMode.OpenOrCreate);
                 StreamReader sr = new StreamReader(fs);
@@ -141,7 +177,7 @@ namespace INDNC
                 redispara.RedisPort = str.Substring(offsetPort, i - offsetPort);
                 i = str.IndexOf('\0', i + 1);
                 redispara.RedisPassword = str.Substring(offsetPW);
-                redispara.connectvalid = true;
+                redispara.connectvalid = true;*/
 
                 //从连接池获得只读连接客户端
                 RedisClient Client = (RedisClient)redismanager.GetReadOnlyClient(ref (serverpara.DBNo), ref (host));
@@ -190,7 +226,7 @@ namespace INDNC
                     machinestate = null;
                 }
                 redismanager.dispose();
-                redispara.dispose();
+                //redispara.dispose();
             }
             finally
             {
@@ -376,12 +412,12 @@ namespace INDNC
             tmp = redisparasetting.redisparaName;
             if (tmp.connectvalid)
             {
-                if (tmp.RedisPassword == "")
+                /*if (tmp.RedisPassword == "")
                     tmp.RedisPassword = "null";
                 if (tmp.RedisIP == "")
                     tmp.RedisIP = "null";
                 if (tmp.RedisPort == "")
-                    tmp.RedisPort = "null";
+                    tmp.RedisPort = "null";*/
 
                 if (tmp.RedisIP == redispara.RedisIP && tmp.RedisPort == redispara.RedisPort && tmp.RedisPassword == redispara.RedisPassword)
                     return;
@@ -395,6 +431,7 @@ namespace INDNC
                     //关闭流
                     sw.Close();
                     fs.Close();
+                    redispara = redisparasetting.redisparaName;
                 }
                 catch (IOException ex)
                 {
@@ -419,6 +456,7 @@ namespace INDNC
         private void 添加或删除设备ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddOrDelSetting addordelsetting = new AddOrDelSetting();
+            addordelsetting.redisparaName = redispara;
             addordelsetting.ShowDialog();
         }
     }

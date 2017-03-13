@@ -33,10 +33,10 @@
       <Value Profile="(Default)">Unchecked</Value>
     </Setting>
     <Setting Name="localip" Type="System.String" Scope="User">
-      <Value Profile="(Default)">127.0.0.1</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="localport" Type="System.String" Scope="User">
-      <Value Profile="(Default)">6379</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LineCount" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

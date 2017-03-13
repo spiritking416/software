@@ -145,7 +145,7 @@ namespace INDNC.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string localip {
             get {
                 return ((string)(this["localip"]));
@@ -157,7 +157,7 @@ namespace INDNC.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("6379")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string localport {
             get {
                 return ((string)(this["localport"]));

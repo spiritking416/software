@@ -56,6 +56,7 @@ namespace INDNC
                 }
                 MessageBox.Show("测试连接本地Redis数据库成功！", "提示");
                 redispara.connectvalid = true;
+                Properties.Settings.Default.Save(); // 存储上一次成功连接的IP地址和端口号
                 this.Close();
             }
             catch(Exception ex)
