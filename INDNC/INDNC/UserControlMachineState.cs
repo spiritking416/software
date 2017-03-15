@@ -47,10 +47,5 @@ namespace INDNC
 
         }
 
-        public void ListViewRefrush(ref RedisManager redismanager, ref RedisPara redispara, ref UInt16 lineno)
-        {
-
-        }
-
     }
 }

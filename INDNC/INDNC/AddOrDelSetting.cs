@@ -17,10 +17,10 @@ namespace INDNC
 
         public enum Operation
         {
-            Add=0,
-            Delete=1
+            Add = 0,
+            Delete = 1
         }
-        
+
         public RedisPara redisparaName
         {
             set { redispara = value; }
@@ -77,7 +77,7 @@ namespace INDNC
                 MessageBox.Show("设备信息删除失败！", "提示");
             foreach (Control ctrl in this.Controls)
             {
-                if(ctrl is TextBox)
+                if (ctrl is TextBox)
                 {
                     ctrl.Text = "";
                 }
@@ -93,6 +93,7 @@ namespace INDNC
             string textNO = textBox1.Text;
             string textIP = textBox3.Text;
             string textPort = textBox4.Text;
+            string textDB = textBox5.Text;
 
             try
             {
@@ -107,7 +108,7 @@ namespace INDNC
                 }
 
                 //连接本地数据库
-                if(redispara.connectvalid==false)
+                if (redispara.connectvalid == false)
                     throw new Exception("错误:本地Redis数据库参数错误，请重新设置！");
                 long initialDb = 0;
                 string[] host = { redispara.RedisPassword + '@' + redispara.RedisIP + ':' + redispara.RedisPort };
@@ -122,10 +123,14 @@ namespace INDNC
                 bool LineExist = false;
                 string lineno = "Line" + lineselect.ToString();
                 //生产线lineno是否存在
-                if (Client.SCard(lineno) ==0)
+                if (Client.SCard(lineno) == 0)
                     LineExist = false;
                 else
                     LineExist = true;
+
+                //缺省DB为null
+                if (textDB == "")
+                    textDB = "null";
 
                 if (operation == Operation.Add)
                 {
@@ -147,16 +152,18 @@ namespace INDNC
                     {
                         Encoding.UTF8.GetBytes("MachineNo"),
                         Encoding.UTF8.GetBytes("IP"),
-                        Encoding.UTF8.GetBytes("Port")
+                        Encoding.UTF8.GetBytes("Port"),
+                        Encoding.UTF8.GetBytes("DB")
                     };
 
                     byte[][] values = new byte[][]
                     {
                         Encoding.UTF8.GetBytes(textNO),
                         Encoding.UTF8.GetBytes(textIP),
-                        Encoding.UTF8.GetBytes(textPort)
+                        Encoding.UTF8.GetBytes(textPort),
+                        Encoding.UTF8.GetBytes(textDB)
                     };
-                    Client.HMSet(textSN, keys, values);
+                    Client.HMSet("MachineSN:"+textSN, keys, values);
                     return true;
                 }
                 else if (operation == Operation.Delete)
@@ -176,7 +183,7 @@ namespace INDNC
                         MessageBox.Show("生产线" + lineno.ToString() + "生产线数据已全部清除！", "提示");
                         return false;
                     }
-                        
+
                 }
 
             }
@@ -189,4 +196,5 @@ namespace INDNC
         }
 
     }
+
 }
