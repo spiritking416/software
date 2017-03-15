@@ -1,0 +1,7 @@
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNC_APIWrapper\bin\Debug\HNC_APIWrapper.dll
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNC_APIWrapper\bin\Debug\HNC_APIWrapper.pdb
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNC_APIWrapper\bin\Debug\HNCCommonData.dll
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNC_APIWrapper\bin\Debug\HNCCommonData.pdb
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNC_APIWrapper\obj\Debug\HNC_DEF.csprojResolveAssemblyReference.cache
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNC_APIWrapper\obj\Debug\HNC_APIWrapper.dll
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNC_APIWrapper\obj\Debug\HNC_APIWrapper.pdb

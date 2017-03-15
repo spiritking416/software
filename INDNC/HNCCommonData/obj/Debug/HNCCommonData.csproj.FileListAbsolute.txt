@@ -1,0 +1,30 @@
+F:\HNC_PROJECT\scada\HNCData\bin\Debug\HNCCommonData.dll
+F:\HNC_PROJECT\scada\HNCData\bin\Debug\HNCCommonData.pdb
+F:\HNC_PROJECT\scada\HNCData\obj\Debug\HNCCommonData.dll
+F:\HNC_PROJECT\scada\HNCData\obj\Debug\HNCCommonData.pdb
+F:\new_scada\scada\scada\HNCData\bin\Debug\HNCCommonData.dll
+F:\new_scada\scada\scada\HNCData\bin\Debug\HNCCommonData.pdb
+F:\new_scada\scada\scada\HNCData\obj\Debug\HNCCommonData.csprojResolveAssemblyReference.cache
+F:\new_scada\scada\scada\HNCData\obj\Debug\HNCCommonData.dll
+F:\new_scada\scada\scada\HNCData\obj\Debug\HNCCommonData.pdb
+F:\scada1028\HNCData\bin\Debug\HNCCommonData.dll
+F:\scada1028\HNCData\bin\Debug\HNCCommonData.pdb
+F:\scada1028\HNCData\bin\Debug\Newtonsoft.Json.dll
+F:\scada1028\HNCData\bin\Debug\Newtonsoft.Json.xml
+F:\scada1028\HNCData\obj\Debug\HNCCommonData.csprojResolveAssemblyReference.cache
+F:\scada1028\HNCData\obj\Debug\HNCCommonData.dll
+F:\scada1028\HNCData\obj\Debug\HNCCommonData.pdb
+F:\scada1031\HNCData\bin\Debug\HNCCommonData.dll
+F:\scada1031\HNCData\bin\Debug\HNCCommonData.pdb
+F:\scada1031\HNCData\bin\Debug\Newtonsoft.Json.dll
+F:\scada1031\HNCData\bin\Debug\Newtonsoft.Json.xml
+F:\scada1031\HNCData\obj\Debug\HNCCommonData.csprojResolveAssemblyReference.cache
+F:\scada1031\HNCData\obj\Debug\HNCCommonData.dll
+F:\scada1031\HNCData\obj\Debug\HNCCommonData.pdb
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNCCommonData\bin\Debug\HNCCommonData.dll
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNCCommonData\bin\Debug\HNCCommonData.pdb
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNCCommonData\bin\Debug\Newtonsoft.Json.dll
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNCCommonData\bin\Debug\Newtonsoft.Json.xml
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNCCommonData\obj\Debug\HNCCommonData.csprojResolveAssemblyReference.cache
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNCCommonData\obj\Debug\HNCCommonData.dll
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNCCommonData\obj\Debug\HNCCommonData.pdb

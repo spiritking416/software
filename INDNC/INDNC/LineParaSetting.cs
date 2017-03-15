@@ -59,6 +59,10 @@ namespace INDNC
         private void LineParaSetting_Load(object sender, EventArgs e)
         {
             string str = textBox1.Text;
+            if (comboBox1.Text == "")
+                comboBox1.Text = "生产线路1";
+            if (textBox1.Text == "")
+                textBox1.Text = "1";
             string s = comboBox1.Text.Substring(4);
             UInt16 linenum;
             int lineno;

@@ -1,0 +1,17 @@
+F:\HNC_PROJECT\scada\HNCData\bin\Release\HNCCommonData.dll
+F:\HNC_PROJECT\scada\HNCData\bin\Release\HNCCommonData.pdb
+F:\HNC_PROJECT\scada\HNCData\obj\Release\HNCCommonData.dll
+F:\HNC_PROJECT\scada\HNCData\obj\Release\HNCCommonData.pdb
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNCCommonData\bin\Release\HNCCommonData.dll
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNCCommonData\bin\Release\HNCCommonData.pdb
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNCCommonData\bin\Release\Newtonsoft.Json.dll
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNCCommonData\bin\Release\Newtonsoft.Json.xml
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNCCommonData\obj\Release\HNCCommonData.dll
+C:\Users\yanghuawei\Documents\Visual Studio 2015\Projects\HncDCAgentDll_CS\HNCCommonData\obj\Release\HNCCommonData.pdb
+D:\学习\研究生\硕士毕业论文\HncDCAgentDll_CS\HncDCAgentDll_CS\HNCCommonData\bin\Release\HNCCommonData.dll
+D:\学习\研究生\硕士毕业论文\HncDCAgentDll_CS\HncDCAgentDll_CS\HNCCommonData\bin\Release\HNCCommonData.pdb
+D:\学习\研究生\硕士毕业论文\HncDCAgentDll_CS\HncDCAgentDll_CS\HNCCommonData\bin\Release\Newtonsoft.Json.dll
+D:\学习\研究生\硕士毕业论文\HncDCAgentDll_CS\HncDCAgentDll_CS\HNCCommonData\bin\Release\Newtonsoft.Json.xml
+D:\学习\研究生\硕士毕业论文\HncDCAgentDll_CS\HncDCAgentDll_CS\HNCCommonData\obj\Release\HNCCommonData.csprojResolveAssemblyReference.cache
+D:\学习\研究生\硕士毕业论文\HncDCAgentDll_CS\HncDCAgentDll_CS\HNCCommonData\obj\Release\HNCCommonData.dll
+D:\学习\研究生\硕士毕业论文\HncDCAgentDll_CS\HncDCAgentDll_CS\HNCCommonData\obj\Release\HNCCommonData.pdb

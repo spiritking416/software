@@ -43,11 +43,6 @@ namespace INDNC
             this.参数PToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.本地数据库参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.生产线设备参数SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.生产线路ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.添加或删除设备ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
@@ -174,7 +169,6 @@ namespace INDNC
             this.参数PToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.本地数据库参数ToolStripMenuItem,
             this.生产线设备参数SToolStripMenuItem,
-            this.生产线路ToolStripMenuItem,
             this.添加或删除设备ToolStripMenuItem});
             this.参数PToolStripMenuItem.Name = "参数PToolStripMenuItem";
             this.参数PToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
@@ -183,76 +177,31 @@ namespace INDNC
             // 本地数据库参数ToolStripMenuItem
             // 
             this.本地数据库参数ToolStripMenuItem.Name = "本地数据库参数ToolStripMenuItem";
-            this.本地数据库参数ToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.本地数据库参数ToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
             this.本地数据库参数ToolStripMenuItem.Text = "本地Redis数据库参数(&D)";
             this.本地数据库参数ToolStripMenuItem.Click += new System.EventHandler(this.mySQL数据库ToolStripMenuItem_Click);
             // 
             // 生产线设备参数SToolStripMenuItem
             // 
             this.生产线设备参数SToolStripMenuItem.Name = "生产线设备参数SToolStripMenuItem";
-            this.生产线设备参数SToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.生产线设备参数SToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
             this.生产线设备参数SToolStripMenuItem.Text = "生产线设备参数(&S)";
             this.生产线设备参数SToolStripMenuItem.Click += new System.EventHandler(this.产线设备参数SToolStripMenuItem_Click);
-            // 
-            // 生产线路ToolStripMenuItem
-            // 
-            this.生产线路ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem3,
-            this.toolStripMenuItem4});
-            this.生产线路ToolStripMenuItem.Name = "生产线路ToolStripMenuItem";
-            this.生产线路ToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
-            this.生产线路ToolStripMenuItem.Text = "生产线路(&L)";
-            this.生产线路ToolStripMenuItem.Click += new System.EventHandler(this.生产线路ToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Checked = true;
-            this.toolStripMenuItem1.CheckState = global::INDNC.Properties.Settings.Default.line1;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(163, 26);
-            this.toolStripMenuItem1.Text = "生产线一(&1)";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.CheckState = global::INDNC.Properties.Settings.Default.line2;
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(163, 26);
-            this.toolStripMenuItem2.Text = "生产线二(&2)";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.CheckState = global::INDNC.Properties.Settings.Default.line3;
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(163, 26);
-            this.toolStripMenuItem3.Text = "生产线二(&3)";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.CheckState = global::INDNC.Properties.Settings.Default.line4;
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(163, 26);
-            this.toolStripMenuItem4.Text = "生产线二(&4)";
-            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
             // 添加或删除设备ToolStripMenuItem
             // 
             this.添加或删除设备ToolStripMenuItem.Name = "添加或删除设备ToolStripMenuItem";
-            this.添加或删除设备ToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
-            this.添加或删除设备ToolStripMenuItem.Text = "添加或删除设备(&A)";
+            this.添加或删除设备ToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
+            this.添加或删除设备ToolStripMenuItem.Text = "添加或删除生产线设备(&A)";
             this.添加或删除设备ToolStripMenuItem.Click += new System.EventHandler(this.添加或删除设备ToolStripMenuItem_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Location = new System.Drawing.Point(0, 89);
+            this.panel1.Location = new System.Drawing.Point(0, 127);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1461, 708);
+            this.panel1.Size = new System.Drawing.Size(1461, 670);
             this.panel1.TabIndex = 9;
             // 
             // button2
@@ -365,6 +314,7 @@ namespace INDNC
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "INDNC";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -392,11 +342,6 @@ namespace INDNC
         private Panel panel1;
         private Button button2;
         private ToolStripMenuItem 参数PToolStripMenuItem;
-        private ToolStripMenuItem 生产线路ToolStripMenuItem;
-        private ToolStripMenuItem toolStripMenuItem1;
-        private ToolStripMenuItem toolStripMenuItem2;
-        private ToolStripMenuItem toolStripMenuItem3;
-        private ToolStripMenuItem toolStripMenuItem4;
         private ToolStripMenuItem 本地数据库参数ToolStripMenuItem;
         private ToolStripMenuItem 生产线设备参数SToolStripMenuItem;
         private ToolStripMenuItem 添加或删除设备ToolStripMenuItem;

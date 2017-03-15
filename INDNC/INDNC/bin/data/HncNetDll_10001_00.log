@@ -1,0 +1,16 @@
+20170314 23:19:58:525 [INFO] *******************Call TCPInit, IP=192.168.213.197, ListenPort=10001*******************
+20170314 23:19:58:561 [INFO] WinSocket Start Success, version=2.2
+20170314 23:19:58:563 [ERRO] Create TCP Listen Socket failed errno:0, IP=192.168.213.197, Port=10001
+20170314 23:19:58:563 [WARN] Close UdpRecSocket, socket=-1
+20170314 23:19:58:563 [WARN] Close ListenSocket, socket=-1
+20170314 23:19:58:578 [ERRO] NetInit failed! ip = 192.168.213.197, port = 10001, ret = 1009
+
+20170314 23:44:04:063 [INFO] *******************Call TCPInit, IP=211.67.20.107, ListenPort=10001*******************
+20170314 23:44:04:083 [INFO] WinSocket Start Success, version=2.2
+20170314 23:44:04:087 [INFO] Init listen socket success, ListenSocket=2372, UdpRecvSocket=1892, IP=211.67.20.107, Port=10001
+20170314 23:44:04:088 [INFO] Init Completion point success
+20170314 23:44:04:117 [INFO] Init Thread pool Success, thread count=10
+20170314 23:44:04:118 [INFO] Start thread DetectDeadConn
+20170314 23:44:04:124 [INFO] Start thread TCPWatch
+20170314 23:44:04:124 [INFO] Start thread UDPWatch
+20170314 23:44:04:136 [INFO] HNC_NetInit success! Dll version = 1.21.00.14420
