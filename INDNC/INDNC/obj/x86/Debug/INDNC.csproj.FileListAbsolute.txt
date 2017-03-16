@@ -25,3 +25,6 @@ C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\HncNetDll.dll
 C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\Newtonsoft.Json.dll
 C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\StackExchange.Redis.dll
 C:\Users\mio\software\INDNC\INDNC\obj\x86\Debug\INDNC.csprojResolveAssemblyReference.cache
+D:\猎豹下载\software-master\INDNC\INDNC\bin\x86\Debug\INDNC.exe.config
+D:\猎豹下载\software-master\INDNC\INDNC\obj\x86\Debug\INDNC.exe
+D:\猎豹下载\software-master\INDNC\INDNC\obj\x86\Debug\INDNC.pdb
