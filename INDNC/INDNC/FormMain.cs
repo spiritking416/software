@@ -475,6 +475,8 @@ namespace INDNC
                 //从连接池获得只读连接客户端
                 long initialDB = 0;
                 RedisClient Client = (RedisClient)redismanager.GetReadOnlyClient(ref (initialDB), ref (host));
+                //byte[] ConnectTimeout = System.BitConverter.GetBytes(3);
+                //Client.ConfigSet("repl-ping-slave-period", ConnectTimeout);
                 if (Client==null ||　!Client.Ping())
                 {
                     throw new Exception("连接服务器失败!");
@@ -489,6 +491,8 @@ namespace INDNC
                 MessageBox.Show(Client.DbSize.ToString());
 
                 //绘制用户界面
+                if (machinestate == null)
+                    machinestate = new UserControlMachineState();
                 machinestate.Visible = true;
                 machinestate.Dock = DockStyle.Fill;
 
@@ -871,8 +875,9 @@ namespace INDNC
             {
                 MaxWritePoolSize = 20,//“写”链接池链接数
                 MaxReadPoolSize = 20,//“写”链接池链接数
-                AutoStart = true,
-            }, initialDb,null,null);
+                DefaultDb=0,
+                AutoStart = true
+            }, initialDb,null, null);
         }
 
         public IRedisClient GetClient()
