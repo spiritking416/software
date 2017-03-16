@@ -144,11 +144,19 @@ namespace INDNC
                     throw new Exception("云端服务器参数错误，请重新设置！");
                 }
                 RedisClient Client = new RedisClient(serverpara.RedisIP, port, serverpara.RedisPassword);  //连接云端服务器
+                if (!Client.Ping())
+                {
+                    throw new Exception("未能连接云端服务器，请检查相关参数！");
+                }
                 if (int.TryParse(redispara.RedisPort, out port) != true)
                 {
                     throw new Exception("Redis本地服务器参数错误，请重新设置！");
                 }
                 RedisClient LocalClient = new RedisClient(redispara.RedisIP, port, redispara.RedisPassword);  //连接本地服务器
+                if (!LocalClient.Ping())
+                {
+                    throw new Exception("未能连接本地服务器，请检查相关参数！");
+                }
                 if (LineNo == 0 ||　LineCount==0)
                     throw new Exception("生产线设备参数设置错误，请重新设置！");
                 string lineindex = "Line" + LineNo.ToString();
@@ -212,6 +220,7 @@ namespace INDNC
                 UInt16 Alarmmachinenum = 0;   //告警机床数量
                 UInt16 workmachinenum = 0;  //在线机床数量
                 UInt16 disconnectedmachinenum = 0;  //离线机床数量
+                UInt16 invisiblemachinenum = 0;  //因参数错误未显示机床数量
                 int lineno = LineNo - 1;
 
                 machinestate.listView1.BeginUpdate();  
@@ -224,17 +233,17 @@ namespace INDNC
                     if (machinestr == key)
                     {
                         ListViewItem lvi = new ListViewItem();
+                        lvi.UseItemStyleForSubItems = false; //可以设置单元格背景
                         string tmpstr = machineName[lineno][key];
                         if (tmpstr != null && tmpstr != "")
                         {
                             ++connectedmachinenum;
                             lvi.Text = tmpstr;
-                            machinestate.listView1.Items.Add(lvi);
 
                             //机床状态
                             DCAgentApi dcagentApi = DCAgentApi.GetInstance(serverpara.RedisIP);
                             // HNC_NetConnect 连接Redis数据库并获取连接设备号
-                            //获取IP,Port
+                            //获取本地服务器上记录的机床IP,Port
                             byte[] machinebytes = new byte[] { };
                             byte[] tmpbytes = Encoding.UTF8.GetBytes("IP");
                             machinebytes = LocalClient.HGet("MachineSN:" + key, tmpbytes);
@@ -245,8 +254,31 @@ namespace INDNC
                             ushort machineport = 0;
                             if (UInt16.TryParse(machineportstr, out machineport) != true)
                             {
-                                throw new Exception("生产线设备参数错误，请重新设置！");
+                                MessageBox.Show("因生产线设备参数错误，SN码为" + key + "，编号为" + lvi.Text + "的设备未显示,请修改设备参数！");
+                                ++invisiblemachinenum;
+                                continue;  //跳过此设备
                             }
+
+                            //获取云服务器上记录的机床IP,Port
+                            machinebytes = Client.Get("IP");
+                            string machineserverip = System.Text.Encoding.Default.GetString(machinebytes);
+                            machinebytes = Client.Get("Port");
+                            string machineserverportstr = System.Text.Encoding.Default.GetString(machinebytes);
+                            ushort machineserverport = 0;
+                            if (UInt16.TryParse(machineserverportstr, out machineserverport) != true)
+                            {
+                                MessageBox.Show("因生产线设备参数错误，SN码为" + key + "，编号为" + lvi.Text + "的设备未显示,请修改设备参数！");
+                                ++invisiblemachinenum;
+                                continue;  //跳过此设备
+                            }
+
+                            if(machineip!=machineserverip || machineport != machineserverport)
+                            {
+                                MessageBox.Show("因云端和本地设备参数有出入，SN码为"+ key + "，编号为" + lvi.Text + "的设备未显示,请修改设备参数！");
+                                ++invisiblemachinenum;
+                                continue;  //跳过此设备
+                            }
+
                             //获取时间
                             byte[] timebyte = Client.Get("TimeStamp");
                             string timestampstr = System.Text.Encoding.Default.GetString(timebyte);
@@ -261,6 +293,7 @@ namespace INDNC
                                 lvi.SubItems.Add("离线");
                                 lvi.SubItems.Add("\\");
                                 lvi.SubItems.Add(time.ToString());
+                                lvi.SubItems[1].BackColor = Color.Gray;                     
                             }
                             else
                             {
@@ -276,6 +309,7 @@ namespace INDNC
                                     lvi.SubItems.Add("在线");
                                     lvi.SubItems.Add("\\");
                                     lvi.SubItems.Add(time.ToString());
+                                    lvi.SubItems[1].BackColor = Color.Green;
                                 }
                                 else
                                 {
@@ -283,9 +317,11 @@ namespace INDNC
                                     lvi.SubItems.Add("告警");
                                     lvi.SubItems.Add("\\");
                                     lvi.SubItems.Add(time.ToString());
+                                    lvi.SubItems[1].BackColor = Color.Red;
                                 }
                             }
 
+                            machinestate.listView1.Items.Add(lvi);
 
                             //byte[] machinenamebytes = new byte[] { };
                             //byte[] tmpbytes = Encoding.UTF8.GetBytes("MachineNo");
@@ -303,11 +339,12 @@ namespace INDNC
                 label8.Visible = true;
                 label9.Visible = true;
                 label10.Visible = true;
+                label11.Visible = true;
                 label7.Text = "生产线" + LineNo.ToString() + "设备数目:" + machineDB[lineno].Count.ToString() + "台";
                 label8.Text = "在线设备数目:" + workmachinenum.ToString() + "台";
                 label9.Text = "离线设备数目:" + disconnectedmachinenum.ToString() + "台";
-                label10.Text = "告警设备数目:" + 0.ToString() + "台";
-
+                label10.Text = "告警设备数目:" + Alarmmachinenum.ToString() + "台";
+                label11.Text = "未显示设备数目:" + invisiblemachinenum.ToString() + "台";
             }
             catch (Exception ex)
             {
@@ -368,6 +405,7 @@ namespace INDNC
                     label8.Visible = false;
                     label9.Visible = false;
                     label10.Visible = false;
+                    label11.Visible = false;
                 }
             }
 
@@ -396,7 +434,8 @@ namespace INDNC
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            button2_Click(sender, e);
+
             //redispara = redisparasetting.redisparaName;
             //服务器连接ip,por,password设置
             for (int i = 1; i <= 4; ++i)
@@ -551,12 +590,12 @@ namespace INDNC
                 label8.Visible = false;
                 label9.Visible = false;
                 label10.Visible = false;
+                label11.Visible = false;
                 bThreadIsExit = false;
                 redismanager.dispose();
                 machinestate.Visible = false;
                 machinestate.listView1.Clear();
                 machineDB.Clear();
-                machineName.Clear();
                 serverpara.dispose();
             }
             catch(Exception ex)
