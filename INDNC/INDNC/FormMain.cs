@@ -101,7 +101,7 @@ namespace INDNC
                 int offsetPW = str.IndexOf("RedisPassword=");
                 if (offsetIP < 0 || offsetPort < 0 || offsetPW < 0)
                 {
-                    throw new Exception("ERROR:本地Redis服务器参数配置错误！");
+                    throw new Exception("本地Redis服务器参数配置错误！");
                 }
 
                 offsetIP += 8;
@@ -240,11 +240,9 @@ namespace INDNC
                             // HNC_NetConnect 连接Redis数据库并获取连接设备号
                             //获取IP,Port
                             byte[] machinebytes = new byte[] { };
-                            byte[] tmpbytes = Encoding.UTF8.GetBytes("IP");
-                            machinebytes = LocalClient.HGet("MachineSN:" + key, tmpbytes);
+                            machinebytes = Client.Get("IP");
                             string machineip = System.Text.Encoding.Default.GetString(machinebytes);
-                            tmpbytes = Encoding.UTF8.GetBytes("Port");
-                            machinebytes = LocalClient.HGet("MachineSN:" + key, tmpbytes);
+                            machinebytes = Client.Get("Port");
                             string machineportstr = System.Text.Encoding.Default.GetString(machinebytes);
                             ushort machineport = 0;
                             if (UInt16.TryParse(machineportstr, out machineport) != true)
