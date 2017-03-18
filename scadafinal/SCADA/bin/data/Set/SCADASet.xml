@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <linetype linetype="一拖二" />
+  <LocalIpAddr CNCLocalIp="211.67.20.107" />
+  <User SUM="2" name="User" password="">
+    <Item0 serial="0" name="操作者" password="" />
+    <Item1 serial="1" name="管理员" password="" />
+  </User>
+  <CNC SUM="1" id="1" workshop="#1" productionline="#1" type="A" system="hnc8" ip="192.168.1.1" port="10001" SN="0" EQUIP_CODE="0" remark="">
+    <Item0 serial="0" id="1" workshop="#1" productionline="#1" type="A" system="hnc8" ip="192.168.213.197" port="10001" SN="0" EQUIP_CODE="0" remark="" />
+  </CNC>
+  <ROBOT SUM="1" id="1" workshop="#1" productionline="#1" type="A" system="hnc8" ip="192.168.1.1" port="10001" SN="0" EQUIP_CODE="0" remark="">
+    <Item0 serial="0" id="1" workshop="#1" productionline="#1" type="A" system="hnc8" ip="192.168.1.1" port="10001" SN="0" EQUIP_CODE="0" remark="">
+      <X SUM="1" address="0" name="急停" appear="否" EQUIP_CODE="null" ACTION_ID="null" remark="null">
+        <Item0 serial="0" address="0" name="急停" appear="否" EQUIP_CODE="null" ACTION_ID="null" remark="null" />
+      </X>
+      <Y SUM="1" address="0" name="急停" appear="否" EQUIP_CODE="null" ACTION_ID="null" remark="null">
+        <Item0 serial="0" address="0" name="急停" appear="否" EQUIP_CODE="null" ACTION_ID="null" remark="null" />
+      </Y>
+    </Item0>
+  </ROBOT>
+  <PLC SUM="1" id="1" workshop="#1" productionline="#1" type="A" system="hnc8" ip="192.168.1.1" port="10001" SN="0" EQUIP_CODE="0" remark="">
+    <Item0 serial="0" id="1" workshop="#1" productionline="#1" type="A" system="hnc8" ip="192.168.213.197" port="10001" SN="0" EQUIP_CODE="0" remark="" />
+  </PLC>
+  <RFID SUM="1" id="1" workshop="#1" productionline="#1" PLCserial="0" jitaihao="0" ReadDevice="D" ReadAddressStar="0" ReadAddressSet="6,6,2,1,1,2,2,2,2,2,2,2,2,2" WriteDevice="D" WriteAddressStar="0" WriteAddressSet="6,6,2,1,1,2,2,2,2,2,2,2,2,2" MonitorBit="M,0,1" ip="192.168.1.1" port="10001" remark="">
+    <Item0 serial="0" id="1" workshop="#1" productionline="#1" PLCserial="0" jitaihao="0" ReadDevice="D" ReadAddressStar="0" ReadAddressSet="6,6,2,1,1,2,2,2,2,2,2,2,2,2" WriteDevice="D" WriteAddressStar="0" WriteAddressSet="6,6,2,1,1,2,2,2,2,2,2,2,2,2" MonitorBit="M,0,1" ip="192.168.1.1" port="10001" remark="" />
+  </RFID>
+  <PLCAlarmTb SUM="1" AlarmNo="0" Tex="">
+    <Item0 serial="0" AlarmNo="0" Tex="" />
+  </PLCAlarmTb>
+</Root>

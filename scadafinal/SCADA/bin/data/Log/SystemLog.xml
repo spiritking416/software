@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <System>
+    <System_runing Level="严重" TimeCreated="2017/3/18 14:24:44" Provider="SCADA.MainForm" EventID="3" Keywords="设备初始化失败" EventData="System.Exception: 本地网络环境初始化失败；IP = 211.67.20.107  端口 = 10001&#xD;&#xA;   在 SCADA.MainForm.InitEquiment() 位置 D:\猎豹下载\scadafinal\SCADA\WindowsForm\MainForm.cs:行号 426&#xD;&#xA;   在 SCADA.MainForm..ctor() 位置 D:\猎豹下载\scadafinal\SCADA\WindowsForm\MainForm.cs:行号 293" />
+    <System_runing Level="警告" TimeCreated="2017/3/18 14:24:44" Provider="SCADA.MainForm" EventID="1" Keywords="CNC初始化" EventData="本地网络环境初始化失败；IP = 211.67.20.107  端口 = 10001" />
+    <System_runing Level="消息" TimeCreated="2017/3/18 14:24:44" Provider="SCADA.MainForm" EventID="0" Keywords="CNC初始化" EventData="0初始化成功；IP = 192.168.213.197  端口 = 10001" />
+    <System_security Level="审核" TimeCreated="2017/3/18 14:24:30" Provider="SCADA.MainForm" EventID="4" Keywords="用户注册" EventData="用户注册成功！" />
+    <System_security Level="消息" TimeCreated="2017/3/18 10:54:21" Provider="SCADA.LogData" EventID="0" Keywords="软件退出" EventData="用户:管理员" />
+    <System_security Level="消息" TimeCreated="2017/3/18 10:46:09" Provider="SCADA.EquipmentCheckForm" EventID="0" Keywords="清线操作" EventData="用户:管理员" />
+    <System_security Level="消息" TimeCreated="2017/3/18 10:46:07" Provider="SCADA.EquipmentCheckForm" EventID="0" Keywords="清线操作" EventData="用户:管理员" />
+    <System_security Level="消息" TimeCreated="2017/3/18 10:46:05" Provider="SCADA.EquipmentCheckForm" EventID="0" Keywords="清线操作" EventData="用户:管理员" />
+    <System_security Level="消息" TimeCreated="2017/3/18 10:45:22" Provider="SCADA.SetForm" EventID="0" Keywords="配置参数保存" EventData="配置参数保存成功" />
+    <System_security Level="消息" TimeCreated="2017/3/18 10:42:07" Provider="SCADA.SetForm" EventID="0" Keywords="配置参数保存" EventData="配置参数保存成功" />
+    <System_security Level="审核" TimeCreated="2017/3/18 10:41:50" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆成功！" />
+    <System_runing Level="严重" TimeCreated="2017/3/18 10:39:37" Provider="SCADA.MainForm" EventID="3" Keywords="设备初始化失败" EventData="System.Exception: 本地网络环境初始化失败；IP = 169.254.8.189  端口 = 10001&#xD;&#xA;   在 SCADA.MainForm.InitEquiment() 位置 D:\猎豹下载\scadafinal\SCADA\WindowsForm\MainForm.cs:行号 426&#xD;&#xA;   在 SCADA.MainForm..ctor() 位置 D:\猎豹下载\scadafinal\SCADA\WindowsForm\MainForm.cs:行号 293" />
+    <System_runing Level="消息" TimeCreated="2017/3/18 10:39:37" Provider="SCADA.MainForm" EventID="0" Keywords="CNC初始化" EventData="0初始化成功；IP = 192.168.1.1  端口 = 10001" />
+    <System_runing Level="警告" TimeCreated="2017/3/18 10:39:37" Provider="SCADA.MainForm" EventID="1" Keywords="CNC初始化" EventData="本地网络环境初始化失败；IP = 169.254.8.189  端口 = 10001" />
+    <System_security Level="审核" TimeCreated="2017/3/18 10:39:35" Provider="SCADA.MainForm" EventID="4" Keywords="用户注册" EventData="用户注册成功！" />
+    <System_security Level="消息" TimeCreated="2017/3/17 14:40:19" Provider="SCADA.LogData" EventID="0" Keywords="软件退出" EventData="用户:管理员" />
+    <System_security Level="审核" TimeCreated="2017/3/17 14:39:39" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆成功！" />
+    <System_runing Level="严重" TimeCreated="2017/3/17 14:38:35" Provider="SCADA.MainForm" EventID="3" Keywords="设备初始化失败" EventData="System.Exception: 本地网络环境初始化失败；IP = 192.168.1.1  端口 = 10001&#xD;&#xA;   在 SCADA.MainForm.InitEquiment() 位置 D:\猎豹下载\scadafinal\SCADA\WindowsForm\MainForm.cs:行号 426&#xD;&#xA;   在 SCADA.MainForm..ctor() 位置 D:\猎豹下载\scadafinal\SCADA\WindowsForm\MainForm.cs:行号 293" />
+    <System_runing Level="警告" TimeCreated="2017/3/17 14:38:35" Provider="SCADA.MainForm" EventID="1" Keywords="CNC初始化" EventData="本地网络环境初始化失败；IP = 192.168.1.1  端口 = 10001" />
+    <System_runing Level="消息" TimeCreated="2017/3/17 14:38:35" Provider="SCADA.MainForm" EventID="0" Keywords="CNC初始化" EventData="0初始化成功；IP = 192.168.1.1  端口 = 10001" />
+    <System_security Level="审核" TimeCreated="2017/3/17 14:38:31" Provider="SCADA.MainForm" EventID="4" Keywords="用户注册" EventData="用户注册成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/17 14:32:26" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆失败！" />
+    <System_security Level="审核" TimeCreated="2017/3/17 14:32:22" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆失败！" />
+    <System_security Level="审核" TimeCreated="2017/3/17 14:32:18" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆失败！" />
+    <System_runing Level="警告" TimeCreated="2017/3/17 14:30:19" Provider="SCADA.MainForm" EventID="1" Keywords="CNC初始化" EventData="本地网络环境初始化失败；IP = 192.168.1.1  端口 = 10001" />
+    <System_runing Level="严重" TimeCreated="2017/3/17 14:30:19" Provider="SCADA.MainForm" EventID="3" Keywords="设备初始化失败" EventData="System.Exception: 本地网络环境初始化失败；IP = 192.168.1.1  端口 = 10001&#xD;&#xA;   在 SCADA.MainForm.InitEquiment() 位置 D:\猎豹下载\scadafinal\SCADA\WindowsForm\MainForm.cs:行号 426&#xD;&#xA;   在 SCADA.MainForm..ctor() 位置 D:\猎豹下载\scadafinal\SCADA\WindowsForm\MainForm.cs:行号 293" />
+    <System_runing Level="消息" TimeCreated="2017/3/17 14:30:19" Provider="SCADA.MainForm" EventID="0" Keywords="CNC初始化" EventData="0初始化成功；IP = 192.168.1.1  端口 = 10001" />
+    <System_security Level="审核" TimeCreated="2017/3/17 14:30:15" Provider="SCADA.MainForm" EventID="4" Keywords="用户注册" EventData="用户注册成功！" />
+  </System>
+  <Equipment />
+  <Network />
+</Root>

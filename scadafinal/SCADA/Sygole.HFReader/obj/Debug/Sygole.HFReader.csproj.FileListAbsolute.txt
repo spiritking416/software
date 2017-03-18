@@ -1,0 +1,14 @@
+D:\NewScada\Code\scadafinal\SCADA\Sygole.HFReader\bin\Debug\Sygole.HFReader.dll
+D:\NewScada\Code\scadafinal\SCADA\Sygole.HFReader\bin\Debug\Sygole.HFReader.pdb
+D:\NewScada\Code\scadafinal\SCADA\Sygole.HFReader\obj\Debug\Sygole.HFReader.dll
+D:\NewScada\Code\scadafinal\SCADA\Sygole.HFReader\obj\Debug\Sygole.HFReader.pdb
+D:\root\Work\Code\scadafinal\SCADA\Sygole.HFReader\bin\Debug\Sygole.HFReader.dll
+D:\root\Work\Code\scadafinal\SCADA\Sygole.HFReader\bin\Debug\Sygole.HFReader.pdb
+D:\root\Work\Code\scadafinal\SCADA\Sygole.HFReader\obj\Debug\Sygole.HFReader.csprojResolveAssemblyReference.cache
+D:\root\Work\Code\scadafinal\SCADA\Sygole.HFReader\obj\Debug\Sygole.HFReader.dll
+D:\root\Work\Code\scadafinal\SCADA\Sygole.HFReader\obj\Debug\Sygole.HFReader.pdb
+D:\猎豹下载\scadafinal\SCADA\Sygole.HFReader\bin\Debug\Sygole.HFReader.dll
+D:\猎豹下载\scadafinal\SCADA\Sygole.HFReader\bin\Debug\Sygole.HFReader.pdb
+D:\猎豹下载\scadafinal\SCADA\Sygole.HFReader\obj\Debug\Sygole.HFReader.csprojResolveAssemblyReference.cache
+D:\猎豹下载\scadafinal\SCADA\Sygole.HFReader\obj\Debug\Sygole.HFReader.dll
+D:\猎豹下载\scadafinal\SCADA\Sygole.HFReader\obj\Debug\Sygole.HFReader.pdb

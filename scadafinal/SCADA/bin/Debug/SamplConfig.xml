@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleConfig>
+  <!--X轴指令位置-->
+  <ChSet type="1" axis="0" offset="0" datalen ="0" />
+  <!--X轴实际位置-->
+  <ChSet type="2" axis="0" offset="0" datalen ="0" />
+  <!--X轴负载电流-->
+  <ChSet type="6" axis="0" offset="0" datalen ="0" />
+  <!--Y轴指令位置-->
+  <ChSet type="1" axis="1" offset="0" datalen ="0" />
+  <!--Y轴实际位置-->
+  <ChSet type="2" axis="1" offset="0" datalen ="0" />
+  <!--Y轴负载电流-->
+  <ChSet type="6" axis="1" offset="0" datalen ="0" />
+  <!--Z轴指令位置-->
+  <ChSet type="1" axis="2" offset="0" datalen ="0" />
+  <!--Z轴实际位置-->
+  <ChSet type="2" axis="2" offset="0" datalen ="0" />
+  <!--Z轴负载电流-->
+  <ChSet type="6" axis="2" offset="0" datalen ="0" />
+  <!--主轴实际位置-->
+  <ChSet type="5" axis="5" offset="0" datalen ="0" />
+  <!--主轴负载电流-->
+  <ChSet type="6" axis="5" offset="0" datalen ="0" />
+  <!--通道0程序行号-->
+  <ChSet type="102" axis="-1" offset="4" datalen ="4" />
+  <!--通道0当前程序号-->
+  <ChSet type="102" axis="-1" offset="7" datalen ="4" />
+  <!--通道0状态-->
+  <ChSet type="108" axis="-1" offset="0" datalen ="4" />
+  <!--换刀时间-->
+  <ChSet type="112" axis="-1" offset="116" datalen ="1" />
+  <!--刀号-->
+  <ChSet type="113" axis="-1" offset="189" datalen ="4" />
+</SampleConfig>
