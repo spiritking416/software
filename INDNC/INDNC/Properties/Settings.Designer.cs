@@ -190,5 +190,100 @@ namespace INDNC.Properties {
                 this["LineIndex"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("127")]
+        public string localip1 {
+            get {
+                return ((string)(this["localip1"]));
+            }
+            set {
+                this["localip1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string localip2 {
+            get {
+                return ((string)(this["localip2"]));
+            }
+            set {
+                this["localip2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string localip3 {
+            get {
+                return ((string)(this["localip3"]));
+            }
+            set {
+                this["localip3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public string localip4 {
+            get {
+                return ((string)(this["localip4"]));
+            }
+            set {
+                this["localip4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string serverpassword {
+            get {
+                return ((string)(this["serverpassword"]));
+            }
+            set {
+                this["serverpassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string localpassword {
+            get {
+                return ((string)(this["localpassword"]));
+            }
+            set {
+                this["localpassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string workshopno {
+            get {
+                return ((string)(this["workshopno"]));
+            }
+            set {
+                this["workshopno"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;password=416520;persistsecurityinfo=True;database=c" +
+            "ncdatabase")]
+        public string cncdatabaseConnectionString {
+            get {
+                return ((string)(this["cncdatabaseConnectionString"]));
+            }
+        }
     }
 }

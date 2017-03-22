@@ -1,0 +1,14 @@
+F:\HNC_PROJECT\scada\HNC_APIWrapper\bin\x86\Debug\HNC_APIWrapper.dll
+F:\HNC_PROJECT\scada\HNC_APIWrapper\bin\x86\Debug\HNC_APIWrapper.pdb
+F:\HNC_PROJECT\scada\HNC_APIWrapper\bin\x86\Debug\HNCCommonData.dll
+F:\HNC_PROJECT\scada\HNC_APIWrapper\bin\x86\Debug\Newtonsoft.Json.dll
+F:\HNC_PROJECT\scada\HNC_APIWrapper\bin\x86\Debug\ServiceStack.Common.dll
+F:\HNC_PROJECT\scada\HNC_APIWrapper\bin\x86\Debug\ServiceStack.Interfaces.dll
+F:\HNC_PROJECT\scada\HNC_APIWrapper\bin\x86\Debug\ServiceStack.Redis.dll
+F:\HNC_PROJECT\scada\HNC_APIWrapper\bin\x86\Debug\ServiceStack.Text.dll
+F:\HNC_PROJECT\scada\HNC_APIWrapper\bin\x86\Debug\HNCCommonData.pdb
+F:\HNC_PROJECT\scada\HNC_APIWrapper\bin\x86\Debug\ServiceStack.Redis.xml
+F:\HNC_PROJECT\scada\HNC_APIWrapper\bin\x86\Debug\ServiceStack.Text.xml
+F:\HNC_PROJECT\scada\HNC_APIWrapper\obj\x86\Debug\HNC_APIWrapper.csprojResolveAssemblyReference.cache
+F:\HNC_PROJECT\scada\HNC_APIWrapper\obj\x86\Debug\HNC_APIWrapper.dll
+F:\HNC_PROJECT\scada\HNC_APIWrapper\obj\x86\Debug\HNC_APIWrapper.pdb

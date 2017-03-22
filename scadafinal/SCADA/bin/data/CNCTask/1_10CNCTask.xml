@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="gb2312"?>
-<!--DataTable: 0-->
-<DataTable TableName="0" CountOfRows="0" CountOfColumns="23">
-  <ClomunName Column0="编号" Column1="工单状态" Column2="机台编号" Column3="派工单号" Column4="物料编码" Column5="生产数量" Column6="报工数量" Column7="计划开始时间" Column8="计划完成时间" Column9="NC编号" Column10="NC版本号" Column11="作业指导号" Column12="作业指导版本号" Column13="线体" Column14="工序编码" Column15="生产订单" Column16="操作标示" Column17="SN" Column18="时间戳" Column19="日期" Column20="NC文件路径" Column21="NC作业指导书路径" Column22="物料标识" />
-</DataTable>

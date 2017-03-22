@@ -29,17 +29,23 @@ namespace INDNC
             connectvalid = false;
         }
     }
-    public partial class FormMain : Form
+    internal partial class FormMain : Form
     {
-
+        //用来记录from是否打开过
+        private int[] s = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         UserControlMachineState machinestate = new UserControlMachineState();
+        UserControlSetting controlsetting = new UserControlSetting();
         RedisManager redismanager = new RedisManager();
         RedisPara redispara = new RedisPara();
         UInt16 LineCount = 0;  //生产线数量
         UInt16 LineNo = 0;  //生产线编号
-        bool bythreadstate = false; //线程运行flag
+        //bool bythreadstate = false; //线程运行flag
+        ButtonIndex button_onindex = ButtonIndex.NOButton;
         RedisPara serverpara;  //服务器参数
         System.Timers.Timer t;  //timer
+        bool sizechange = false;
+        bool firsttimerun = false;
+        //CustomTabControl customtabcontrol = new CustomTabControl();
         List<Dictionary<string, UInt16>> machineDB = new List<Dictionary<string, UInt16>>(); //机床SN码与数据库db映射关系
         List<Dictionary<string, string>> machineName = new List<Dictionary<string, string>>(); //机床SN码与机床编号映射关系
         List<Dictionary<string, UInt16>> machinePort = new List<Dictionary<string, UInt16>>(); //机床SN码与机床Port映射关系
@@ -85,11 +91,10 @@ namespace INDNC
             }
 
             //redispara初始化
-
             try
             {
                 //读取本地Redis服务器参数
-                FileStream fs = new FileStream(@"../LocalRedisPara.conf", FileMode.OpenOrCreate);
+                /*FileStream fs = new FileStream(@"../LocalRedisPara.conf", FileMode.OpenOrCreate);
                 StreamReader sr = new StreamReader(fs);
                 string str = sr.ReadLine();
                 //关闭流
@@ -102,7 +107,7 @@ namespace INDNC
                 int offsetPW = str.IndexOf("RedisPassword=");
                 if (offsetIP < 0 || offsetPort < 0 || offsetPW < 0)
                 {
-                    throw new Exception("ERROR:本地Redis服务器参数配置错误！");
+                    throw new Exception("ERROR:本地服务器参数配置错误！");
                 }
 
                 offsetIP += 8;
@@ -115,8 +120,27 @@ namespace INDNC
                 redispara.RedisPort = str.Substring(offsetPort, i - offsetPort);
                 i = str.IndexOf('\0', i + 1);
                 redispara.RedisPassword = str.Substring(offsetPW);
-                redispara.connectvalid = true;
+                redispara.connectvalid = true;*/
 
+                redispara.RedisIP = global::INDNC.Properties.Settings.Default.localip1 + '.' + global::INDNC.Properties.Settings.Default.localip2 + '.'
+                    + global::INDNC.Properties.Settings.Default.localip3 + '.' + global::INDNC.Properties.Settings.Default.localip4;
+                redispara.RedisPort = global::INDNC.Properties.Settings.Default.localport;
+                redispara.RedisPassword = global::INDNC.Properties.Settings.Default.localpassword;
+                redispara.connectvalid = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR:" + ex.Message, "ERROR");
+            }
+
+            //serverpara初始化
+            try
+            {
+                serverpara.RedisIP = global::INDNC.Properties.Settings.Default.ip1 + '.' + global::INDNC.Properties.Settings.Default.ip2 + '.'
+                    + global::INDNC.Properties.Settings.Default.ip3 + '.' + global::INDNC.Properties.Settings.Default.ip4;
+                serverpara.RedisPort = global::INDNC.Properties.Settings.Default.port;
+                serverpara.RedisPassword = global::INDNC.Properties.Settings.Default.serverpassword;
+                serverpara.connectvalid = false;
             }
             catch (Exception ex)
             {
@@ -135,6 +159,8 @@ namespace INDNC
         //机床状态初始化
         public void ListViewInitial()
         {
+            if(machinestate!=null)
+                machinestate.listView1.Items.Clear();
             ushort DB = 0;
             if (machinestate != null && machinestate.listView1 != null && machinestate.listView1.Items != null)
                 machinestate.listView1.Items.Clear();
@@ -484,7 +510,8 @@ namespace INDNC
             catch (Exception ex)
             {
                 MessageBox.Show("ERROR:" + ex.Message, "ERROR");
-                bythreadstate = false;
+                if (t != null && t.Enabled)
+                    t.Enabled = false;
             }
         }
 
@@ -498,7 +525,7 @@ namespace INDNC
             {
                 //检验输入是否为数字，数字是否介于0~255之间
                 int tmp = -1;
-                TextBox objText = (TextBox)this.Controls["textBox" + i.ToString()];
+                TextBox objText = (TextBox)this.panel2.Controls["textBox" + i.ToString()];
                 if (int.TryParse(objText.Text, out tmp) != true)
                 {
                     MessageBox.Show("错误:服务器IP地址输入错误，请重新输入！", "ERROR");
@@ -540,20 +567,24 @@ namespace INDNC
                 //连接成功
                 serverpara.connectvalid = true;
                 redismanager.DisposeClient(ref (Client));  //dispose客户端
-                Properties.Settings.Default.Save(); // 存储上一次成功连接的IP地址和端口号
+                Properties.Settings.Default.Save(); // 存储上一次成功连接的IP地址和端口号\
+                firsttimerun = true;  //第一次运行完成
 
                 //测试连接
                 MessageBox.Show(Client.Db.ToString());  //db index
                 MessageBox.Show(Client.DbSize.ToString());
 
                 //绘制用户界面
-                if (machinestate == null)
-                    machinestate = new UserControlMachineState();
                 machinestate.Visible = true;
                 machinestate.listView1.Visible = true;
                 machinestate.Dock = DockStyle.Fill;
 
                 //绘制标题
+                machinestate.Height = this.panel1.Height;
+                machinestate.Width = this.panel1.Width;
+                if (machinestate.listView1 == null)
+                    machinestate.listView1 = new ListView();
+
                 if (!machinestate.ListViewTitleDraw(ref (LineNo)))
                 {
                     throw new Exception();
@@ -563,88 +594,17 @@ namespace INDNC
                 //机床状态监测画面初始化
                 ListViewInitial();
 
-                //机床状态监测画面刷新
-                bythreadstate = true;
-                //ListViewRefrush();
-                
-                //Thread thread = new Thread(ListViewRefrush);
-                //thread.Start();
-                
+                //机床状态监测画面刷新  
                 t = new System.Timers.Timer(1000);   //实例化Timer类，设置间隔时间为10000毫秒；   
                 t.Elapsed += new System.Timers.ElapsedEventHandler(ListViewRefrush); //到达时间的时候执行事件；   
                 t.AutoReset = true;   //设置是执行一次（false）还是一直执行(true)；   
                 t.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件；   
 
-                //machinestate.threadRefrush = new Thread(ListViewRefrush);
-                //bThreadIsExit = true;
-                //machinestate.threadRefrush.Start();  //线程开始
-
-                //DCAgent
-                //DCAgentApi dcagentApi = DCAgentApi.GetInstance("127.0.0.1");
-                // HNC_NetConnect 连接Redis数据库并获取连接设备号
-                //Int16 clientNo = dcagentApi.HNC_NetConnect("192.168.213.197", 10001);
-                //MessageBox.Show(clientNo.ToString()); 
-                //bool isConnect = dcagentApi.HNC_NetIsConnect(clientNo);
-                //MessageBox.Show(isConnect.ToString());
-
-                //测试
-                /*RedisPubSubServer pubSubServer = new RedisPubSubServer(redismanager._prcmName, "channel")
-                {
-                    OnMessage = (channel, msg) =>
-                    {
-                        MessageBox.Show(msg);
-                        //Console.WriteLine($"从频道：{channel}上接受到消息：{msg},时间：{DateTime.Now.ToString("yyyyMMdd HH:mm:ss")}");
-                    },
-                    OnStart = () =>
-                    {
-                        //Console.WriteLine("发布服务已启动");
-                        //Console.WriteLine("___________________________________________________________________");
-                    },
-                    OnStop = () => { Console.WriteLine("发布服务停止"); },
-                    OnUnSubscribe = channel => { Console.WriteLine(channel); },
-                    //OnError = e => { Console.WriteLine(e.Message); },
-                    OnFailover = s => { Console.WriteLine(s); },
-                };
-                pubSubServer.Start();*/
-
-                //Task t1 = new Task();
-
-                /*
-                IRedisSubscription subscription = Client.CreateSubscription();
-                //接受到消息时
-                subscription.OnMessage = (channel, msg) =>
-                {
-                    MessageBox.Show(msg);
-                    //Console.WriteLine($"从频道：{channel}上接受到消息：{msg},时间：{DateTime.Now.ToString("yyyyMMdd HH:mm:ss")}");
-                    //Console.WriteLine($"频道订阅数目：{subscription.SubscriptionCount}");
-                    //Console.WriteLine("___________________________________________________________________");
-                };
-                //订阅频道时
-                subscription.OnSubscribe = (channel) =>
-                {
-                    MessageBox.Show("订阅客户端：开始订阅" + channel);
-                    //Console.WriteLine("订阅客户端：开始订阅" + channel);
-                };
-                //取消订阅频道时
-                subscription.OnUnSubscribe = (a) => { Console.WriteLine("订阅客户端：取消订阅"); };
-
-                //订阅频道
-                subscription.SubscribeToChannels("channel");*/
-
-                //Task t1 = new Task();
-                //t1.Start();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("ERROR:" + ex.Message, "ERROR");
-                if (machinestate != null)
-                {
-                    machinestate.Visible = false;
-                    machinestate = null;
-                }
                 redismanager.dispose();
-                //redispara.dispose();
             }
         }
 
@@ -656,7 +616,7 @@ namespace INDNC
             {
                 if (t!=null && t.Enabled)
                     t.Enabled = false;
-                bythreadstate = false;
+                sizechange = false;
                 label7.Visible = false;
                 label8.Visible = false;
                 label9.Visible = false;
@@ -801,11 +761,6 @@ namespace INDNC
             LineCount = lineparasetting.LineCountName;
         }
 
-        private void 生产线路ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void 添加或删除设备ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddOrDelSetting addordelsetting = new AddOrDelSetting();
@@ -813,7 +768,213 @@ namespace INDNC
             addordelsetting.ShowDialog();
         }
 
+        private void FormMain_Resize(object sender, EventArgs e)
+        {
+            sizechange = true;
+            if (firsttimerun)
+            {
+                if (t != null && t.Enabled)
+                    t.Enabled = false;
+                machinestate.listView1.Columns.Clear();
+
+                //绘制标题
+                if (!machinestate.ListViewTitleDraw(ref (LineNo)))
+                {
+                    throw new Exception();
+                }
+                this.panel1.Controls.Add(machinestate);
+
+                //机床状态监测画面初始化
+                ListViewInitial();
+
+                //机床状态监测画面刷新
+                t = new System.Timers.Timer(1000);   //实例化Timer类，设置间隔时间为10000毫秒；   
+                t.Elapsed += new System.Timers.ElapsedEventHandler(ListViewRefrush); //到达时间的时候执行事件；   
+                t.AutoReset = true;   //设置是执行一次（false）还是一直执行(true)；   
+                t.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件；   
+            }
+        }
+
+        private void buttonHome_Click(object sender, EventArgs e)
+        {
+            if (button_onindex == ButtonIndex.ButtonHome)
+                return;
+            button_onindex = ButtonIndex.ButtonHome;
+            button_refrush();
+
+        }
+
+        private void buttonCheck_Click(object sender, EventArgs e)
+        {
+            if (button_onindex == ButtonIndex.ButtonCheck)
+                return;
+            button_onindex = ButtonIndex.ButtonCheck;
+            button_refrush();
+
+            //host主机参数  格式“password@ip:port”
+            string[] host = { serverpara.RedisPassword + '@' + serverpara.RedisIP + ':' + serverpara.RedisPort };
+
+            try
+            {
+                //从连接池获得只读连接客户端
+                long initialDB = 0;
+                RedisClient Client = (RedisClient)redismanager.GetReadOnlyClient(ref (initialDB), ref (host));
+                if (Client == null || !Client.Ping())
+                {
+                    throw new Exception("连接服务器失败，请设置服务器参数!");
+                }
+                //连接成功
+                serverpara.connectvalid = true;
+                redismanager.DisposeClient(ref (Client));  //dispose客户端
+                Properties.Settings.Default.Save(); // 存储上一次成功连接的IP地址和端口号\
+                firsttimerun = true;  //第一次运行完成
+
+                //测试连接
+                MessageBox.Show(Client.Db.ToString());  //db index
+                MessageBox.Show(Client.DbSize.ToString());
+
+                //属性设置
+                machinestate.Dock = DockStyle.Fill;
+                machinestate.Height = this.panel1.Height;
+                machinestate.Width = this.panel1.Width;
+
+                //绘制标题
+                try
+                { 
+                    if (!machinestate.ListViewTitleDraw(ref (LineNo)))
+                    {
+                        throw new Exception("listview error!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ERROR:" + ex.Message, "ERROR");
+                }
+
+                this.panel1.Controls.Add(machinestate);
+
+                //机床状态监测画面初始化
+                ListViewInitial();
+
+                //机床状态监测画面刷新  
+                //t = new System.Timers.Timer(1000);   //实例化Timer类，设置间隔时间为10000毫秒；   
+                //t.Elapsed += new System.Timers.ElapsedEventHandler(ListViewRefrush); //到达时间的时候执行事件；   
+                //t.AutoReset = true;   //设置是执行一次（false）还是一直执行(true)；   
+                //t.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件；   
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR:" + ex.Message, "ERROR");
+                if (machinestate != null)
+                {
+                    machinestate.Visible = false;
+                    machinestate = null;
+                }
+                redismanager.dispose();
+                //redispara.dispose();
+            }
+        }
+        private void buttonSetting_Click(object sender, EventArgs e)
+        {
+            if (button_onindex == ButtonIndex.ButtonSetting)
+                return;
+            button_onindex = ButtonIndex.ButtonSetting;
+            button_refrush();
+            //设置用户控件大小
+            controlsetting.Dock = DockStyle.Fill;
+            panel1.Controls.Add(controlsetting);
+            controlsetting.btnServerSettingClick += new btnOkClickEventHander(ControlServerSettingclick);
+        }
+
+        private void ControlServerSettingclick(object send, System.EventArgs e)
+        {
+            serverpara = controlsetting.serverparaName;
+            redispara = controlsetting.redisparaName;
+        }
+
+        private void buttonHome_Cancel()
+        {
+            panel1.Controls.Clear();
+        }
+
+        private void buttonnCheck_Cancel()
+        {
+            panel1.Controls.Clear();
+            machinestate.listView1.Items.Clear();
+            machinestate.listView1.Columns.Clear();
+
+            if (redismanager != null && redismanager.RedisManagerNull())
+                return;
+            try
+            {
+                if (t != null && t.Enabled)
+                    t.Enabled = false;
+                sizechange = false;
+                label7.Visible = false;
+                label8.Visible = false;
+                label9.Visible = false;
+                label10.Visible = false;
+                label11.Visible = false;
+                redismanager.dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR:" + ex.Message, "Error");
+            }
+        }
+        private void buttonSetting_Cancel()
+        {
+            panel1.Controls.Clear();
+        }
+
+        private void button_refrush()
+        {
+            switch (button_onindex)
+            {
+                case ButtonIndex.ButtonHome:
+                    buttonHome.BackgroundImage = Image.FromFile("../../../../Image/TabBackground.bmp");
+                    buttonCheck.BackgroundImage = null;
+                    buttonSetting.BackgroundImage = null;
+                    buttonnCheck_Cancel();
+                    buttonSetting_Cancel();
+                    break;
+                case ButtonIndex.ButtonCheck:
+                    buttonCheck.BackgroundImage = Image.FromFile("../../../../Image/TabBackground.bmp");
+                    buttonHome.BackgroundImage = null;
+                    buttonSetting.BackgroundImage = null;
+                    buttonHome_Cancel();
+                    buttonSetting_Cancel();
+                    break;
+                case ButtonIndex.ButtonSetting:
+                    buttonSetting.BackgroundImage = Image.FromFile("../../../../Image/TabBackground.bmp");
+                    buttonHome.BackgroundImage = null;
+                    buttonCheck.BackgroundImage = null;
+                    buttonHome_Cancel();
+                    buttonnCheck_Cancel();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void tabControlSetting_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPageServerSetting_Resize(object sender, EventArgs e)
+        {
+            if (button_onindex != ButtonIndex.ButtonSetting)
+                return;
+
+        }
+
+        /// 通用按钮点击选项卡 在选项卡上显示对应的窗体
+        /// </summary>
+
     }
+
     public partial struct ServerPara
     {
         public String ServerIPAddress;
@@ -992,6 +1153,13 @@ namespace INDNC
     public enum ERRORMESSAGE
     {
         NOERR=0
+    }
+
+    public enum ButtonIndex {
+        NOButton=0,
+        ButtonHome=3,
+        ButtonCheck,
+        ButtonSetting
     }
 
 }
