@@ -1,0 +1,10 @@
+D:\NewScada\Code\scadafinal\HNCData\bin\Debug\HNCCommonData.dll
+D:\NewScada\Code\scadafinal\HNCData\bin\Debug\HNCCommonData.pdb
+D:\NewScada\Code\scadafinal\HNCData\obj\Debug\HNCCommonData.csprojResolveAssemblyReference.cache
+D:\NewScada\Code\scadafinal\HNCData\obj\Debug\HNCCommonData.dll
+D:\NewScada\Code\scadafinal\HNCData\obj\Debug\HNCCommonData.pdb
+D:\root\Work\Code\scadafinal\HNCData\bin\Debug\HNCCommonData.dll
+D:\root\Work\Code\scadafinal\HNCData\bin\Debug\HNCCommonData.pdb
+D:\root\Work\Code\scadafinal\HNCData\obj\Debug\HNCCommonData.csprojResolveAssemblyReference.cache
+D:\root\Work\Code\scadafinal\HNCData\obj\Debug\HNCCommonData.dll
+D:\root\Work\Code\scadafinal\HNCData\obj\Debug\HNCCommonData.pdb

@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Application_ThreadException" xml:space="preserve">
+    <value>线程异常</value>
+  </data>
+  <data name="Application_UnhandleException" xml:space="preserve">
+    <value>未处理的异常</value>
+  </data>
+  <data name="EquipmentCheck_CheckdataGridView_title_Content" xml:space="preserve">
+    <value>报警内容</value>
+  </data>
+  <data name="EquipmentCheck_CheckdataGridView_title_DeviceCode" xml:space="preserve">
+    <value>设备编码</value>
+  </data>
+  <data name="EquipmentCheck_CheckdataGridView_title_Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="EquipmentCheck_CheckdataGridView_title_SN" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="EquipmentCheck_CheckdataGridView_title_Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="EquipmentCheck_Machine" xml:space="preserve">
+    <value>机床</value>
+  </data>
+  <data name="EquipmentCheck_Status_Cycling" xml:space="preserve">
+    <value>进给保持</value>
+  </data>
+  <data name="EquipmentCheck_Status_EStop" xml:space="preserve">
+    <value>急停</value>
+  </data>
+  <data name="EquipmentCheck_Status_Idle" xml:space="preserve">
+    <value>空闲</value>
+  </data>
+  <data name="EquipmentCheck_Status_Normal" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="EquipmentCheck_Status_Offline" xml:space="preserve">
+    <value>离线</value>
+  </data>
+  <data name="EquipmentCheck_Status_running" xml:space="preserve">
+    <value>运行</value>
+  </data>
+  <data name="SetForms_0_20" xml:space="preserve">
+    <value>请输入0-20的数字</value>
+  </data>
+  <data name="SetForms_0_40" xml:space="preserve">
+    <value>请输入0-40的数字</value>
+  </data>
+  <data name="SetForms_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="SetForms_ChangePwd" xml:space="preserve">
+    <value>修改密码</value>
+  </data>
+  <data name="SetForms_ChangePwd_SamePwd" xml:space="preserve">
+    <value>：第一次输入的密码和第二次输入的密码必须相同！</value>
+  </data>
+  <data name="SetForms_ChangePwd_Succeed" xml:space="preserve">
+    <value>：修改密码成功！</value>
+  </data>
+  <data name="SetForms_ChangePwd_verify" xml:space="preserve">
+    <value>：密码必须大于等于8！</value>
+  </data>
+  <data name="SetForms_Confirm" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="SetForms_ContextMenu_Add" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="SetForms_ContextMenu_Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="SetForms_DataUpdate" xml:space="preserve">
+    <value>设置数据已经更新，是否确认保存？</value>
+  </data>
+  <data name="SetForms_Information" xml:space="preserve">
+    <value>提示</value>
+  </data>
+  <data name="SetForms_Login" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="SetForms_Login_failed" xml:space="preserve">
+    <value>：登陆失败！</value>
+  </data>
+  <data name="SetForms_Login_Succeed" xml:space="preserve">
+    <value>：登陆成功！</value>
+  </data>
+  <data name="SetForms_Logout" xml:space="preserve">
+    <value>注销</value>
+  </data>
+  <data name="SetForms_Logout_Succeed" xml:space="preserve">
+    <value>：注销成功！</value>
+  </data>
+  <data name="SetForms_No" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="SetForms_parameter_Save" xml:space="preserve">
+    <value>配置参数保存</value>
+  </data>
+  <data name="SetForms_parameter_Save_OK" xml:space="preserve">
+    <value>配置参数保存成功</value>
+  </data>
+  <data name="SetForms_PosMessageStr1" xml:space="preserve">
+    <value>配置数据已经改变，是否保存？</value>
+  </data>
+  <data name="SetForms_PosMessageStr2" xml:space="preserve">
+    <value>配置数据已经改变，需要先保存才能编辑输出输入信号，是否保存？</value>
+  </data>
+  <data name="SetForms_RightNotEnough" xml:space="preserve">
+    <value>你的操作权限不够！</value>
+  </data>
+  <data name="SetForms_Robot_InputSignalCount" xml:space="preserve">
+    <value>的机器人的输入信号数量：</value>
+  </data>
+  <data name="SetForms_Robot_OutputSignalCount" xml:space="preserve">
+    <value>的机器人的输出信号数量：</value>
+  </data>
+  <data name="SetForms_SN_As" xml:space="preserve">
+    <value>序号为</value>
+  </data>
+  <data name="SetForms_User_Add" xml:space="preserve">
+    <value>添加用户成功：用户名 =</value>
+  </data>
+  <data name="SetForms_User_Add_VerifyCount" xml:space="preserve">
+    <value>添加用户失败：用户数量已经达到上限！</value>
+  </data>
+  <data name="SetForms_User_Add_VerifyExistUser" xml:space="preserve">
+    <value>添加用户失败：用户名已经存在！</value>
+  </data>
+  <data name="SetForms_User_Add_VerifyLen" xml:space="preserve">
+    <value>添加用户失败：用户名长度不能小于1位！</value>
+  </data>
+  <data name="SetForms_User_Add_VerifyPwd" xml:space="preserve">
+    <value>添加用户失败：密码长度不能小于6位！</value>
+  </data>
+  <data name="SetForms_User_Add_VerifyPwdSame" xml:space="preserve">
+    <value>添加用户失败：密码必须相同！</value>
+  </data>
+  <data name="SetForms_User_Del" xml:space="preserve">
+    <value>删除用户成功：用户名 =</value>
+  </data>
+  <data name="SetForms_User_Manage" xml:space="preserve">
+    <value>用户管理操作</value>
+  </data>
+  <data name="SetForms_Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="CNCForm_ToolBrokenInfo" xml:space="preserve">
+    <value>取消当前断刀报警。请确认是否为真实断刀？</value>
+  </data>
+</root>
