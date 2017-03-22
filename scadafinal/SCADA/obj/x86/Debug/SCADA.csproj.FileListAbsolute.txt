@@ -55,3 +55,6 @@ D:\root\Work\Code\scadafinal\SCADA\obj\x86\Debug\SCADA.UserControlTaskData.resou
 D:\root\Work\Code\scadafinal\SCADA\obj\x86\Debug\SCADA.csproj.GenerateResource.Cache
 D:\root\Work\Code\scadafinal\SCADA\obj\x86\Debug\SCADA.exe
 D:\root\Work\Code\scadafinal\SCADA\obj\x86\Debug\SCADA.pdb
+C:\Users\mio\software\scadafinal\SCADA\bin\Debug\SCADA.exe.config
+C:\Users\mio\software\scadafinal\SCADA\obj\x86\Debug\SCADA.exe
+C:\Users\mio\software\scadafinal\SCADA\obj\x86\Debug\SCADA.pdb

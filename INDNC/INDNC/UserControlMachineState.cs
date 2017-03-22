@@ -21,12 +21,10 @@ namespace INDNC
             InitializeComponent();
         }
 
-        public bool ListViewTitleDraw(ref UInt16 lineno)
+        public bool ListViewTitleDraw()
         {
             try
             {
-                if (lineno == 0)
-                    throw new Exception("未选择生产线路,请设置生产线设备参数！");
                 this.listView1.BeginUpdate();
 
                 int width = this.listView1.Width / 4;

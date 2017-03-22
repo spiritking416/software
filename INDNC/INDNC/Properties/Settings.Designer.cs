@@ -37,18 +37,6 @@ namespace INDNC.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("127")]
-        public string IP {
-            get {
-                return ((string)(this["IP"]));
-            }
-            set {
-                this["IP"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public string ip2 {
             get {
@@ -146,30 +134,6 @@ namespace INDNC.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string localip {
-            get {
-                return ((string)(this["localip"]));
-            }
-            set {
-                this["localip"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string localport {
-            get {
-                return ((string)(this["localport"]));
-            }
-            set {
-                this["localport"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string LineCount {
             get {
                 return ((string)(this["LineCount"]));
@@ -193,54 +157,6 @@ namespace INDNC.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("127")]
-        public string localip1 {
-            get {
-                return ((string)(this["localip1"]));
-            }
-            set {
-                this["localip1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public string localip2 {
-            get {
-                return ((string)(this["localip2"]));
-            }
-            set {
-                this["localip2"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public string localip3 {
-            get {
-                return ((string)(this["localip3"]));
-            }
-            set {
-                this["localip3"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public string localip4 {
-            get {
-                return ((string)(this["localip4"]));
-            }
-            set {
-                this["localip4"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string serverpassword {
             get {
@@ -248,18 +164,6 @@ namespace INDNC.Properties {
             }
             set {
                 this["serverpassword"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string localpassword {
-            get {
-                return ((string)(this["localpassword"]));
-            }
-            set {
-                this["localpassword"] = value;
             }
         }
         
@@ -275,14 +179,51 @@ namespace INDNC.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;password=416520;persistsecurityinfo=True;database=c" +
-            "ncdatabase")]
-        public string cncdatabaseConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string localserver {
             get {
-                return ((string)(this["cncdatabaseConnectionString"]));
+                return ((string)(this["localserver"]));
+            }
+            set {
+                this["localserver"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string localserverid {
+            get {
+                return ((string)(this["localserverid"]));
+            }
+            set {
+                this["localserverid"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string localserverpassword {
+            get {
+                return ((string)(this["localserverpassword"]));
+            }
+            set {
+                this["localserverpassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string localMysqlDatabase {
+            get {
+                return ((string)(this["localMysqlDatabase"]));
+            }
+            set {
+                this["localMysqlDatabase"] = value;
             }
         }
     }

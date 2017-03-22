@@ -29,6 +29,24 @@ namespace INDNC
             connectvalid = false;
         }
     }
+
+    public struct MySQLPara
+    {
+        public string MySQLServer;
+        public string MySQLID;
+        public string MySQLIDPassword;
+        public string MySQLIDDatabase;
+        public bool connectvalid;
+
+        public void dispose()
+        {
+            MySQLServer = null;
+            MySQLID = null;
+            MySQLIDPassword = null;
+            MySQLIDDatabase = null;
+            connectvalid = false;
+        }
+    }
     internal partial class FormMain : Form
     {
         //用来记录from是否打开过
@@ -36,9 +54,10 @@ namespace INDNC
         UserControlMachineState machinestate = new UserControlMachineState();
         UserControlSetting controlsetting = new UserControlSetting();
         RedisManager redismanager = new RedisManager();
-        RedisPara redispara = new RedisPara();
-        UInt16 LineCount = 0;  //生产线数量
-        UInt16 LineNo = 0;  //生产线编号
+        MySQLPara mysqlpara = new MySQLPara();
+        UInt16 LineCount = 5;  //生产线数量
+        string LineNo = "";  //生产线编号 格式:#+索引
+        string WorkShopNo = "";  //车间编号
         //bool bythreadstate = false; //线程运行flag
         ButtonIndex button_onindex = ButtonIndex.NOButton;
         RedisPara serverpara;  //服务器参数
@@ -61,72 +80,21 @@ namespace INDNC
         {
             CheckForIllegalCrossThreadCalls = false; //解决线程间的访问限制
 
-            //LineNo、LineCount初始化
-            LineNo = 0;
-            LineCount = 0;
-            string lineindex = global::INDNC.Properties.Settings.Default.LineIndex;
-            string linecount = global::INDNC.Properties.Settings.Default.LineCount;
-            if(lineindex=="" || linecount == "")
+            //LineNo、WorkShopNo
+            LineNo = global::INDNC.Properties.Settings.Default.LineIndex; ;
+            WorkShopNo = global::INDNC.Properties.Settings.Default.workshopno; ;
+            if(LineNo == "" || WorkShopNo == "")
             {
-                lineindex = "生产线路1";
-                linecount = "1";
+                LineNo = "#1";
+                WorkShopNo = "#1";
             }
-            string countstring = "";
-            if (lineindex != "")
-            {
-                int offset = lineindex.IndexOf("生产线路") + 4;
-                countstring = lineindex.Substring(offset);
-            }
-            
+            //mysqlpara初始化
             try
             {
-                if (UInt16.TryParse(countstring, out LineNo) != true)
-                    throw new Exception();
-                if (UInt16.TryParse(linecount, out LineCount) != true)
-                    throw new Exception();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("ERROR:软件初始化错误，请设置相关参数！", "ERROR");
-            }
-
-            //redispara初始化
-            try
-            {
-                //读取本地Redis服务器参数
-                /*FileStream fs = new FileStream(@"../LocalRedisPara.conf", FileMode.OpenOrCreate);
-                StreamReader sr = new StreamReader(fs);
-                string str = sr.ReadLine();
-                //关闭流
-                sr.Close();
-                fs.Close();
-                if (str == null || str == "")
-                    return;
-                int offsetIP = str.IndexOf("RedisIP=");
-                int offsetPort = str.IndexOf("RedisPort=");
-                int offsetPW = str.IndexOf("RedisPassword=");
-                if (offsetIP < 0 || offsetPort < 0 || offsetPW < 0)
-                {
-                    throw new Exception("ERROR:本地服务器参数配置错误！");
-                }
-
-                offsetIP += 8;
-                offsetPort += 10;
-                offsetPW += 14;
-
-                int i = str.IndexOf(';');
-                redispara.RedisIP = str.Substring(offsetIP, i - offsetIP);
-                i = str.IndexOf(';', i + 1);
-                redispara.RedisPort = str.Substring(offsetPort, i - offsetPort);
-                i = str.IndexOf('\0', i + 1);
-                redispara.RedisPassword = str.Substring(offsetPW);
-                redispara.connectvalid = true;*/
-
-                redispara.RedisIP = global::INDNC.Properties.Settings.Default.localip1 + '.' + global::INDNC.Properties.Settings.Default.localip2 + '.'
-                    + global::INDNC.Properties.Settings.Default.localip3 + '.' + global::INDNC.Properties.Settings.Default.localip4;
-                redispara.RedisPort = global::INDNC.Properties.Settings.Default.localport;
-                redispara.RedisPassword = global::INDNC.Properties.Settings.Default.localpassword;
-                redispara.connectvalid = false;
+                mysqlpara.MySQLServer = global::INDNC.Properties.Settings.Default.localserver;
+                mysqlpara.MySQLID = global::INDNC.Properties.Settings.Default.localserverid;
+                mysqlpara.MySQLIDPassword = global::INDNC.Properties.Settings.Default.localserverpassword;
+                mysqlpara.connectvalid = false;
             }
             catch (Exception ex)
             {
@@ -148,17 +116,9 @@ namespace INDNC
             }
         }
 
-        /*public struct machine
-        {
-            UInt16 MachineIndex;
-            String MachineState;
-            String MachineAlarm;
-            
-        }*/
-
         //机床状态初始化
         public void ListViewInitial()
-        {
+        {/*
             if(machinestate!=null)
                 machinestate.listView1.Items.Clear();
             ushort DB = 0;
@@ -188,7 +148,7 @@ namespace INDNC
                 {
                     throw new Exception("未能连接本地服务器，请检查相关参数！");
                 }
-                if (LineNo == 0 ||　LineCount==0)
+                if (LineNo == 0 ||　WorkShopNo==0)
                     throw new Exception("生产线设备参数设置错误，请重新设置！");
                 string lineindex = "Line" + LineNo.ToString();
                 byte[][] value = new byte[][] { };
@@ -379,13 +339,13 @@ namespace INDNC
             catch (Exception ex)
             {
                 MessageBox.Show("ERROR:" + ex.Message, "ERROR");
-            }
-
+            }*/
         }
 
         //机床状态刷新
         public void ListViewRefrush(Object source, ElapsedEventArgs e)
         {
+            /*
             try
             {
                 if (serverpara.connectvalid == false)
@@ -512,7 +472,7 @@ namespace INDNC
                 MessageBox.Show("ERROR:" + ex.Message, "ERROR");
                 if (t != null && t.Enabled)
                     t.Enabled = false;
-            }
+            }*/
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -585,7 +545,7 @@ namespace INDNC
                 if (machinestate.listView1 == null)
                     machinestate.listView1 = new ListView();
 
-                if (!machinestate.ListViewTitleDraw(ref (LineNo)))
+                if (!machinestate.ListViewTitleDraw())
                 {
                     throw new Exception();
                 }
@@ -744,7 +704,6 @@ namespace INDNC
                     //关闭流
                     sw.Close();
                     fs.Close();
-                    redispara = redisparasetting.redisparaName;
                 }
                 catch (IOException ex)
                 {
@@ -757,14 +716,12 @@ namespace INDNC
         {
             LineParaSetting lineparasetting = new LineParaSetting();
             lineparasetting.ShowDialog();
-            LineNo = lineparasetting.LineNoName;
             LineCount = lineparasetting.LineCountName;
         }
 
         private void 添加或删除设备ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddOrDelSetting addordelsetting = new AddOrDelSetting();
-            addordelsetting.redisparaName = redispara;
             addordelsetting.ShowDialog();
         }
 
@@ -778,7 +735,7 @@ namespace INDNC
                 machinestate.listView1.Columns.Clear();
 
                 //绘制标题
-                if (!machinestate.ListViewTitleDraw(ref (LineNo)))
+                if (!machinestate.ListViewTitleDraw())
                 {
                     throw new Exception();
                 }
@@ -826,7 +783,6 @@ namespace INDNC
                 //连接成功
                 serverpara.connectvalid = true;
                 redismanager.DisposeClient(ref (Client));  //dispose客户端
-                Properties.Settings.Default.Save(); // 存储上一次成功连接的IP地址和端口号\
                 firsttimerun = true;  //第一次运行完成
 
                 //测试连接
@@ -841,7 +797,7 @@ namespace INDNC
                 //绘制标题
                 try
                 { 
-                    if (!machinestate.ListViewTitleDraw(ref (LineNo)))
+                    if (!machinestate.ListViewTitleDraw())
                     {
                         throw new Exception("listview error!");
                     }
@@ -885,12 +841,22 @@ namespace INDNC
             controlsetting.Dock = DockStyle.Fill;
             panel1.Controls.Add(controlsetting);
             controlsetting.btnServerSettingClick += new btnOkClickEventHander(ControlServerSettingclick);
+            controlsetting.btnLineSettingClick += new btnOkClickEventHander(ControlLineSettingclick);
         }
 
+        //
         private void ControlServerSettingclick(object send, System.EventArgs e)
         {
             serverpara = controlsetting.serverparaName;
-            redispara = controlsetting.redisparaName;
+            mysqlpara = controlsetting.mysqlparaName;
+            MessageBox.Show("服务器参数设置完毕", "提示");
+        }
+
+        private void ControlLineSettingclick(object send, System.EventArgs e)
+        {
+            WorkShopNo = controlsetting.workshopnoName;
+            LineNo = controlsetting.linenoName;
+            MessageBox.Show("产线参数设置完毕", "提示");
         }
 
         private void buttonHome_Cancel()

@@ -143,11 +143,6 @@
     <Compile Include="AddOrDelSetting.Designer.cs">
       <DependentUpon>AddOrDelSetting.cs</DependentUpon>
     </Compile>
-    <Compile Include="cncdatabaseDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>cncdatabaseDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="CustomTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -224,18 +219,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlSetting.resx">
       <DependentUpon>UserControlSetting.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="cncdatabaseDataSet.xsc">
-      <DependentUpon>cncdatabaseDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="cncdatabaseDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>cncdatabaseDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </None>
-    <None Include="cncdatabaseDataSet.xss">
-      <DependentUpon>cncdatabaseDataSet.xsd</DependentUpon>
-    </None>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
