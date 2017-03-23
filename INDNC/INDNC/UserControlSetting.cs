@@ -80,7 +80,7 @@ namespace INDNC
                 {
                     //检验输入是否为数字，数字是否介于0~255之间
                     int tmp = -1;
-                    TextBox objText = (TextBox)this.panel1.Controls["textBox" + i.ToString()];
+                    TextBox objText = (TextBox)this.groupBox1.Controls["textBox" + i.ToString()];
                     if (int.TryParse(objText.Text, out tmp) != true)
                     {
                         throw new Exception("错误:云服务器IP地址输入错误，请重新输入！");
@@ -436,22 +436,7 @@ namespace INDNC
             }
         }
 
-        private void tabPageCNC_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPageServerSetting_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
@@ -501,7 +486,7 @@ namespace INDNC
 
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
@@ -571,87 +556,12 @@ namespace INDNC
 
         }
 
-        private void tabPageLineSetting_Click(object sender, EventArgs e)
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void textBoxline_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxworkshop_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label18_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label14_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label19_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label17_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label16_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label24_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label23_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label21_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label20_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label15_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
+        private void tabPageServerSetting_Click(object sender, EventArgs e)
         {
 
         }
@@ -661,12 +571,87 @@ namespace INDNC
 
         }
 
-        private void dataGridViewCNC_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void label9_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
+        private void textBoxline_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxworkshop_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label21_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label23_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label24_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPageLineSetting_Click(object sender, EventArgs e)
         {
 
         }
@@ -686,42 +671,17 @@ namespace INDNC
 
         }
 
-        private void tabPageRobotSetting_Click(object sender, EventArgs e)
+        private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void panel4_Paint(object sender, PaintEventArgs e)
+        private void dataGridViewCNC_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label26_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelRobotTable_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridViewRobot_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void tabPage3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel5_Paint(object sender, PaintEventArgs e)
+        private void tabPageCNC_Click(object sender, EventArgs e)
         {
 
         }
@@ -741,7 +701,42 @@ namespace INDNC
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label26_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelRobotTable_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dataGridViewRobot_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tabPageRobotSetting_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage3_Click(object sender, EventArgs e)
         {
 
         }
