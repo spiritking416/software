@@ -25,11 +25,13 @@ namespace INDNC
         public event btnOkClickEventHander btnCNCSettingClick; //CNC设备设置委托
         public event btnOkClickEventHander btnRobotSettingClick; //Robot设备设置委托
         private MySqlConnection mysqlconnection; // mysql连接
-        private MySqlDataAdapter mysqladapter; //mysql数据适配器
-        DataSet mysqlset; //数据集
-        string MyconnectionString;
-        string workshopno;
-        string lineno;
+        private MySqlDataAdapter mysqlcncadapter; //mysql数据适配器
+        private MySqlDataAdapter mysqlrobotadapter; //mysql数据适配器
+        private DataSet mysqlcncset; //数据集
+        private DataSet mysqlrobotset; //数据集
+        private string MyconnectionString;
+        private string workshopno;
+        private string lineno;
 
         public RedisPara serverparaName
         {
@@ -51,6 +53,9 @@ namespace INDNC
         public UserControlSetting()
         {
             InitializeComponent();
+            panel4.Height = 50;
+            panel4.Width = 200;
+            panel4.Visible = true;
             //mysqlpara初始化
             try
             {
@@ -184,14 +189,16 @@ namespace INDNC
                     throw new Exception("无法连接本地MySQL服务器！");
                 }
                 string tmp = "select* from " + mysqlpara.MySQLDatabaseCNCTable;
-                mysqladapter = new MySqlDataAdapter(tmp, mysqlconnection);
-                if (mysqlset == null)
-                    mysqlset = new DataSet();
+                if(mysqlcncadapter==null)
+                    mysqlcncadapter = new MySqlDataAdapter(tmp, mysqlconnection);
+                if (mysqlcncset == null)
+                    mysqlcncset = new DataSet();
                 else
-                    mysqlset.Clear();
+                    mysqlcncset.Clear();
                 //填充和绑定数据
-                mysqladapter.Fill(mysqlset, mysqlpara.MySQLDatabaseCNCTable);
-                dataGridViewCNC.DataSource = mysqlset.Tables[mysqlpara.MySQLDatabaseCNCTable];
+                mysqlcncadapter.Fill(mysqlcncset, mysqlpara.MySQLDatabaseCNCTable);
+                dataGridViewCNC.DataSource = mysqlcncset;
+                dataGridViewCNC.DataMember = mysqlpara.MySQLDatabaseCNCTable;
                 labelCNCTable.Text = "当前数据库表名:" + mysqlpara.MySQLDatabaseCNCTable;
             }
             catch(Exception ex)
@@ -219,15 +226,16 @@ namespace INDNC
                     throw new Exception("无法连接本地MySQL服务器！");
                 }
                 string tmp = "select* from " + mysqlpara.MySQLDatabaseRobotTable;
-                mysqladapter = new MySqlDataAdapter(tmp, mysqlconnection);
-                if (mysqlset == null)
-                    mysqlset = new DataSet();
+                mysqlrobotadapter = new MySqlDataAdapter(tmp, mysqlconnection);
+
+                if (mysqlrobotset == null)
+                    mysqlrobotset = new DataSet();
                 else
-                    mysqlset.Clear();
-                mysqlset = new DataSet();
+                    mysqlrobotset.Clear();
                 //填充和绑定数据
-                mysqladapter.Fill(mysqlset, mysqlpara.MySQLDatabaseRobotTable);
-                dataGridViewRobot.DataSource = mysqlset.Tables[mysqlpara.MySQLDatabaseRobotTable];
+                mysqlrobotadapter.Fill(mysqlrobotset, mysqlpara.MySQLDatabaseRobotTable);
+                dataGridViewRobot.DataSource = mysqlrobotset;
+                dataGridViewRobot.DataMember = mysqlpara.MySQLDatabaseRobotTable;
                 labelRobotTable.Text = "当前数据库表名:" + mysqlpara.MySQLDatabaseRobotTable;
             }
             catch (Exception ex)
@@ -330,7 +338,7 @@ namespace INDNC
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonCNCSetting_Click(object sender, EventArgs e)
         {
             mysqlpara.MySQLDatabaseCNCTable = textBox5.Text;
             Properties.Settings.Default.Save();
@@ -338,12 +346,406 @@ namespace INDNC
                 btnCNCSettingClick(this, e);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonRobotSetting_Click(object sender, EventArgs e)
         {
             mysqlpara.MySQLDatabaseRobotTable = textBox6.Text;
             Properties.Settings.Default.Save();
             if (btnCNCSettingClick != null)
                 btnRobotSettingClick(this, e);
+        }
+
+        private void buttonCNCSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                if (MyconnectionString == null || MyconnectionString == "")
+                    throw new Exception("本地MySQL数据库参数错误，请重新设置！");
+                if (mysqlconnection == null)
+                    mysqlconnection = new MySqlConnection(MyconnectionString);
+                mysqlconnection.Open();   //必须Open
+                if (!mysqlconnection.Ping())
+                {
+                    throw new Exception("无法连接本地MySQL服务器！");
+                }
+                string tmp = "select* from " + mysqlpara.MySQLDatabaseCNCTable;
+                if(mysqlcncadapter==null)
+                    mysqlcncadapter = new MySqlDataAdapter(tmp, mysqlconnection);
+                if (mysqlcncset == null)
+                {
+                    mysqlcncset = new DataSet();
+                    mysqlcncadapter.Fill(mysqlcncset, mysqlpara.MySQLDatabaseCNCTable);
+                    dataGridViewCNC.DataSource = mysqlcncset;
+                    dataGridViewCNC.DataMember = mysqlpara.MySQLDatabaseCNCTable;
+                }
+
+                //刷新数据
+                var mysqlcommamdbuilder = new MySqlCommandBuilder(mysqlcncadapter);
+                mysqlcncadapter.Update(mysqlcncset, mysqlpara.MySQLDatabaseCNCTable);
+
+                MessageBox.Show("保存数据成功！", "提示");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR:" + ex.Message, "ERROR");
+            }
+            finally
+            {
+                if (mysqlconnection != null)
+                    mysqlconnection.Close();  //关闭
+            }
+        }
+
+        private void buttonRobotSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (MyconnectionString == null || MyconnectionString == "")
+                    throw new Exception("本地MySQL数据库参数错误，请重新设置！");
+                if (mysqlconnection == null)
+                    mysqlconnection = new MySqlConnection(MyconnectionString);
+                mysqlconnection.Open();   //必须Open
+                if (!mysqlconnection.Ping())
+                {
+                    throw new Exception("无法连接本地MySQL服务器！");
+                }
+                string tmp = "select* from " + mysqlpara.MySQLDatabaseRobotTable;
+                if (mysqlrobotadapter == null)
+                    mysqlrobotadapter = new MySqlDataAdapter(tmp, mysqlconnection);
+                if (mysqlrobotset == null)
+                {
+                    mysqlrobotset = new DataSet();
+                    mysqlrobotadapter.Fill(mysqlrobotset, mysqlpara.MySQLDatabaseRobotTable);
+                    dataGridViewRobot.DataSource = mysqlrobotset;
+                    dataGridViewRobot.DataMember = mysqlpara.MySQLDatabaseRobotTable;
+                }
+
+                //刷新数据
+                var mysqlcommamdbuilder = new MySqlCommandBuilder(mysqlrobotadapter);
+                mysqlrobotadapter.Update(mysqlrobotset, mysqlpara.MySQLDatabaseRobotTable);
+
+                MessageBox.Show("保存数据成功！", "提示");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR:" + ex.Message, "ERROR");
+            }
+            finally
+            {
+                if (mysqlconnection != null)
+                    mysqlconnection.Close();  //关闭
+            }
+        }
+
+        private void tabPageCNC_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPageServerSetting_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBoxMysqlDB_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxMysqlPW_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxMysqlserver_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxMysqlID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label22_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label50_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label52_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxRedisPort_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxRedisPw_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label51_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPageLineSetting_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxline_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxworkshop_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label24_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label23_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label21_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridViewCNC_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label25_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelCNCTable_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPageRobotSetting_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label26_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelRobotTable_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridViewRobot_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label27_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label28_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
