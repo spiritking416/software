@@ -81,6 +81,7 @@
             this.label29 = new System.Windows.Forms.Label();
             this.buttonCNCSave = new System.Windows.Forms.Button();
             this.buttonCNCSetting = new System.Windows.Forms.Button();
+            this.labelCNCCount = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -91,6 +92,7 @@
             this.dataGridViewCNC = new System.Windows.Forms.DataGridView();
             this.tabPageRobotSetting = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.labelRobotCount = new System.Windows.Forms.Label();
             this.buttonRobotSave = new System.Windows.Forms.Button();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
@@ -742,6 +744,7 @@
             this.panel6.Controls.Add(this.label29);
             this.panel6.Controls.Add(this.buttonCNCSave);
             this.panel6.Controls.Add(this.buttonCNCSetting);
+            this.panel6.Controls.Add(this.labelCNCCount);
             this.panel6.Controls.Add(this.label30);
             this.panel6.Location = new System.Drawing.Point(3, 426);
             this.panel6.Name = "panel6";
@@ -752,7 +755,7 @@
             // textBox8
             // 
             this.textBox8.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "MysqlCNCTable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox8.Location = new System.Drawing.Point(408, 12);
+            this.textBox8.Location = new System.Drawing.Point(628, 13);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(100, 21);
             this.textBox8.TabIndex = 3;
@@ -762,7 +765,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(326, 17);
+            this.label29.Location = new System.Drawing.Point(546, 18);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(89, 12);
             this.label29.TabIndex = 2;
@@ -771,7 +774,7 @@
             // 
             // buttonCNCSave
             // 
-            this.buttonCNCSave.Location = new System.Drawing.Point(766, 12);
+            this.buttonCNCSave.Location = new System.Drawing.Point(856, 12);
             this.buttonCNCSave.Name = "buttonCNCSave";
             this.buttonCNCSave.Size = new System.Drawing.Size(75, 23);
             this.buttonCNCSave.TabIndex = 1;
@@ -781,7 +784,7 @@
             // 
             // buttonCNCSetting
             // 
-            this.buttonCNCSetting.Location = new System.Drawing.Point(542, 11);
+            this.buttonCNCSetting.Location = new System.Drawing.Point(762, 12);
             this.buttonCNCSetting.Name = "buttonCNCSetting";
             this.buttonCNCSetting.Size = new System.Drawing.Size(75, 23);
             this.buttonCNCSetting.TabIndex = 1;
@@ -789,10 +792,20 @@
             this.buttonCNCSetting.UseVisualStyleBackColor = true;
             this.buttonCNCSetting.Click += new System.EventHandler(this.buttonCNCSetting_Click);
             // 
+            // labelCNCCount
+            // 
+            this.labelCNCCount.AutoSize = true;
+            this.labelCNCCount.Location = new System.Drawing.Point(14, 18);
+            this.labelCNCCount.Name = "labelCNCCount";
+            this.labelCNCCount.Size = new System.Drawing.Size(77, 12);
+            this.labelCNCCount.TabIndex = 0;
+            this.labelCNCCount.Text = "当前设备数目";
+            this.labelCNCCount.Click += new System.EventHandler(this.labelCNCTable_Click);
+            // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(20, 17);
+            this.label30.Location = new System.Drawing.Point(270, 18);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(89, 12);
             this.label30.TabIndex = 0;
@@ -892,6 +905,7 @@
             // 
             this.panel5.BackColor = System.Drawing.Color.AliceBlue;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.labelRobotCount);
             this.panel5.Controls.Add(this.buttonRobotSave);
             this.panel5.Controls.Add(this.textBox7);
             this.panel5.Controls.Add(this.label27);
@@ -903,9 +917,18 @@
             this.panel5.TabIndex = 2;
             this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
             // 
+            // labelRobotCount
+            // 
+            this.labelRobotCount.AutoSize = true;
+            this.labelRobotCount.Location = new System.Drawing.Point(14, 18);
+            this.labelRobotCount.Name = "labelRobotCount";
+            this.labelRobotCount.Size = new System.Drawing.Size(77, 12);
+            this.labelRobotCount.TabIndex = 5;
+            this.labelRobotCount.Text = "当前设备数目";
+            // 
             // buttonRobotSave
             // 
-            this.buttonRobotSave.Location = new System.Drawing.Point(766, 12);
+            this.buttonRobotSave.Location = new System.Drawing.Point(856, 12);
             this.buttonRobotSave.Name = "buttonRobotSave";
             this.buttonRobotSave.Size = new System.Drawing.Size(75, 23);
             this.buttonRobotSave.TabIndex = 4;
@@ -916,7 +939,7 @@
             // textBox7
             // 
             this.textBox7.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "MysqlRobotTable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox7.Location = new System.Drawing.Point(408, 12);
+            this.textBox7.Location = new System.Drawing.Point(628, 13);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(100, 21);
             this.textBox7.TabIndex = 3;
@@ -926,7 +949,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(326, 17);
+            this.label27.Location = new System.Drawing.Point(546, 18);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(89, 12);
             this.label27.TabIndex = 2;
@@ -935,7 +958,7 @@
             // 
             // buttonRobotSetting
             // 
-            this.buttonRobotSetting.Location = new System.Drawing.Point(542, 11);
+            this.buttonRobotSetting.Location = new System.Drawing.Point(762, 12);
             this.buttonRobotSetting.Name = "buttonRobotSetting";
             this.buttonRobotSetting.Size = new System.Drawing.Size(75, 23);
             this.buttonRobotSetting.TabIndex = 1;
@@ -946,7 +969,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(20, 17);
+            this.label28.Location = new System.Drawing.Point(270, 18);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(89, 12);
             this.label28.TabIndex = 0;
@@ -1149,5 +1172,7 @@
         private System.Windows.Forms.Button buttonCNCSave;
         private System.Windows.Forms.Button buttonCNCSetting;
         private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label labelCNCCount;
+        private System.Windows.Forms.Label labelRobotCount;
     }
 }

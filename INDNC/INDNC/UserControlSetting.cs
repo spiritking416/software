@@ -53,9 +53,6 @@ namespace INDNC
         public UserControlSetting()
         {
             InitializeComponent();
-            panel4.Height = 50;
-            panel4.Width = 200;
-            panel4.Visible = true;
             //mysqlpara初始化
             try
             {
@@ -200,6 +197,7 @@ namespace INDNC
                 dataGridViewCNC.DataSource = mysqlcncset;
                 dataGridViewCNC.DataMember = mysqlpara.MySQLDatabaseCNCTable;
                 labelCNCTable.Text = "当前数据库表名:" + mysqlpara.MySQLDatabaseCNCTable;
+                labelCNCCount.Text = "当前设备数目:" + mysqlcncset.Tables[mysqlpara.MySQLDatabaseCNCTable].Rows.Count;
             }
             catch(Exception ex)
             {
@@ -237,6 +235,7 @@ namespace INDNC
                 dataGridViewRobot.DataSource = mysqlrobotset;
                 dataGridViewRobot.DataMember = mysqlpara.MySQLDatabaseRobotTable;
                 labelRobotTable.Text = "当前数据库表名:" + mysqlpara.MySQLDatabaseRobotTable;
+                labelRobotCount.Text = "当前设备数目:" + mysqlrobotset.Tables[mysqlpara.MySQLDatabaseRobotTable].Rows.Count;
             }
             catch (Exception ex)
             {
@@ -424,7 +423,6 @@ namespace INDNC
                 //刷新数据
                 var mysqlcommamdbuilder = new MySqlCommandBuilder(mysqlrobotadapter);
                 mysqlrobotadapter.Update(mysqlrobotset, mysqlpara.MySQLDatabaseRobotTable);
-
                 MessageBox.Show("保存数据成功！", "提示");
             }
             catch (Exception ex)
