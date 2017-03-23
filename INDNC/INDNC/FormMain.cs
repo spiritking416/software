@@ -36,6 +36,8 @@ namespace INDNC
         public string MySQLID;
         public string MySQLIDPassword;
         public string MySQLIDDatabase;
+        public string MySQLDatabaseCNCTable;
+        public string MySQLDatabaseRobotTable;
         public bool connectvalid;
 
         public void dispose()
@@ -94,6 +96,7 @@ namespace INDNC
                 mysqlpara.MySQLServer = global::INDNC.Properties.Settings.Default.localserver;
                 mysqlpara.MySQLID = global::INDNC.Properties.Settings.Default.localserverid;
                 mysqlpara.MySQLIDPassword = global::INDNC.Properties.Settings.Default.localserverpassword;
+                mysqlpara.MySQLIDDatabase = global::INDNC.Properties.Settings.Default.localMysqlDatabase;
                 mysqlpara.connectvalid = false;
             }
             catch (Exception ex)
@@ -475,215 +478,6 @@ namespace INDNC
             }*/
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            button2_Click(sender, e);
-
-            //redispara = redisparasetting.redisparaName;
-            //服务器连接ip,por,password设置
-            for (int i = 1; i <= 4; ++i)
-            {
-                //检验输入是否为数字，数字是否介于0~255之间
-                int tmp = -1;
-                TextBox objText = (TextBox)this.panel2.Controls["textBox" + i.ToString()];
-                if (int.TryParse(objText.Text, out tmp) != true)
-                {
-                    MessageBox.Show("错误:服务器IP地址输入错误，请重新输入！", "ERROR");
-                    return;
-                }
-                else if(!(tmp>=0 && tmp <= 255))
-                {
-                    MessageBox.Show("错误:服务器IP地址输入错误，请重新输入！", "ERROR");
-                    return;
-                }
-                    
-            }
-            String IP= textBox1.Text + '.' + textBox2.Text + '.' + textBox3.Text + '.' + textBox4.Text;
-            int port = 0;
-            if (int.TryParse(textBox5.Text, out port) != true)
-            {
-                MessageBox.Show("错误:服务器端口号输入错误，请重新输入！", "ERROR");
-                return;
-            }
-            serverpara.RedisIP = IP;
-            serverpara.RedisPort = textBox5.Text;
-            serverpara.RedisPassword= textBox6.Text;
-            serverpara.connectvalid = false;
-
-            //host主机参数  格式“password@ip:port”
-            string[] host = { serverpara.RedisPassword + '@' + serverpara.RedisIP + ':' + serverpara.RedisPort }; 
-
-            try
-            {
-                //从连接池获得只读连接客户端
-                long initialDB = 0;
-                RedisClient Client = (RedisClient)redismanager.GetReadOnlyClient(ref (initialDB), ref (host));
-                //byte[] ConnectTimeout = System.BitConverter.GetBytes(3);
-                //Client.ConfigSet("repl-ping-slave-period", ConnectTimeout);
-                if (Client==null ||　!Client.Ping())
-                {
-                    throw new Exception("连接服务器失败!");
-                }
-                //连接成功
-                serverpara.connectvalid = true;
-                redismanager.DisposeClient(ref (Client));  //dispose客户端
-                Properties.Settings.Default.Save(); // 存储上一次成功连接的IP地址和端口号\
-                firsttimerun = true;  //第一次运行完成
-
-                //测试连接
-                MessageBox.Show(Client.Db.ToString());  //db index
-                MessageBox.Show(Client.DbSize.ToString());
-
-                //绘制用户界面
-                machinestate.Visible = true;
-                machinestate.listView1.Visible = true;
-                machinestate.Dock = DockStyle.Fill;
-
-                //绘制标题
-                machinestate.Height = this.panel1.Height;
-                machinestate.Width = this.panel1.Width;
-                if (machinestate.listView1 == null)
-                    machinestate.listView1 = new ListView();
-
-                if (!machinestate.ListViewTitleDraw())
-                {
-                    throw new Exception();
-                }
-                this.panel1.Controls.Add(machinestate);
-
-                //机床状态监测画面初始化
-                ListViewInitial();
-
-                //机床状态监测画面刷新  
-                t = new System.Timers.Timer(1000);   //实例化Timer类，设置间隔时间为10000毫秒；   
-                t.Elapsed += new System.Timers.ElapsedEventHandler(ListViewRefrush); //到达时间的时候执行事件；   
-                t.AutoReset = true;   //设置是执行一次（false）还是一直执行(true)；   
-                t.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件；   
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR:" + ex.Message, "ERROR");
-                redismanager.dispose();
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (redismanager!= null && redismanager.RedisManagerNull())
-                return;
-            try
-            {
-                if (t!=null && t.Enabled)
-                    t.Enabled = false;
-                sizechange = false;
-                label7.Visible = false;
-                label8.Visible = false;
-                label9.Visible = false;
-                label10.Visible = false;
-                label11.Visible = false;
-                redismanager.dispose();
-                machinestate.Visible = false;
-                machinestate.listView1.Visible = false;
-                machineDB.Clear();
-                serverpara.dispose();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("ERROR:" + ex.Message, "Error");
-            }
-            
-        }
-
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
-                e.Handled = false;
-            else if(e.KeyChar == (char)13)
-            {
-                button1.Focus();
-                button1_Click(sender, e);
-            }
-            else
-            {
-                e.Handled = true;
-                MessageBox.Show("请输入数字", "ERROR");
-            }       
-        }
-
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
-                e.Handled = false;
-            else if (e.KeyChar == (char)13)
-            {
-                button1.Focus();
-                button1_Click(sender, e);
-            }
-            else
-            {
-                e.Handled = true;
-                MessageBox.Show("请输入数字", "ERROR");
-            }
-        }
-
-        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
-                e.Handled = false;
-            else if (e.KeyChar == (char)13)
-            {
-                button1.Focus();
-                button1_Click(sender, e);
-            }
-            else
-            {
-                e.Handled = true;
-                MessageBox.Show("请输入数字", "ERROR");
-            }
-        }
-
-        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
-                e.Handled = false;
-            else if (e.KeyChar == (char)13)
-            {
-                button1.Focus();
-                button1_Click(sender, e);
-            }
-            else
-            {
-                e.Handled = true;
-                MessageBox.Show("请输入数字", "ERROR");
-            }
-        }
-
-        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8 )
-                e.Handled = false;
-            else if (e.KeyChar == (char)13)
-            {
-                button1.Focus();
-                button1_Click(sender, e);
-            }
-            else
-            {
-                e.Handled = true;
-                MessageBox.Show("请输入数字", "ERROR");
-            }
-        }
-
-        private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13)
-            {
-                button1.Focus();
-                button1_Click(sender, e);
-            }
-        }
-
         private void mySQL数据库ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RedisParaSetting redisparasetting = new RedisParaSetting();
@@ -727,6 +521,7 @@ namespace INDNC
 
         private void FormMain_Resize(object sender, EventArgs e)
         {
+            /*
             sizechange = true;
             if (firsttimerun)
             {
@@ -749,7 +544,7 @@ namespace INDNC
                 t.Elapsed += new System.Timers.ElapsedEventHandler(ListViewRefrush); //到达时间的时候执行事件；   
                 t.AutoReset = true;   //设置是执行一次（false）还是一直执行(true)；   
                 t.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件；   
-            }
+            }*/
         }
 
         private void buttonHome_Click(object sender, EventArgs e)
@@ -786,8 +581,8 @@ namespace INDNC
                 firsttimerun = true;  //第一次运行完成
 
                 //测试连接
-                MessageBox.Show(Client.Db.ToString());  //db index
-                MessageBox.Show(Client.DbSize.ToString());
+               // MessageBox.Show(Client.Db.ToString());  //db index
+                //MessageBox.Show(Client.DbSize.ToString());
 
                 //属性设置
                 machinestate.Dock = DockStyle.Fill;
@@ -842,6 +637,8 @@ namespace INDNC
             panel1.Controls.Add(controlsetting);
             controlsetting.btnServerSettingClick += new btnOkClickEventHander(ControlServerSettingclick);
             controlsetting.btnLineSettingClick += new btnOkClickEventHander(ControlLineSettingclick);
+            controlsetting.btnCNCSettingClick+= new btnOkClickEventHander(ControlCNCSettingclick);
+            controlsetting.btnRobotSettingClick += new btnOkClickEventHander(ControlRobotSettingclick);
         }
 
         //
@@ -857,6 +654,18 @@ namespace INDNC
             WorkShopNo = controlsetting.workshopnoName;
             LineNo = controlsetting.linenoName;
             MessageBox.Show("产线参数设置完毕", "提示");
+        }
+
+        private void ControlCNCSettingclick(object send, System.EventArgs e)
+        {
+            mysqlpara = controlsetting.mysqlparaName;
+            MessageBox.Show("CNC设备数据库名设置完毕", "提示");
+        }
+
+        private void ControlRobotSettingclick(object send, System.EventArgs e)
+        {
+            mysqlpara = controlsetting.mysqlparaName;
+            MessageBox.Show("Robot设备数据库名设置完毕", "提示");
         }
 
         private void buttonHome_Cancel()
@@ -877,11 +686,6 @@ namespace INDNC
                 if (t != null && t.Enabled)
                     t.Enabled = false;
                 sizechange = false;
-                label7.Visible = false;
-                label8.Visible = false;
-                label9.Visible = false;
-                label10.Visible = false;
-                label11.Visible = false;
                 redismanager.dispose();
             }
             catch (Exception ex)
@@ -933,6 +737,46 @@ namespace INDNC
         {
             if (button_onindex != ButtonIndex.ButtonSetting)
                 return;
+
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
 
         }
 

@@ -77,7 +77,18 @@
             this.label8 = new System.Windows.Forms.Label();
             this.tabPageCNC = new System.Windows.Forms.TabPage();
             this.dataGridViewCNC = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.labelCNCTable = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.labelRobotTable = new System.Windows.Forms.Label();
+            this.dataGridViewRobot = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabControlSetting.SuspendLayout();
             this.tabPageServerSetting.SuspendLayout();
@@ -86,6 +97,10 @@
             this.tabPageLineSetting.SuspendLayout();
             this.tabPageCNC.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCNC)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRobot)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlSetting
@@ -103,7 +118,7 @@
             this.tabControlSetting.Name = "tabControlSetting";
             this.tabControlSetting.Padding = new System.Drawing.Point(20, 20);
             this.tabControlSetting.SelectedIndex = 0;
-            this.tabControlSetting.Size = new System.Drawing.Size(884, 502);
+            this.tabControlSetting.Size = new System.Drawing.Size(959, 502);
             this.tabControlSetting.TabIndex = 0;
             this.tabControlSetting.SelectedIndexChanged += new System.EventHandler(this.tabControlSetting_SelectedIndexChanged);
             // 
@@ -117,7 +132,7 @@
             this.tabPageServerSetting.Location = new System.Drawing.Point(4, 20);
             this.tabPageServerSetting.Name = "tabPageServerSetting";
             this.tabPageServerSetting.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageServerSetting.Size = new System.Drawing.Size(876, 478);
+            this.tabPageServerSetting.Size = new System.Drawing.Size(951, 478);
             this.tabPageServerSetting.TabIndex = 0;
             this.tabPageServerSetting.Text = "服务器设置";
             // 
@@ -126,7 +141,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(403, 379);
+            this.checkBox1.Location = new System.Drawing.Point(438, 379);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(72, 16);
             this.checkBox1.TabIndex = 2;
@@ -144,7 +159,7 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Location = new System.Drawing.Point(499, 3);
+            this.panel2.Location = new System.Drawing.Point(534, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(308, 356);
             this.panel2.TabIndex = 1;
@@ -156,7 +171,7 @@
             this.textBoxMysqlDB.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "localMysqlDatabase", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBoxMysqlDB.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBoxMysqlDB.Location = new System.Drawing.Point(102, 211);
-            this.textBoxMysqlDB.MaxLength = 50;
+            this.textBoxMysqlDB.MaxLength = 20;
             this.textBoxMysqlDB.Name = "textBoxMysqlDB";
             this.textBoxMysqlDB.Size = new System.Drawing.Size(173, 23);
             this.textBoxMysqlDB.TabIndex = 11;
@@ -170,7 +185,7 @@
             this.textBoxMysqlPW.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "localserverpassword", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBoxMysqlPW.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBoxMysqlPW.Location = new System.Drawing.Point(102, 250);
-            this.textBoxMysqlPW.MaxLength = 50;
+            this.textBoxMysqlPW.MaxLength = 20;
             this.textBoxMysqlPW.Name = "textBoxMysqlPW";
             this.textBoxMysqlPW.PasswordChar = '*';
             this.textBoxMysqlPW.Size = new System.Drawing.Size(173, 23);
@@ -183,7 +198,7 @@
             this.textBoxMysqlserver.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "localserver", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBoxMysqlserver.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBoxMysqlserver.Location = new System.Drawing.Point(102, 134);
-            this.textBoxMysqlserver.MaxLength = 50;
+            this.textBoxMysqlserver.MaxLength = 20;
             this.textBoxMysqlserver.Name = "textBoxMysqlserver";
             this.textBoxMysqlserver.Size = new System.Drawing.Size(173, 23);
             this.textBoxMysqlserver.TabIndex = 10;
@@ -195,7 +210,7 @@
             this.textBoxMysqlID.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "localserverid", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBoxMysqlID.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBoxMysqlID.Location = new System.Drawing.Point(102, 173);
-            this.textBoxMysqlID.MaxLength = 50;
+            this.textBoxMysqlID.MaxLength = 20;
             this.textBoxMysqlID.Name = "textBoxMysqlID";
             this.textBoxMysqlID.Size = new System.Drawing.Size(173, 23);
             this.textBoxMysqlID.TabIndex = 10;
@@ -267,7 +282,7 @@
             this.panel1.Controls.Add(this.textBoxRedisPort);
             this.panel1.Controls.Add(this.textBoxRedisPw);
             this.panel1.Controls.Add(this.label51);
-            this.panel1.Location = new System.Drawing.Point(74, 3);
+            this.panel1.Location = new System.Drawing.Point(109, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(308, 356);
             this.panel1.TabIndex = 1;
@@ -283,6 +298,7 @@
             this.textBox2.TabIndex = 1;
             this.textBox2.Text = global::INDNC.Properties.Settings.Default.ip2;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // label12
             // 
@@ -325,6 +341,7 @@
             this.textBox3.TabIndex = 2;
             this.textBox3.Text = global::INDNC.Properties.Settings.Default.ip3;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // textBox1
             // 
@@ -337,6 +354,7 @@
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = global::INDNC.Properties.Settings.Default.ip1;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label50
             // 
@@ -359,6 +377,7 @@
             this.textBox4.TabIndex = 3;
             this.textBox4.Text = global::INDNC.Properties.Settings.Default.ip4;
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
             // label52
             // 
@@ -391,6 +410,7 @@
             this.textBoxRedisPort.TabIndex = 4;
             this.textBoxRedisPort.Text = global::INDNC.Properties.Settings.Default.port;
             this.textBoxRedisPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxRedisPort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxRedisPort_KeyPress);
             // 
             // textBoxRedisPw
             // 
@@ -419,7 +439,7 @@
             // 
             this.buttonServerConnect.BackColor = System.Drawing.Color.AliceBlue;
             this.buttonServerConnect.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.buttonServerConnect.Location = new System.Drawing.Point(391, 414);
+            this.buttonServerConnect.Location = new System.Drawing.Point(426, 414);
             this.buttonServerConnect.Name = "buttonServerConnect";
             this.buttonServerConnect.Size = new System.Drawing.Size(96, 28);
             this.buttonServerConnect.TabIndex = 3;
@@ -452,13 +472,13 @@
             this.tabPageLineSetting.Location = new System.Drawing.Point(4, 20);
             this.tabPageLineSetting.Name = "tabPageLineSetting";
             this.tabPageLineSetting.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageLineSetting.Size = new System.Drawing.Size(876, 478);
+            this.tabPageLineSetting.Size = new System.Drawing.Size(951, 478);
             this.tabPageLineSetting.TabIndex = 1;
             this.tabPageLineSetting.Text = "产线设置";
             // 
             // buttonlinesettingsave
             // 
-            this.buttonlinesettingsave.Location = new System.Drawing.Point(399, 380);
+            this.buttonlinesettingsave.Location = new System.Drawing.Point(413, 380);
             this.buttonlinesettingsave.Name = "buttonlinesettingsave";
             this.buttonlinesettingsave.Size = new System.Drawing.Size(81, 30);
             this.buttonlinesettingsave.TabIndex = 3;
@@ -469,7 +489,7 @@
             // textBoxline
             // 
             this.textBoxline.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "LineIndex", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBoxline.Location = new System.Drawing.Point(533, 290);
+            this.textBoxline.Location = new System.Drawing.Point(547, 290);
             this.textBoxline.Name = "textBoxline";
             this.textBoxline.Size = new System.Drawing.Size(75, 23);
             this.textBoxline.TabIndex = 2;
@@ -479,7 +499,7 @@
             // textBoxworkshop
             // 
             this.textBoxworkshop.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "workshopno", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBoxworkshop.Location = new System.Drawing.Point(533, 230);
+            this.textBoxworkshop.Location = new System.Drawing.Point(547, 230);
             this.textBoxworkshop.Name = "textBoxworkshop";
             this.textBoxworkshop.Size = new System.Drawing.Size(75, 23);
             this.textBoxworkshop.TabIndex = 2;
@@ -490,7 +510,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label18.Location = new System.Drawing.Point(251, 297);
+            this.label18.Location = new System.Drawing.Point(265, 297);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(16, 16);
             this.label18.TabIndex = 1;
@@ -500,7 +520,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label14.Location = new System.Drawing.Point(251, 237);
+            this.label14.Location = new System.Drawing.Point(265, 237);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(16, 16);
             this.label14.TabIndex = 1;
@@ -510,7 +530,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label13.Location = new System.Drawing.Point(251, 177);
+            this.label13.Location = new System.Drawing.Point(265, 177);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(16, 16);
             this.label13.TabIndex = 1;
@@ -520,7 +540,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label19.Location = new System.Drawing.Point(396, 297);
+            this.label19.Location = new System.Drawing.Point(410, 297);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(40, 16);
             this.label19.TabIndex = 1;
@@ -530,7 +550,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label17.Location = new System.Drawing.Point(396, 237);
+            this.label17.Location = new System.Drawing.Point(410, 237);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(40, 16);
             this.label17.TabIndex = 1;
@@ -540,7 +560,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label16.Location = new System.Drawing.Point(398, 177);
+            this.label16.Location = new System.Drawing.Point(412, 177);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(48, 16);
             this.label16.TabIndex = 1;
@@ -552,7 +572,7 @@
             this.label24.BackColor = System.Drawing.Color.AliceBlue;
             this.label24.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label24.ForeColor = System.Drawing.Color.Red;
-            this.label24.Location = new System.Drawing.Point(634, 301);
+            this.label24.Location = new System.Drawing.Point(648, 301);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(83, 12);
             this.label24.TabIndex = 1;
@@ -564,7 +584,7 @@
             this.label23.BackColor = System.Drawing.Color.AliceBlue;
             this.label23.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label23.ForeColor = System.Drawing.Color.Red;
-            this.label23.Location = new System.Drawing.Point(634, 241);
+            this.label23.Location = new System.Drawing.Point(648, 241);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(83, 12);
             this.label23.TabIndex = 1;
@@ -574,7 +594,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label21.Location = new System.Drawing.Point(554, 177);
+            this.label21.Location = new System.Drawing.Point(568, 177);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(32, 16);
             this.label21.TabIndex = 1;
@@ -584,7 +604,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label20.Location = new System.Drawing.Point(554, 117);
+            this.label20.Location = new System.Drawing.Point(568, 117);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(32, 16);
             this.label20.TabIndex = 1;
@@ -594,7 +614,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label15.Location = new System.Drawing.Point(404, 117);
+            this.label15.Location = new System.Drawing.Point(418, 117);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(32, 16);
             this.label15.TabIndex = 1;
@@ -604,7 +624,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label11.Location = new System.Drawing.Point(251, 117);
+            this.label11.Location = new System.Drawing.Point(265, 117);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(16, 16);
             this.label11.TabIndex = 1;
@@ -614,7 +634,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(554, 57);
+            this.label10.Location = new System.Drawing.Point(568, 57);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(42, 16);
             this.label10.TabIndex = 0;
@@ -624,7 +644,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(404, 57);
+            this.label9.Location = new System.Drawing.Point(418, 57);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(42, 16);
             this.label9.TabIndex = 0;
@@ -634,7 +654,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(254, 57);
+            this.label8.Location = new System.Drawing.Point(268, 57);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(42, 16);
             this.label8.TabIndex = 0;
@@ -643,10 +663,11 @@
             // tabPageCNC
             // 
             this.tabPageCNC.Controls.Add(this.dataGridViewCNC);
+            this.tabPageCNC.Controls.Add(this.panel3);
             this.tabPageCNC.Location = new System.Drawing.Point(4, 20);
             this.tabPageCNC.Name = "tabPageCNC";
             this.tabPageCNC.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageCNC.Size = new System.Drawing.Size(876, 478);
+            this.tabPageCNC.Size = new System.Drawing.Size(951, 478);
             this.tabPageCNC.TabIndex = 2;
             this.tabPageCNC.Text = "CNC设置";
             this.tabPageCNC.UseVisualStyleBackColor = true;
@@ -654,29 +675,139 @@
             // dataGridViewCNC
             // 
             this.dataGridViewCNC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCNC.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewCNC.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewCNC.Name = "dataGridViewCNC";
             this.dataGridViewCNC.RowTemplate.Height = 23;
-            this.dataGridViewCNC.Size = new System.Drawing.Size(870, 472);
-            this.dataGridViewCNC.TabIndex = 0;
+            this.dataGridViewCNC.Size = new System.Drawing.Size(945, 423);
+            this.dataGridViewCNC.TabIndex = 2;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.textBox5);
+            this.panel3.Controls.Add(this.label25);
+            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.labelCNCTable);
+            this.panel3.Location = new System.Drawing.Point(3, 427);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(945, 47);
+            this.panel3.TabIndex = 1;
+            // 
+            // textBox5
+            // 
+            this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "MysqlCNCTable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox5.Location = new System.Drawing.Point(408, 12);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(100, 21);
+            this.textBox5.TabIndex = 3;
+            this.textBox5.Text = global::INDNC.Properties.Settings.Default.MysqlCNCTable;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(326, 17);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(89, 12);
+            this.label25.TabIndex = 2;
+            this.label25.Text = "设置数据库名：";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(542, 11);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "设置";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // labelCNCTable
+            // 
+            this.labelCNCTable.AutoSize = true;
+            this.labelCNCTable.Location = new System.Drawing.Point(20, 17);
+            this.labelCNCTable.Name = "labelCNCTable";
+            this.labelCNCTable.Size = new System.Drawing.Size(89, 12);
+            this.labelCNCTable.TabIndex = 0;
+            this.labelCNCTable.Text = "当前数据库表名";
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.panel4);
+            this.tabPage2.Controls.Add(this.dataGridViewRobot);
             this.tabPage2.Location = new System.Drawing.Point(4, 20);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(876, 478);
+            this.tabPage2.Size = new System.Drawing.Size(951, 478);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "Robot设置";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.textBox6);
+            this.panel4.Controls.Add(this.label26);
+            this.panel4.Controls.Add(this.button2);
+            this.panel4.Controls.Add(this.labelRobotTable);
+            this.panel4.Location = new System.Drawing.Point(3, 427);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(945, 47);
+            this.panel4.TabIndex = 2;
+            // 
+            // textBox6
+            // 
+            this.textBox6.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "MysqlRobotTable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox6.Location = new System.Drawing.Point(408, 12);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(100, 21);
+            this.textBox6.TabIndex = 3;
+            this.textBox6.Text = global::INDNC.Properties.Settings.Default.MysqlRobotTable;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(326, 17);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(89, 12);
+            this.label26.TabIndex = 2;
+            this.label26.Text = "设置数据库名：";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(542, 11);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "设置";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // labelRobotTable
+            // 
+            this.labelRobotTable.AutoSize = true;
+            this.labelRobotTable.Location = new System.Drawing.Point(20, 17);
+            this.labelRobotTable.Name = "labelRobotTable";
+            this.labelRobotTable.Size = new System.Drawing.Size(89, 12);
+            this.labelRobotTable.TabIndex = 0;
+            this.labelRobotTable.Text = "当前数据库表名";
+            // 
+            // dataGridViewRobot
+            // 
+            this.dataGridViewRobot.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewRobot.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewRobot.Name = "dataGridViewRobot";
+            this.dataGridViewRobot.RowTemplate.Height = 23;
+            this.dataGridViewRobot.Size = new System.Drawing.Size(945, 423);
+            this.dataGridViewRobot.TabIndex = 1;
             // 
             // tabPage3
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 20);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(876, 478);
+            this.tabPage3.Size = new System.Drawing.Size(951, 478);
             this.tabPage3.TabIndex = 4;
             this.tabPage3.Text = "用户管理";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -688,7 +819,7 @@
             this.BackColor = System.Drawing.Color.Teal;
             this.Controls.Add(this.tabControlSetting);
             this.Name = "UserControlSetting";
-            this.Size = new System.Drawing.Size(884, 502);
+            this.Size = new System.Drawing.Size(959, 502);
             this.tabControlSetting.ResumeLayout(false);
             this.tabPageServerSetting.ResumeLayout(false);
             this.tabPageServerSetting.PerformLayout();
@@ -700,6 +831,12 @@
             this.tabPageLineSetting.PerformLayout();
             this.tabPageCNC.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCNC)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRobot)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -749,12 +886,23 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox textBoxline;
         private System.Windows.Forms.TextBox textBoxworkshop;
-        private System.Windows.Forms.DataGridView dataGridViewCNC;
         private System.Windows.Forms.TextBox textBoxMysqlserver;
         private System.Windows.Forms.TextBox textBoxMysqlDB;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button buttonlinesettingsave;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.DataGridView dataGridViewRobot;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label labelCNCTable;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label labelRobotTable;
+        private System.Windows.Forms.DataGridView dataGridViewCNC;
     }
 }

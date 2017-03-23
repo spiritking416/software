@@ -22,6 +22,8 @@ namespace INDNC
         private RedisManager localredismanager = new RedisManager();
         public event btnOkClickEventHander btnServerSettingClick; //服务器设置委托
         public event btnOkClickEventHander btnLineSettingClick; //产线设置委托
+        public event btnOkClickEventHander btnCNCSettingClick; //CNC设备设置委托
+        public event btnOkClickEventHander btnRobotSettingClick; //Robot设备设置委托
         private MySqlConnection mysqlconnection; // mysql连接
         private MySqlDataAdapter mysqladapter; //mysql数据适配器
         DataSet mysqlset; //数据集
@@ -49,6 +51,22 @@ namespace INDNC
         public UserControlSetting()
         {
             InitializeComponent();
+            //mysqlpara初始化
+            try
+            {
+                mysqlpara.MySQLServer = global::INDNC.Properties.Settings.Default.localserver;
+                mysqlpara.MySQLID = global::INDNC.Properties.Settings.Default.localserverid;
+                mysqlpara.MySQLIDPassword = global::INDNC.Properties.Settings.Default.localserverpassword;
+                mysqlpara.MySQLIDDatabase = global::INDNC.Properties.Settings.Default.localMysqlDatabase;
+                mysqlpara.MySQLDatabaseCNCTable = global::INDNC.Properties.Settings.Default.MysqlCNCTable;
+                mysqlpara.MySQLDatabaseRobotTable = global::INDNC.Properties.Settings.Default.MysqlRobotTable;
+                mysqlpara.connectvalid = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR:" + ex.Message, "ERROR");
+            }
+            MyconnectionString = "server=" + mysqlpara.MySQLServer + ";user id=" + mysqlpara.MySQLID + ";password=" + mysqlpara.MySQLIDPassword + "; database=" + mysqlpara.MySQLIDDatabase;
         }
 
         private void buttonServerConnect_Click(object sender, EventArgs e)
@@ -143,6 +161,9 @@ namespace INDNC
                 case 2:
                     SelectCNC();
                     break;
+                case 3:
+                    SelectRobot();
+                    break;
                 default:
                     
                     break;
@@ -153,23 +174,70 @@ namespace INDNC
         {
             try
             {
-                MyconnectionString = "server=localhost;user id=root;password=416520;database=cncdatabase";
-                mysqlconnection = new MySqlConnection(MyconnectionString);
+                if (MyconnectionString==null || MyconnectionString == "")
+                    throw new Exception("本地MySQL数据库参数错误，请重新设置！");
+                if (mysqlconnection == null)
+                    mysqlconnection = new MySqlConnection(MyconnectionString);
                 mysqlconnection.Open();   //必须Open
-                MessageBox.Show(mysqlconnection.Ping().ToString());
-                mysqladapter = new MySqlDataAdapter("select* from cnctable", mysqlconnection);
-                mysqlset = new DataSet();
+                if (!mysqlconnection.Ping())
+                {
+                    throw new Exception("无法连接本地MySQL服务器！");
+                }
+                string tmp = "select* from " + mysqlpara.MySQLDatabaseCNCTable;
+                mysqladapter = new MySqlDataAdapter(tmp, mysqlconnection);
+                if (mysqlset == null)
+                    mysqlset = new DataSet();
+                else
+                    mysqlset.Clear();
                 //填充和绑定数据
-                mysqladapter.Fill(mysqlset, "cnctable");
-                dataGridViewCNC.DataSource = mysqlset.Tables["cnctable"];
+                mysqladapter.Fill(mysqlset, mysqlpara.MySQLDatabaseCNCTable);
+                dataGridViewCNC.DataSource = mysqlset.Tables[mysqlpara.MySQLDatabaseCNCTable];
+                labelCNCTable.Text = "当前数据库表名:" + mysqlpara.MySQLDatabaseCNCTable;
             }
-            catch
+            catch(Exception ex)
             {
-
+                MessageBox.Show("ERROR:" + ex.Message, "ERROR");
             }
             finally
             {
-                mysqlconnection.Close();  //关闭
+                if(mysqlconnection!=null)
+                    mysqlconnection.Close();  //关闭
+            }   
+        }
+
+        private void SelectRobot()
+        {
+            try
+            {
+                if (MyconnectionString == null || MyconnectionString == "")
+                    throw new Exception("本地MySQL数据库参数错误，请重新设置！");
+                if (mysqlconnection == null)
+                    mysqlconnection = new MySqlConnection(MyconnectionString);
+                mysqlconnection.Open();   //必须Open
+                if (!mysqlconnection.Ping())
+                {
+                    throw new Exception("无法连接本地MySQL服务器！");
+                }
+                string tmp = "select* from " + mysqlpara.MySQLDatabaseRobotTable;
+                mysqladapter = new MySqlDataAdapter(tmp, mysqlconnection);
+                if (mysqlset == null)
+                    mysqlset = new DataSet();
+                else
+                    mysqlset.Clear();
+                mysqlset = new DataSet();
+                //填充和绑定数据
+                mysqladapter.Fill(mysqlset, mysqlpara.MySQLDatabaseRobotTable);
+                dataGridViewRobot.DataSource = mysqlset.Tables[mysqlpara.MySQLDatabaseRobotTable];
+                labelRobotTable.Text = "当前数据库表名:" + mysqlpara.MySQLDatabaseRobotTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR:" + ex.Message, "ERROR");
+            }
+            finally
+            {
+                if (mysqlconnection != null)
+                    mysqlconnection.Close();  //关闭
             }
         }
 
@@ -180,6 +248,102 @@ namespace INDNC
             lineno = textBoxline.Text;
             if (btnLineSettingClick != null)
                 btnLineSettingClick(this, e);
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
+                e.Handled = false;
+            else if (e.KeyChar == (char)13)
+            {
+                buttonServerConnect.Focus();
+                buttonServerConnect_Click(sender, e);
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("请输入数字", "ERROR");
+            }
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
+                e.Handled = false;
+            else if (e.KeyChar == (char)13)
+            {
+                buttonServerConnect.Focus();
+                buttonServerConnect_Click(sender, e);
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("请输入数字", "ERROR");
+            }
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
+                e.Handled = false;
+            else if (e.KeyChar == (char)13)
+            {
+                buttonServerConnect.Focus();
+                buttonServerConnect_Click(sender, e);
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("请输入数字", "ERROR");
+            }
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
+                e.Handled = false;
+            else if (e.KeyChar == (char)13)
+            {
+                buttonServerConnect.Focus();
+                buttonServerConnect_Click(sender, e);
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("请输入数字", "ERROR");
+            }
+        }
+
+        private void textBoxRedisPort_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((Char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8)
+                e.Handled = false;
+            else if (e.KeyChar == (char)13)
+            {
+                buttonServerConnect.Focus();
+                buttonServerConnect_Click(sender, e);
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("请输入数字", "ERROR");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            mysqlpara.MySQLDatabaseCNCTable = textBox5.Text;
+            Properties.Settings.Default.Save();
+            if (btnCNCSettingClick != null)
+                btnCNCSettingClick(this, e);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            mysqlpara.MySQLDatabaseRobotTable = textBox6.Text;
+            Properties.Settings.Default.Save();
+            if (btnCNCSettingClick != null)
+                btnRobotSettingClick(this, e);
         }
     }
 }

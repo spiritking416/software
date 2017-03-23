@@ -42,7 +42,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1096, 566);
+            this.listView1.Size = new System.Drawing.Size(884, 502);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -54,7 +54,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.listView1);
             this.Name = "UserControlMachineState";
-            this.Size = new System.Drawing.Size(1096, 566);
+            this.Size = new System.Drawing.Size(884, 502);
             this.ResumeLayout(false);
 
         }

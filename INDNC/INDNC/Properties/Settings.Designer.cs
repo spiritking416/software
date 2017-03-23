@@ -226,5 +226,29 @@ namespace INDNC.Properties {
                 this["localMysqlDatabase"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MysqlCNCTable {
+            get {
+                return ((string)(this["MysqlCNCTable"]));
+            }
+            set {
+                this["MysqlCNCTable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MysqlRobotTable {
+            get {
+                return ((string)(this["MysqlRobotTable"]));
+            }
+            set {
+                this["MysqlRobotTable"] = value;
+            }
+        }
     }
 }

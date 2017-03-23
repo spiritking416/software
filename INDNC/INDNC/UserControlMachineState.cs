@@ -27,8 +27,9 @@ namespace INDNC
             {
                 this.listView1.BeginUpdate();
 
-                int width = this.listView1.Width / 4;
-                this.listView1.Columns.Add("机床号", width, HorizontalAlignment.Left);
+                int width = (this.listView1.Width - 60) / 4;
+                this.listView1.Columns.Add("序号", 60, HorizontalAlignment.Left);
+                this.listView1.Columns.Add("机床编号", width, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("机床状态", width, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("当前告警", width, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("发生时间", width, HorizontalAlignment.Left);
