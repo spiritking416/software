@@ -106,6 +106,7 @@
             this.dataGridViewRobot = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label31 = new System.Windows.Forms.Label();
             this.button_ChangeUserPassword = new System.Windows.Forms.Button();
             this.button_UserOnOrOff = new System.Windows.Forms.Button();
@@ -117,6 +118,7 @@
             this.label_UserPasswor2 = new System.Windows.Forms.Label();
             this.label_UserPasswor1 = new System.Windows.Forms.Label();
             this.groupBox_UserManerge = new System.Windows.Forms.GroupBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.radioButton_DeleUser = new System.Windows.Forms.RadioButton();
             this.radioButton_AddUser = new System.Windows.Forms.RadioButton();
             this.button_EditUserOK = new System.Windows.Forms.Button();
@@ -190,7 +192,7 @@
             this.groupBox2.Controls.Add(this.textBoxMysqlID);
             this.groupBox2.Controls.Add(this.label22);
             this.groupBox2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox2.Location = new System.Drawing.Point(520, 10);
+            this.groupBox2.Location = new System.Drawing.Point(520, 22);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(333, 359);
             this.groupBox2.TabIndex = 7;
@@ -305,7 +307,7 @@
             this.groupBox1.Controls.Add(this.label52);
             this.groupBox1.Controls.Add(this.label50);
             this.groupBox1.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox1.Location = new System.Drawing.Point(96, 10);
+            this.groupBox1.Location = new System.Drawing.Point(96, 22);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(333, 359);
             this.groupBox1.TabIndex = 6;
@@ -547,9 +549,10 @@
             // textBoxline
             // 
             this.textBoxline.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "LineIndex", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBoxline.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBoxline.Location = new System.Drawing.Point(439, 267);
             this.textBoxline.Name = "textBoxline";
-            this.textBoxline.Size = new System.Drawing.Size(75, 29);
+            this.textBoxline.Size = new System.Drawing.Size(75, 26);
             this.textBoxline.TabIndex = 2;
             this.textBoxline.Text = global::INDNC.Properties.Settings.Default.LineIndex;
             this.textBoxline.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -567,9 +570,10 @@
             // textBoxworkshop
             // 
             this.textBoxworkshop.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "workshopno", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBoxworkshop.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBoxworkshop.Location = new System.Drawing.Point(439, 207);
             this.textBoxworkshop.Name = "textBoxworkshop";
-            this.textBoxworkshop.Size = new System.Drawing.Size(75, 29);
+            this.textBoxworkshop.Size = new System.Drawing.Size(75, 26);
             this.textBoxworkshop.TabIndex = 2;
             this.textBoxworkshop.Text = global::INDNC.Properties.Settings.Default.workshopno;
             this.textBoxworkshop.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1020,6 +1024,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.comboBox1);
             this.groupBox6.Controls.Add(this.label31);
             this.groupBox6.Controls.Add(this.button_ChangeUserPassword);
             this.groupBox6.Controls.Add(this.button_UserOnOrOff);
@@ -1030,6 +1035,7 @@
             this.groupBox6.Controls.Add(this.label_UserName);
             this.groupBox6.Controls.Add(this.label_UserPasswor2);
             this.groupBox6.Controls.Add(this.label_UserPasswor1);
+            this.groupBox6.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox6.Location = new System.Drawing.Point(142, 68);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(333, 362);
@@ -1037,9 +1043,20 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "用户操作";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(160, 140);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.TabIndex = 4;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // label31
             // 
             this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label31.Location = new System.Drawing.Point(54, 77);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(65, 12);
@@ -1048,6 +1065,7 @@
             // 
             // button_ChangeUserPassword
             // 
+            this.button_ChangeUserPassword.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button_ChangeUserPassword.Location = new System.Drawing.Point(173, 303);
             this.button_ChangeUserPassword.Name = "button_ChangeUserPassword";
             this.button_ChangeUserPassword.Size = new System.Drawing.Size(81, 30);
@@ -1057,16 +1075,19 @@
             // 
             // button_UserOnOrOff
             // 
+            this.button_UserOnOrOff.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button_UserOnOrOff.Location = new System.Drawing.Point(77, 303);
             this.button_UserOnOrOff.Name = "button_UserOnOrOff";
             this.button_UserOnOrOff.Size = new System.Drawing.Size(81, 30);
             this.button_UserOnOrOff.TabIndex = 3;
             this.button_UserOnOrOff.Text = "登陆";
             this.button_UserOnOrOff.UseVisualStyleBackColor = true;
+            this.button_UserOnOrOff.Click += new System.EventHandler(this.button_UserOnOrOff_Click);
             // 
             // label_CurrentUsername
             // 
             this.label_CurrentUsername.AutoSize = true;
+            this.label_CurrentUsername.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_CurrentUsername.Location = new System.Drawing.Point(158, 77);
             this.label_CurrentUsername.Name = "label_CurrentUsername";
             this.label_CurrentUsername.Size = new System.Drawing.Size(41, 12);
@@ -1075,7 +1096,8 @@
             // 
             // textBox_UserPassword2
             // 
-            this.textBox_UserPassword2.Location = new System.Drawing.Point(161, 232);
+            this.textBox_UserPassword2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox_UserPassword2.Location = new System.Drawing.Point(161, 230);
             this.textBox_UserPassword2.Name = "textBox_UserPassword2";
             this.textBox_UserPassword2.PasswordChar = '*';
             this.textBox_UserPassword2.Size = new System.Drawing.Size(121, 21);
@@ -1084,6 +1106,7 @@
             // label_Tisp
             // 
             this.label_Tisp.AutoSize = true;
+            this.label_Tisp.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_Tisp.Location = new System.Drawing.Point(54, 273);
             this.label_Tisp.Name = "label_Tisp";
             this.label_Tisp.Size = new System.Drawing.Size(29, 12);
@@ -1092,6 +1115,7 @@
             // 
             // textBox_UserPassword1
             // 
+            this.textBox_UserPassword1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox_UserPassword1.Location = new System.Drawing.Point(161, 186);
             this.textBox_UserPassword1.Name = "textBox_UserPassword1";
             this.textBox_UserPassword1.PasswordChar = '*';
@@ -1101,6 +1125,7 @@
             // label_UserName
             // 
             this.label_UserName.AutoSize = true;
+            this.label_UserName.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_UserName.Location = new System.Drawing.Point(54, 145);
             this.label_UserName.Name = "label_UserName";
             this.label_UserName.Size = new System.Drawing.Size(53, 12);
@@ -1110,7 +1135,8 @@
             // label_UserPasswor2
             // 
             this.label_UserPasswor2.AutoSize = true;
-            this.label_UserPasswor2.Location = new System.Drawing.Point(54, 239);
+            this.label_UserPasswor2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_UserPasswor2.Location = new System.Drawing.Point(54, 233);
             this.label_UserPasswor2.Name = "label_UserPasswor2";
             this.label_UserPasswor2.Size = new System.Drawing.Size(65, 12);
             this.label_UserPasswor2.TabIndex = 0;
@@ -1119,6 +1145,7 @@
             // label_UserPasswor1
             // 
             this.label_UserPasswor1.AutoSize = true;
+            this.label_UserPasswor1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_UserPasswor1.Location = new System.Drawing.Point(54, 192);
             this.label_UserPasswor1.Name = "label_UserPasswor1";
             this.label_UserPasswor1.Size = new System.Drawing.Size(41, 12);
@@ -1127,6 +1154,7 @@
             // 
             // groupBox_UserManerge
             // 
+            this.groupBox_UserManerge.Controls.Add(this.comboBox2);
             this.groupBox_UserManerge.Controls.Add(this.radioButton_DeleUser);
             this.groupBox_UserManerge.Controls.Add(this.radioButton_AddUser);
             this.groupBox_UserManerge.Controls.Add(this.button_EditUserOK);
@@ -1137,6 +1165,7 @@
             this.groupBox_UserManerge.Controls.Add(this.label32);
             this.groupBox_UserManerge.Controls.Add(this.label_ChangeUserPasswor2);
             this.groupBox_UserManerge.Controls.Add(this.label_ChangeUserPasswor1);
+            this.groupBox_UserManerge.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox_UserManerge.Location = new System.Drawing.Point(494, 68);
             this.groupBox_UserManerge.Name = "groupBox_UserManerge";
             this.groupBox_UserManerge.Size = new System.Drawing.Size(333, 362);
@@ -1144,9 +1173,19 @@
             this.groupBox_UserManerge.TabStop = false;
             this.groupBox_UserManerge.Text = "用户管理";
             // 
+            // comboBox2
+            // 
+            this.comboBox2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(161, 142);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 20);
+            this.comboBox2.TabIndex = 4;
+            // 
             // radioButton_DeleUser
             // 
             this.radioButton_DeleUser.AutoSize = true;
+            this.radioButton_DeleUser.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.radioButton_DeleUser.Location = new System.Drawing.Point(192, 43);
             this.radioButton_DeleUser.Name = "radioButton_DeleUser";
             this.radioButton_DeleUser.Size = new System.Drawing.Size(71, 16);
@@ -1158,6 +1197,7 @@
             // 
             this.radioButton_AddUser.AutoSize = true;
             this.radioButton_AddUser.Checked = true;
+            this.radioButton_AddUser.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.radioButton_AddUser.Location = new System.Drawing.Point(57, 43);
             this.radioButton_AddUser.Name = "radioButton_AddUser";
             this.radioButton_AddUser.Size = new System.Drawing.Size(71, 16);
@@ -1168,6 +1208,7 @@
             // 
             // button_EditUserOK
             // 
+            this.button_EditUserOK.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button_EditUserOK.Location = new System.Drawing.Point(127, 303);
             this.button_EditUserOK.Name = "button_EditUserOK";
             this.button_EditUserOK.Size = new System.Drawing.Size(81, 30);
@@ -1177,6 +1218,7 @@
             // 
             // textBox_ChangeUserPasswor2
             // 
+            this.textBox_ChangeUserPasswor2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox_ChangeUserPasswor2.Location = new System.Drawing.Point(161, 232);
             this.textBox_ChangeUserPasswor2.Name = "textBox_ChangeUserPasswor2";
             this.textBox_ChangeUserPasswor2.PasswordChar = '*';
@@ -1186,7 +1228,8 @@
             // label_ChangeUserTips
             // 
             this.label_ChangeUserTips.AutoSize = true;
-            this.label_ChangeUserTips.Location = new System.Drawing.Point(24, 273);
+            this.label_ChangeUserTips.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_ChangeUserTips.Location = new System.Drawing.Point(55, 273);
             this.label_ChangeUserTips.Name = "label_ChangeUserTips";
             this.label_ChangeUserTips.Size = new System.Drawing.Size(29, 12);
             this.label_ChangeUserTips.TabIndex = 0;
@@ -1194,6 +1237,7 @@
             // 
             // textBox_ChangeUserName
             // 
+            this.textBox_ChangeUserName.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox_ChangeUserName.Location = new System.Drawing.Point(161, 140);
             this.textBox_ChangeUserName.Name = "textBox_ChangeUserName";
             this.textBox_ChangeUserName.Size = new System.Drawing.Size(121, 21);
@@ -1201,6 +1245,7 @@
             // 
             // textBox_ChangeUserPasswor1
             // 
+            this.textBox_ChangeUserPasswor1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox_ChangeUserPasswor1.Location = new System.Drawing.Point(161, 186);
             this.textBox_ChangeUserPasswor1.Name = "textBox_ChangeUserPasswor1";
             this.textBox_ChangeUserPasswor1.PasswordChar = '*';
@@ -1210,6 +1255,7 @@
             // label32
             // 
             this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label32.Location = new System.Drawing.Point(54, 145);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(53, 12);
@@ -1219,6 +1265,7 @@
             // label_ChangeUserPasswor2
             // 
             this.label_ChangeUserPasswor2.AutoSize = true;
+            this.label_ChangeUserPasswor2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_ChangeUserPasswor2.Location = new System.Drawing.Point(54, 239);
             this.label_ChangeUserPasswor2.Name = "label_ChangeUserPasswor2";
             this.label_ChangeUserPasswor2.Size = new System.Drawing.Size(65, 12);
@@ -1228,6 +1275,7 @@
             // label_ChangeUserPasswor1
             // 
             this.label_ChangeUserPasswor1.AutoSize = true;
+            this.label_ChangeUserPasswor1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_ChangeUserPasswor1.Location = new System.Drawing.Point(54, 192);
             this.label_ChangeUserPasswor1.Name = "label_ChangeUserPasswor1";
             this.label_ChangeUserPasswor1.Size = new System.Drawing.Size(41, 12);
@@ -1373,5 +1421,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }

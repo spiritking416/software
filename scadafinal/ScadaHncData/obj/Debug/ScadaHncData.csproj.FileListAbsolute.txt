@@ -8,3 +8,8 @@ D:\root\Work\Code\scadafinal\Scada\lib\ScadaHncData.pdb
 D:\root\Work\Code\scadafinal\ScadaHncData\obj\Debug\ScadaHncData.csprojResolveAssemblyReference.cache
 D:\root\Work\Code\scadafinal\ScadaHncData\obj\Debug\ScadaHncData.dll
 D:\root\Work\Code\scadafinal\ScadaHncData\obj\Debug\ScadaHncData.pdb
+C:\Users\mio\software\scadafinal\Scada\lib\ScadaHncData.dll
+C:\Users\mio\software\scadafinal\Scada\lib\ScadaHncData.pdb
+C:\Users\mio\software\scadafinal\ScadaHncData\obj\Debug\ScadaHncData.csprojResolveAssemblyReference.cache
+C:\Users\mio\software\scadafinal\ScadaHncData\obj\Debug\ScadaHncData.dll
+C:\Users\mio\software\scadafinal\ScadaHncData\obj\Debug\ScadaHncData.pdb

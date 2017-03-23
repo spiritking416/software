@@ -250,5 +250,29 @@ namespace INDNC.Properties {
                 this["MysqlRobotTable"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SuperUser {
+            get {
+                return ((bool)(this["SuperUser"]));
+            }
+            set {
+                this["SuperUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SuperUserPassword {
+            get {
+                return ((string)(this["SuperUserPassword"]));
+            }
+            set {
+                this["SuperUserPassword"] = value;
+            }
+        }
     }
 }

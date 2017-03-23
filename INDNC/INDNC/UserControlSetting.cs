@@ -166,6 +166,9 @@ namespace INDNC
                 case 3:
                     SelectRobot();
                     break;
+                case 4:
+                    SelectUserManage();
+                    break;
                 default:
                     
                     break;
@@ -245,6 +248,33 @@ namespace INDNC
             {
                 if (mysqlconnection != null)
                     mysqlconnection.Close();  //关闭
+            }
+        }
+
+        private void SelectUserManage()
+        {
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add("操作工");
+            comboBox1.Items.Add("管理员");
+            comboBox1.SelectedIndex = 0;
+            bool SuperUser = global::INDNC.Properties.Settings.Default.SuperUser;
+            //管理员
+            if (SuperUser)
+            {
+                groupBox_UserManerge.Visible = true;
+            }
+            //操作工
+            else
+            {
+                label_CurrentUsername.Text = "操作工";
+                groupBox_UserManerge.Visible = false;
+                label_UserPasswor1.Visible = false;
+                textBox_UserPassword1.Visible = false;
+                label_UserPasswor2.Visible = false;
+                textBox_UserPassword2.Visible = false;
+                label_Tisp.Visible = false;
+                button_UserOnOrOff.Visible = false;
+                button_ChangeUserPassword.Visible = false;
             }
         }
 
@@ -436,309 +466,65 @@ namespace INDNC
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            bool SuperUser = global::INDNC.Properties.Settings.Default.SuperUser;
+            if (comboBox1.SelectedIndex == 0)
+            {
+                if (SuperUser)
+                {
+                    button_UserOnOrOff.Visible = false;
+                    button_UserOnOrOff.Text = "注销";
+                    button_ChangeUserPassword.Visible = false;
+                    button_ChangeUserPassword.Text = "修改密码";
+                    MessageBox.Show("请先注销管理员账户！");
+                }
+                else
+                {
+                    label_CurrentUsername.Text = "操作工";
+                    groupBox_UserManerge.Visible = false;
+                    label_UserPasswor1.Visible = false;
+                    textBox_UserPassword1.Visible = false;
+                    label_UserPasswor2.Visible = false;
+                    textBox_UserPassword2.Visible = false;
+                    label_Tisp.Visible = false;
+                    button_UserOnOrOff.Visible = false;
+                    button_ChangeUserPassword.Visible = false;
+                }
 
+            }
+            else if (comboBox1.SelectedIndex == 1)
+            {
+                if (SuperUser)
+                {
+                    button_UserOnOrOff.Visible = true;
+                    button_UserOnOrOff.Text = "注销";
+                    button_ChangeUserPassword.Visible = true;
+                    button_ChangeUserPassword.Text = "修改密码";
+                    groupBox_UserManerge.Visible = true;
+                    label_CurrentUsername.Text = "管理员";
+                }
+                else
+                {
+                    label_UserPasswor1.Visible = true;
+                    textBox_UserPassword1.Visible = true;
+                    button_UserOnOrOff.Visible = true;
+                    button_UserOnOrOff.Text = "登录";
+                }
+            }
         }
 
-        private void textBoxMysqlDB_TextChanged(object sender, EventArgs e)
+        private void button_UserOnOrOff_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void textBoxMysqlPW_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxMysqlserver_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxMysqlID_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label22_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label50_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label52_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxRedisPort_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxRedisPw_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label51_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tabPageServerSetting_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxline_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxworkshop_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label18_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label15_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label14_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label20_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label21_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label19_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label23_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label17_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label24_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label16_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPageLineSetting_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label25_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelCNCTable_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void dataGridViewCNC_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void tabPageCNC_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox7_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label27_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label28_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label26_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelRobotTable_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void dataGridViewRobot_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void tabPageRobotSetting_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage3_Click(object sender, EventArgs e)
-        {
-
+            bool SuperUser = global::INDNC.Properties.Settings.Default.SuperUser;
+            if (comboBox1.SelectedIndex == 0)
+            {
+
+            }
+            else if (comboBox1.SelectedIndex == 1)
+            {
+
+            }
         }
     }
 }

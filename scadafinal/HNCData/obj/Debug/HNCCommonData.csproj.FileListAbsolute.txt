@@ -8,3 +8,8 @@ D:\root\Work\Code\scadafinal\HNCData\bin\Debug\HNCCommonData.pdb
 D:\root\Work\Code\scadafinal\HNCData\obj\Debug\HNCCommonData.csprojResolveAssemblyReference.cache
 D:\root\Work\Code\scadafinal\HNCData\obj\Debug\HNCCommonData.dll
 D:\root\Work\Code\scadafinal\HNCData\obj\Debug\HNCCommonData.pdb
+C:\Users\mio\software\scadafinal\HNCData\bin\Debug\HNCCommonData.dll
+C:\Users\mio\software\scadafinal\HNCData\bin\Debug\HNCCommonData.pdb
+C:\Users\mio\software\scadafinal\HNCData\obj\Debug\HNCCommonData.csprojResolveAssemblyReference.cache
+C:\Users\mio\software\scadafinal\HNCData\obj\Debug\HNCCommonData.dll
+C:\Users\mio\software\scadafinal\HNCData\obj\Debug\HNCCommonData.pdb

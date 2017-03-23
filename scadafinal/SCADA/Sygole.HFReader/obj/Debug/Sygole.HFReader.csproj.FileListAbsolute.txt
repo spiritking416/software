@@ -7,3 +7,8 @@ D:\root\Work\Code\scadafinal\SCADA\Sygole.HFReader\bin\Debug\Sygole.HFReader.pdb
 D:\root\Work\Code\scadafinal\SCADA\Sygole.HFReader\obj\Debug\Sygole.HFReader.csprojResolveAssemblyReference.cache
 D:\root\Work\Code\scadafinal\SCADA\Sygole.HFReader\obj\Debug\Sygole.HFReader.dll
 D:\root\Work\Code\scadafinal\SCADA\Sygole.HFReader\obj\Debug\Sygole.HFReader.pdb
+C:\Users\mio\software\scadafinal\SCADA\Sygole.HFReader\bin\Debug\Sygole.HFReader.dll
+C:\Users\mio\software\scadafinal\SCADA\Sygole.HFReader\bin\Debug\Sygole.HFReader.pdb
+C:\Users\mio\software\scadafinal\SCADA\Sygole.HFReader\obj\Debug\Sygole.HFReader.csprojResolveAssemblyReference.cache
+C:\Users\mio\software\scadafinal\SCADA\Sygole.HFReader\obj\Debug\Sygole.HFReader.dll
+C:\Users\mio\software\scadafinal\SCADA\Sygole.HFReader\obj\Debug\Sygole.HFReader.pdb

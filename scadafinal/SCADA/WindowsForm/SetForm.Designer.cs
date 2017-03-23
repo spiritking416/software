@@ -141,7 +141,6 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.textBox_PLCDVGROSNum = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.comboBoxSelePLCSystem = new SCADA.mComboBox();
             this.btnSavePLC = new System.Windows.Forms.Button();
             this.LablPLCXuHao1 = new System.Windows.Forms.Label();
             this.splitter9 = new System.Windows.Forms.Splitter();
@@ -165,9 +164,7 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBoxPLCDevice2 = new SCADA.mComboBox();
             this.textBox__SelePLCIntDVGROSNum = new System.Windows.Forms.TextBox();
-            this.comboBoxPLCDevice1 = new SCADA.mComboBox();
             this.textBox__SelePLCOutDVGROSNum = new System.Windows.Forms.TextBox();
             this.labeliStartIO = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -187,22 +184,9 @@
             this.textBox_PLCAlarmNum = new System.Windows.Forms.TextBox();
             this.button_savePLCAlarmTb = new System.Windows.Forms.Button();
             this.tabPageUserManager = new System.Windows.Forms.TabPage();
-            this.groupBox_UserManerge = new System.Windows.Forms.GroupBox();
-            this.radioButton_DeleUser = new System.Windows.Forms.RadioButton();
-            this.radioButton_AddUser = new System.Windows.Forms.RadioButton();
-            this.mComboBox_DeleUser = new SCADA.mComboBox();
-            this.button_EditUserOK = new System.Windows.Forms.Button();
-            this.textBox_ChangeUserPasswor2 = new System.Windows.Forms.TextBox();
-            this.label_ChangeUserTips = new System.Windows.Forms.Label();
-            this.textBox_ChangeUserName = new System.Windows.Forms.TextBox();
-            this.textBox_ChangeUserPasswor1 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label_ChangeUserPasswor2 = new System.Windows.Forms.Label();
-            this.label_ChangeUserPasswor1 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button_ChangeUserPassword = new System.Windows.Forms.Button();
-            this.comboBox_UserNmae = new SCADA.mComboBox();
             this.button_UserOnOrOff = new System.Windows.Forms.Button();
             this.label_CurrentUsername = new System.Windows.Forms.Label();
             this.textBox_UserPassword2 = new System.Windows.Forms.TextBox();
@@ -211,7 +195,23 @@
             this.label_UserName = new System.Windows.Forms.Label();
             this.label_UserPasswor2 = new System.Windows.Forms.Label();
             this.label_UserPasswor1 = new System.Windows.Forms.Label();
+            this.groupBox_UserManerge = new System.Windows.Forms.GroupBox();
+            this.radioButton_DeleUser = new System.Windows.Forms.RadioButton();
+            this.radioButton_AddUser = new System.Windows.Forms.RadioButton();
+            this.button_EditUserOK = new System.Windows.Forms.Button();
+            this.textBox_ChangeUserPasswor2 = new System.Windows.Forms.TextBox();
+            this.label_ChangeUserTips = new System.Windows.Forms.Label();
+            this.textBox_ChangeUserName = new System.Windows.Forms.TextBox();
+            this.textBox_ChangeUserPasswor1 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label_ChangeUserPasswor2 = new System.Windows.Forms.Label();
+            this.label_ChangeUserPasswor1 = new System.Windows.Forms.Label();
             this.Settimer = new System.Windows.Forms.Timer(this.components);
+            this.comboBoxSelePLCSystem = new SCADA.mComboBox();
+            this.comboBoxPLCDevice2 = new SCADA.mComboBox();
+            this.comboBoxPLCDevice1 = new SCADA.mComboBox();
+            this.comboBox_UserNmae = new SCADA.mComboBox();
+            this.mComboBox_DeleUser = new SCADA.mComboBox();
             this.tabControlSet.SuspendLayout();
             this.tabPageConfigure.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -272,8 +272,8 @@
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_PLCAlarmTb)).BeginInit();
             this.tabPageUserManager.SuspendLayout();
-            this.groupBox_UserManerge.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox_UserManerge.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlSet
@@ -642,7 +642,7 @@
             this.tabPageCNCSet.Location = new System.Drawing.Point(4, 34);
             this.tabPageCNCSet.Name = "tabPageCNCSet";
             this.tabPageCNCSet.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageCNCSet.Size = new System.Drawing.Size(989, 704);
+            this.tabPageCNCSet.Size = new System.Drawing.Size(989, 695);
             this.tabPageCNCSet.TabIndex = 1;
             this.tabPageCNCSet.Text = "CNC设置";
             this.tabPageCNCSet.UseVisualStyleBackColor = true;
@@ -665,8 +665,8 @@
             this.SpCncConfig.Panel2.Controls.Add(this.label3);
             this.SpCncConfig.Panel2.Controls.Add(this.textBox_CNCNUM);
             this.SpCncConfig.Panel2.Controls.Add(this.btnSaveCNC);
-            this.SpCncConfig.Size = new System.Drawing.Size(983, 698);
-            this.SpCncConfig.SplitterDistance = 569;
+            this.SpCncConfig.Size = new System.Drawing.Size(983, 689);
+            this.SpCncConfig.SplitterDistance = 561;
             this.SpCncConfig.TabIndex = 4;
             // 
             // dgvCNCSet
@@ -690,7 +690,7 @@
             this.dgvCNCSet.Name = "dgvCNCSet";
             this.dgvCNCSet.RowHeadersVisible = false;
             this.dgvCNCSet.RowTemplate.Height = 23;
-            this.dgvCNCSet.Size = new System.Drawing.Size(979, 565);
+            this.dgvCNCSet.Size = new System.Drawing.Size(979, 557);
             this.dgvCNCSet.TabIndex = 3;
             this.dgvCNCSet.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCNCSet_CellEndEdit);
             this.dgvCNCSet.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCNCSet_CellEnter);
@@ -805,7 +805,7 @@
             this.tabPageRobotSet.Controls.Add(this.splitContainer1);
             this.tabPageRobotSet.Location = new System.Drawing.Point(4, 34);
             this.tabPageRobotSet.Name = "tabPageRobotSet";
-            this.tabPageRobotSet.Size = new System.Drawing.Size(989, 704);
+            this.tabPageRobotSet.Size = new System.Drawing.Size(989, 695);
             this.tabPageRobotSet.TabIndex = 2;
             this.tabPageRobotSet.Text = "ROBOT设置";
             this.tabPageRobotSet.UseVisualStyleBackColor = true;
@@ -831,8 +831,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.labRobotSignalEdit);
             this.splitContainer1.Panel2.Controls.Add(this.splitter3);
-            this.splitContainer1.Size = new System.Drawing.Size(989, 704);
-            this.splitContainer1.SplitterDistance = 262;
+            this.splitContainer1.Size = new System.Drawing.Size(989, 695);
+            this.splitContainer1.SplitterDistance = 258;
             this.splitContainer1.TabIndex = 20;
             // 
             // splitContainer3
@@ -854,7 +854,7 @@
             this.splitContainer3.Panel2.Controls.Add(this.label_SeleRobotOutS);
             this.splitContainer3.Panel2.Controls.Add(this.label_SeleRobotIntS);
             this.splitContainer3.Panel2.Controls.Add(this.textBox_SeleRobotIntSNum);
-            this.splitContainer3.Size = new System.Drawing.Size(985, 234);
+            this.splitContainer3.Size = new System.Drawing.Size(985, 230);
             this.splitContainer3.SplitterDistance = 648;
             this.splitContainer3.TabIndex = 23;
             // 
@@ -879,7 +879,7 @@
             this.dgvRobotSet.Name = "dgvRobotSet";
             this.dgvRobotSet.RowHeadersVisible = false;
             this.dgvRobotSet.RowTemplate.Height = 23;
-            this.dgvRobotSet.Size = new System.Drawing.Size(648, 234);
+            this.dgvRobotSet.Size = new System.Drawing.Size(648, 230);
             this.dgvRobotSet.TabIndex = 19;
             this.dgvRobotSet.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRobotSet_CellClick);
             this.dgvRobotSet.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRobotSet_CellEndEdit);
@@ -942,6 +942,7 @@
             this.colModelRobotIp.HeaderText = "IP";
             this.colModelRobotIp.Name = "colModelRobotIp";
             this.colModelRobotIp.Visible = false;
+            this.colModelRobotIp.Width = 42;
             // 
             // colModelRobotPort
             // 
@@ -950,6 +951,7 @@
             this.colModelRobotPort.HeaderText = "Port";
             this.colModelRobotPort.Name = "colModelRobotPort";
             this.colModelRobotPort.Visible = false;
+            this.colModelRobotPort.Width = 54;
             // 
             // ROBTSNNum
             // 
@@ -1066,7 +1068,7 @@
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.DGVRobotOutputSignalS);
-            this.splitContainer4.Size = new System.Drawing.Size(985, 408);
+            this.splitContainer4.Size = new System.Drawing.Size(985, 403);
             this.splitContainer4.SplitterDistance = 488;
             this.splitContainer4.TabIndex = 8;
             // 
@@ -1087,7 +1089,7 @@
             this.DGVRobotInputSignalS.Name = "DGVRobotInputSignalS";
             this.DGVRobotInputSignalS.RowHeadersVisible = false;
             this.DGVRobotInputSignalS.RowTemplate.Height = 23;
-            this.DGVRobotInputSignalS.Size = new System.Drawing.Size(488, 408);
+            this.DGVRobotInputSignalS.Size = new System.Drawing.Size(488, 403);
             this.DGVRobotInputSignalS.TabIndex = 7;
             this.DGVRobotInputSignalS.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVRobotInputSignalS_CellEndEdit);
             this.DGVRobotInputSignalS.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVRobotInputSignalS_CellEnter);
@@ -1153,7 +1155,7 @@
             this.DGVRobotOutputSignalS.Name = "DGVRobotOutputSignalS";
             this.DGVRobotOutputSignalS.RowHeadersVisible = false;
             this.DGVRobotOutputSignalS.RowTemplate.Height = 23;
-            this.DGVRobotOutputSignalS.Size = new System.Drawing.Size(493, 408);
+            this.DGVRobotOutputSignalS.Size = new System.Drawing.Size(493, 403);
             this.DGVRobotOutputSignalS.TabIndex = 7;
             this.DGVRobotOutputSignalS.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVRobotOutputSignalS_CellEndEdit);
             this.DGVRobotOutputSignalS.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVRobotOutputSignalS_CellEnter);
@@ -1235,7 +1237,7 @@
             this.tabPagePLCSet.Controls.Add(this.spContainerPLCConfig);
             this.tabPagePLCSet.Location = new System.Drawing.Point(4, 34);
             this.tabPagePLCSet.Name = "tabPagePLCSet";
-            this.tabPagePLCSet.Size = new System.Drawing.Size(989, 704);
+            this.tabPagePLCSet.Size = new System.Drawing.Size(989, 695);
             this.tabPagePLCSet.TabIndex = 4;
             this.tabPagePLCSet.Text = "PLC设置";
             this.tabPagePLCSet.UseVisualStyleBackColor = true;
@@ -1269,8 +1271,8 @@
             this.spContainerPLCConfig.Panel2.Controls.Add(this.label6);
             this.spContainerPLCConfig.Panel2.Controls.Add(this.label5);
             this.spContainerPLCConfig.Panel2.Controls.Add(this.splitter7);
-            this.spContainerPLCConfig.Size = new System.Drawing.Size(989, 704);
-            this.spContainerPLCConfig.SplitterDistance = 248;
+            this.spContainerPLCConfig.Size = new System.Drawing.Size(989, 695);
+            this.spContainerPLCConfig.SplitterDistance = 244;
             this.spContainerPLCConfig.TabIndex = 4;
             // 
             // splitContainer5
@@ -1289,7 +1291,7 @@
             this.splitContainer5.Panel2.Controls.Add(this.groupBox4);
             this.splitContainer5.Panel2.Controls.Add(this.btnSavePLC);
             this.splitContainer5.Panel2.Controls.Add(this.LablPLCXuHao1);
-            this.splitContainer5.Size = new System.Drawing.Size(982, 220);
+            this.splitContainer5.Size = new System.Drawing.Size(982, 216);
             this.splitContainer5.SplitterDistance = 794;
             this.splitContainer5.TabIndex = 41;
             // 
@@ -1314,7 +1316,7 @@
             this.dgvPLCSet.Name = "dgvPLCSet";
             this.dgvPLCSet.RowHeadersVisible = false;
             this.dgvPLCSet.RowTemplate.Height = 23;
-            this.dgvPLCSet.Size = new System.Drawing.Size(794, 220);
+            this.dgvPLCSet.Size = new System.Drawing.Size(794, 216);
             this.dgvPLCSet.TabIndex = 3;
             this.dgvPLCSet.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPLCSet_CellEndEdit);
             this.dgvPLCSet.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPLCSet_CellEnter);
@@ -1436,17 +1438,6 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "PLC系统选择";
             // 
-            // comboBoxSelePLCSystem
-            // 
-            this.comboBoxSelePLCSystem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxSelePLCSystem.FormattingEnabled = true;
-            this.comboBoxSelePLCSystem.Location = new System.Drawing.Point(15, 24);
-            this.comboBoxSelePLCSystem.Name = "comboBoxSelePLCSystem";
-            this.comboBoxSelePLCSystem.Size = new System.Drawing.Size(86, 24);
-            this.comboBoxSelePLCSystem.TabIndex = 37;
-            this.comboBoxSelePLCSystem.Enter += new System.EventHandler(this.comboBoxSelePLCSystem_Enter);
-            this.comboBoxSelePLCSystem.Leave += new System.EventHandler(this.comboBoxSelePLCSystem_Leave);
-            // 
             // btnSavePLC
             // 
             this.btnSavePLC.Location = new System.Drawing.Point(18, 177);
@@ -1470,7 +1461,7 @@
             // 
             this.splitter9.Location = new System.Drawing.Point(0, 24);
             this.splitter9.Name = "splitter9";
-            this.splitter9.Size = new System.Drawing.Size(3, 220);
+            this.splitter9.Size = new System.Drawing.Size(3, 216);
             this.splitter9.TabIndex = 5;
             this.splitter9.TabStop = false;
             // 
@@ -1515,7 +1506,7 @@
             // splitContainer6.Panel2
             // 
             this.splitContainer6.Panel2.Controls.Add(this.PLCOutputSignalSDefine);
-            this.splitContainer6.Size = new System.Drawing.Size(985, 408);
+            this.splitContainer6.Size = new System.Drawing.Size(985, 403);
             this.splitContainer6.SplitterDistance = 487;
             this.splitContainer6.TabIndex = 30;
             // 
@@ -1536,7 +1527,7 @@
             this.PLCInputSignalSDefine.Name = "PLCInputSignalSDefine";
             this.PLCInputSignalSDefine.RowHeadersVisible = false;
             this.PLCInputSignalSDefine.RowTemplate.Height = 23;
-            this.PLCInputSignalSDefine.Size = new System.Drawing.Size(487, 408);
+            this.PLCInputSignalSDefine.Size = new System.Drawing.Size(487, 403);
             this.PLCInputSignalSDefine.TabIndex = 3;
             this.PLCInputSignalSDefine.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.PLCInputSignalSDefine_CellEndEdit);
             this.PLCInputSignalSDefine.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.PLCInputSignalSDefine_CellEnter);
@@ -1602,7 +1593,7 @@
             this.PLCOutputSignalSDefine.Name = "PLCOutputSignalSDefine";
             this.PLCOutputSignalSDefine.RowHeadersVisible = false;
             this.PLCOutputSignalSDefine.RowTemplate.Height = 23;
-            this.PLCOutputSignalSDefine.Size = new System.Drawing.Size(494, 408);
+            this.PLCOutputSignalSDefine.Size = new System.Drawing.Size(494, 403);
             this.PLCOutputSignalSDefine.TabIndex = 3;
             this.PLCOutputSignalSDefine.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.PLCOutputSignalSDefine_CellEndEdit);
             this.PLCOutputSignalSDefine.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.PLCOutputSignalSDefine_CellEnter);
@@ -1651,17 +1642,6 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.Width = 65;
             // 
-            // comboBoxPLCDevice2
-            // 
-            this.comboBoxPLCDevice2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxPLCDevice2.FormattingEnabled = true;
-            this.comboBoxPLCDevice2.Location = new System.Drawing.Point(493, 9);
-            this.comboBoxPLCDevice2.Name = "comboBoxPLCDevice2";
-            this.comboBoxPLCDevice2.Size = new System.Drawing.Size(71, 24);
-            this.comboBoxPLCDevice2.TabIndex = 28;
-            this.comboBoxPLCDevice2.SelectedIndexChanged += new System.EventHandler(this.comboBoxPLCDevice2_SelectedIndexChanged);
-            this.comboBoxPLCDevice2.Enter += new System.EventHandler(this.comboBoxPLCDevice2_Enter);
-            // 
             // textBox__SelePLCIntDVGROSNum
             // 
             this.textBox__SelePLCIntDVGROSNum.Location = new System.Drawing.Point(392, 10);
@@ -1670,17 +1650,6 @@
             this.textBox__SelePLCIntDVGROSNum.TabIndex = 27;
             this.textBox__SelePLCIntDVGROSNum.Enter += new System.EventHandler(this.textBox__SelePLCIntDVGROSNum_Enter);
             this.textBox__SelePLCIntDVGROSNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox__SelePLCIntDVGROSNum_KeyDown);
-            // 
-            // comboBoxPLCDevice1
-            // 
-            this.comboBoxPLCDevice1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxPLCDevice1.FormattingEnabled = true;
-            this.comboBoxPLCDevice1.Location = new System.Drawing.Point(243, 10);
-            this.comboBoxPLCDevice1.Name = "comboBoxPLCDevice1";
-            this.comboBoxPLCDevice1.Size = new System.Drawing.Size(71, 24);
-            this.comboBoxPLCDevice1.TabIndex = 28;
-            this.comboBoxPLCDevice1.SelectedIndexChanged += new System.EventHandler(this.comboBoxPLCDevice1_SelectedIndexChanged);
-            this.comboBoxPLCDevice1.Enter += new System.EventHandler(this.comboBoxPLCDevice1_Enter);
             // 
             // textBox__SelePLCOutDVGROSNum
             // 
@@ -1733,7 +1702,7 @@
             this.tabPageRFIDSet.Controls.Add(this.spContainerRFIDConfig);
             this.tabPageRFIDSet.Location = new System.Drawing.Point(4, 34);
             this.tabPageRFIDSet.Name = "tabPageRFIDSet";
-            this.tabPageRFIDSet.Size = new System.Drawing.Size(989, 704);
+            this.tabPageRFIDSet.Size = new System.Drawing.Size(989, 695);
             this.tabPageRFIDSet.TabIndex = 3;
             this.tabPageRFIDSet.Text = "RFID设置";
             this.tabPageRFIDSet.UseVisualStyleBackColor = true;
@@ -1756,8 +1725,8 @@
             this.spContainerRFIDConfig.Panel2.Controls.Add(this.label_RFidDgvRoesNum);
             this.spContainerRFIDConfig.Panel2.Controls.Add(this.textBox_RFidDgvRowsNum);
             this.spContainerRFIDConfig.Panel2.Controls.Add(this.btnSaveRFID);
-            this.spContainerRFIDConfig.Size = new System.Drawing.Size(989, 704);
-            this.spContainerRFIDConfig.SplitterDistance = 598;
+            this.spContainerRFIDConfig.Size = new System.Drawing.Size(989, 695);
+            this.spContainerRFIDConfig.SplitterDistance = 590;
             this.spContainerRFIDConfig.TabIndex = 4;
             // 
             // dgvRFIDSet
@@ -1769,7 +1738,7 @@
             this.dgvRFIDSet.Name = "dgvRFIDSet";
             this.dgvRFIDSet.RowHeadersVisible = false;
             this.dgvRFIDSet.RowTemplate.Height = 23;
-            this.dgvRFIDSet.Size = new System.Drawing.Size(985, 594);
+            this.dgvRFIDSet.Size = new System.Drawing.Size(985, 586);
             this.dgvRFIDSet.TabIndex = 3;
             this.dgvRFIDSet.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRFIDSet_CellEndEdit);
             this.dgvRFIDSet.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRFIDSet_CellEnter);
@@ -1808,7 +1777,7 @@
             // 
             this.tabPageTestSetup.Location = new System.Drawing.Point(4, 34);
             this.tabPageTestSetup.Name = "tabPageTestSetup";
-            this.tabPageTestSetup.Size = new System.Drawing.Size(989, 704);
+            this.tabPageTestSetup.Size = new System.Drawing.Size(989, 695);
             this.tabPageTestSetup.TabIndex = 5;
             this.tabPageTestSetup.Text = "检测设备设置";
             this.tabPageTestSetup.UseVisualStyleBackColor = true;
@@ -1818,7 +1787,7 @@
             this.tabPagePLCAlarmTb.Controls.Add(this.splitContainer2);
             this.tabPagePLCAlarmTb.Location = new System.Drawing.Point(4, 34);
             this.tabPagePLCAlarmTb.Name = "tabPagePLCAlarmTb";
-            this.tabPagePLCAlarmTb.Size = new System.Drawing.Size(989, 704);
+            this.tabPagePLCAlarmTb.Size = new System.Drawing.Size(989, 695);
             this.tabPagePLCAlarmTb.TabIndex = 7;
             this.tabPagePLCAlarmTb.Text = "PLC自定义报警对照表";
             this.tabPagePLCAlarmTb.UseVisualStyleBackColor = true;
@@ -1839,8 +1808,8 @@
             this.splitContainer2.Panel2.Controls.Add(this.label4);
             this.splitContainer2.Panel2.Controls.Add(this.textBox_PLCAlarmNum);
             this.splitContainer2.Panel2.Controls.Add(this.button_savePLCAlarmTb);
-            this.splitContainer2.Size = new System.Drawing.Size(989, 704);
-            this.splitContainer2.SplitterDistance = 562;
+            this.splitContainer2.Size = new System.Drawing.Size(989, 695);
+            this.splitContainer2.SplitterDistance = 554;
             this.splitContainer2.TabIndex = 0;
             // 
             // dgv_PLCAlarmTb
@@ -1852,7 +1821,7 @@
             this.dgv_PLCAlarmTb.Name = "dgv_PLCAlarmTb";
             this.dgv_PLCAlarmTb.RowHeadersVisible = false;
             this.dgv_PLCAlarmTb.RowTemplate.Height = 23;
-            this.dgv_PLCAlarmTb.Size = new System.Drawing.Size(989, 562);
+            this.dgv_PLCAlarmTb.Size = new System.Drawing.Size(989, 554);
             this.dgv_PLCAlarmTb.TabIndex = 4;
             this.dgv_PLCAlarmTb.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_PLCAlarmTb_CellEndEdit);
             this.dgv_PLCAlarmTb.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_PLCAlarmTb_CellEnter);
@@ -1897,132 +1866,6 @@
             this.tabPageUserManager.Text = "用户管理";
             this.tabPageUserManager.UseVisualStyleBackColor = true;
             // 
-            // groupBox_UserManerge
-            // 
-            this.groupBox_UserManerge.Controls.Add(this.radioButton_DeleUser);
-            this.groupBox_UserManerge.Controls.Add(this.radioButton_AddUser);
-            this.groupBox_UserManerge.Controls.Add(this.mComboBox_DeleUser);
-            this.groupBox_UserManerge.Controls.Add(this.button_EditUserOK);
-            this.groupBox_UserManerge.Controls.Add(this.textBox_ChangeUserPasswor2);
-            this.groupBox_UserManerge.Controls.Add(this.label_ChangeUserTips);
-            this.groupBox_UserManerge.Controls.Add(this.textBox_ChangeUserName);
-            this.groupBox_UserManerge.Controls.Add(this.textBox_ChangeUserPasswor1);
-            this.groupBox_UserManerge.Controls.Add(this.label10);
-            this.groupBox_UserManerge.Controls.Add(this.label_ChangeUserPasswor2);
-            this.groupBox_UserManerge.Controls.Add(this.label_ChangeUserPasswor1);
-            this.groupBox_UserManerge.Location = new System.Drawing.Point(375, 26);
-            this.groupBox_UserManerge.Name = "groupBox_UserManerge";
-            this.groupBox_UserManerge.Size = new System.Drawing.Size(333, 362);
-            this.groupBox_UserManerge.TabIndex = 4;
-            this.groupBox_UserManerge.TabStop = false;
-            this.groupBox_UserManerge.Text = "用户管理";
-            // 
-            // radioButton_DeleUser
-            // 
-            this.radioButton_DeleUser.AutoSize = true;
-            this.radioButton_DeleUser.Location = new System.Drawing.Point(192, 43);
-            this.radioButton_DeleUser.Name = "radioButton_DeleUser";
-            this.radioButton_DeleUser.Size = new System.Drawing.Size(90, 20);
-            this.radioButton_DeleUser.TabIndex = 4;
-            this.radioButton_DeleUser.Text = "删除用户";
-            this.radioButton_DeleUser.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_AddUser
-            // 
-            this.radioButton_AddUser.AutoSize = true;
-            this.radioButton_AddUser.Checked = true;
-            this.radioButton_AddUser.Location = new System.Drawing.Point(57, 43);
-            this.radioButton_AddUser.Name = "radioButton_AddUser";
-            this.radioButton_AddUser.Size = new System.Drawing.Size(90, 20);
-            this.radioButton_AddUser.TabIndex = 4;
-            this.radioButton_AddUser.TabStop = true;
-            this.radioButton_AddUser.Text = "添加用户";
-            this.radioButton_AddUser.UseVisualStyleBackColor = true;
-            this.radioButton_AddUser.CheckedChanged += new System.EventHandler(this.radioButton_AddUser_CheckedChanged);
-            // 
-            // mComboBox_DeleUser
-            // 
-            this.mComboBox_DeleUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.mComboBox_DeleUser.FormattingEnabled = true;
-            this.mComboBox_DeleUser.Location = new System.Drawing.Point(161, 140);
-            this.mComboBox_DeleUser.Name = "mComboBox_DeleUser";
-            this.mComboBox_DeleUser.Size = new System.Drawing.Size(121, 24);
-            this.mComboBox_DeleUser.TabIndex = 1;
-            this.mComboBox_DeleUser.Visible = false;
-            this.mComboBox_DeleUser.SelectedIndexChanged += new System.EventHandler(this.comboBox_UserNmae_SelectedIndexChanged);
-            // 
-            // button_EditUserOK
-            // 
-            this.button_EditUserOK.Location = new System.Drawing.Point(115, 292);
-            this.button_EditUserOK.Name = "button_EditUserOK";
-            this.button_EditUserOK.Size = new System.Drawing.Size(110, 43);
-            this.button_EditUserOK.TabIndex = 3;
-            this.button_EditUserOK.Text = "添加";
-            this.button_EditUserOK.UseVisualStyleBackColor = true;
-            this.button_EditUserOK.Click += new System.EventHandler(this.button_EditUserOK_Click);
-            // 
-            // textBox_ChangeUserPasswor2
-            // 
-            this.textBox_ChangeUserPasswor2.Location = new System.Drawing.Point(161, 232);
-            this.textBox_ChangeUserPasswor2.Name = "textBox_ChangeUserPasswor2";
-            this.textBox_ChangeUserPasswor2.PasswordChar = '*';
-            this.textBox_ChangeUserPasswor2.Size = new System.Drawing.Size(121, 26);
-            this.textBox_ChangeUserPasswor2.TabIndex = 2;
-            this.textBox_ChangeUserPasswor2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_UserPassword2_KeyDown);
-            // 
-            // label_ChangeUserTips
-            // 
-            this.label_ChangeUserTips.AutoSize = true;
-            this.label_ChangeUserTips.Location = new System.Drawing.Point(24, 273);
-            this.label_ChangeUserTips.Name = "label_ChangeUserTips";
-            this.label_ChangeUserTips.Size = new System.Drawing.Size(40, 16);
-            this.label_ChangeUserTips.TabIndex = 0;
-            this.label_ChangeUserTips.Text = "提示";
-            // 
-            // textBox_ChangeUserName
-            // 
-            this.textBox_ChangeUserName.Location = new System.Drawing.Point(161, 140);
-            this.textBox_ChangeUserName.Name = "textBox_ChangeUserName";
-            this.textBox_ChangeUserName.Size = new System.Drawing.Size(121, 26);
-            this.textBox_ChangeUserName.TabIndex = 2;
-            this.textBox_ChangeUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_UserPassword1_KeyDown);
-            // 
-            // textBox_ChangeUserPasswor1
-            // 
-            this.textBox_ChangeUserPasswor1.Location = new System.Drawing.Point(161, 186);
-            this.textBox_ChangeUserPasswor1.Name = "textBox_ChangeUserPasswor1";
-            this.textBox_ChangeUserPasswor1.PasswordChar = '*';
-            this.textBox_ChangeUserPasswor1.Size = new System.Drawing.Size(121, 26);
-            this.textBox_ChangeUserPasswor1.TabIndex = 2;
-            this.textBox_ChangeUserPasswor1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_UserPassword1_KeyDown);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(54, 145);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(72, 16);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "用户名：";
-            // 
-            // label_ChangeUserPasswor2
-            // 
-            this.label_ChangeUserPasswor2.AutoSize = true;
-            this.label_ChangeUserPasswor2.Location = new System.Drawing.Point(54, 239);
-            this.label_ChangeUserPasswor2.Name = "label_ChangeUserPasswor2";
-            this.label_ChangeUserPasswor2.Size = new System.Drawing.Size(88, 16);
-            this.label_ChangeUserPasswor2.TabIndex = 0;
-            this.label_ChangeUserPasswor2.Text = "确认密码：";
-            // 
-            // label_ChangeUserPasswor1
-            // 
-            this.label_ChangeUserPasswor1.AutoSize = true;
-            this.label_ChangeUserPasswor1.Location = new System.Drawing.Point(54, 192);
-            this.label_ChangeUserPasswor1.Name = "label_ChangeUserPasswor1";
-            this.label_ChangeUserPasswor1.Size = new System.Drawing.Size(56, 16);
-            this.label_ChangeUserPasswor1.TabIndex = 0;
-            this.label_ChangeUserPasswor1.Text = "密码：";
-            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.label1);
@@ -2061,16 +1904,6 @@
             this.button_ChangeUserPassword.Text = "修改密码";
             this.button_ChangeUserPassword.UseVisualStyleBackColor = true;
             this.button_ChangeUserPassword.Click += new System.EventHandler(this.button_ChangeUserPassword_Click);
-            // 
-            // comboBox_UserNmae
-            // 
-            this.comboBox_UserNmae.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_UserNmae.FormattingEnabled = true;
-            this.comboBox_UserNmae.Location = new System.Drawing.Point(161, 142);
-            this.comboBox_UserNmae.Name = "comboBox_UserNmae";
-            this.comboBox_UserNmae.Size = new System.Drawing.Size(121, 24);
-            this.comboBox_UserNmae.TabIndex = 1;
-            this.comboBox_UserNmae.SelectedIndexChanged += new System.EventHandler(this.comboBox_UserNmae_SelectedIndexChanged);
             // 
             // button_UserOnOrOff
             // 
@@ -2144,6 +1977,175 @@
             this.label_UserPasswor1.Size = new System.Drawing.Size(56, 16);
             this.label_UserPasswor1.TabIndex = 0;
             this.label_UserPasswor1.Text = "密码：";
+            // 
+            // groupBox_UserManerge
+            // 
+            this.groupBox_UserManerge.Controls.Add(this.radioButton_DeleUser);
+            this.groupBox_UserManerge.Controls.Add(this.radioButton_AddUser);
+            this.groupBox_UserManerge.Controls.Add(this.mComboBox_DeleUser);
+            this.groupBox_UserManerge.Controls.Add(this.button_EditUserOK);
+            this.groupBox_UserManerge.Controls.Add(this.textBox_ChangeUserPasswor2);
+            this.groupBox_UserManerge.Controls.Add(this.label_ChangeUserTips);
+            this.groupBox_UserManerge.Controls.Add(this.textBox_ChangeUserName);
+            this.groupBox_UserManerge.Controls.Add(this.textBox_ChangeUserPasswor1);
+            this.groupBox_UserManerge.Controls.Add(this.label10);
+            this.groupBox_UserManerge.Controls.Add(this.label_ChangeUserPasswor2);
+            this.groupBox_UserManerge.Controls.Add(this.label_ChangeUserPasswor1);
+            this.groupBox_UserManerge.Location = new System.Drawing.Point(375, 26);
+            this.groupBox_UserManerge.Name = "groupBox_UserManerge";
+            this.groupBox_UserManerge.Size = new System.Drawing.Size(333, 362);
+            this.groupBox_UserManerge.TabIndex = 4;
+            this.groupBox_UserManerge.TabStop = false;
+            this.groupBox_UserManerge.Text = "用户管理";
+            // 
+            // radioButton_DeleUser
+            // 
+            this.radioButton_DeleUser.AutoSize = true;
+            this.radioButton_DeleUser.Location = new System.Drawing.Point(192, 43);
+            this.radioButton_DeleUser.Name = "radioButton_DeleUser";
+            this.radioButton_DeleUser.Size = new System.Drawing.Size(90, 20);
+            this.radioButton_DeleUser.TabIndex = 4;
+            this.radioButton_DeleUser.Text = "删除用户";
+            this.radioButton_DeleUser.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_AddUser
+            // 
+            this.radioButton_AddUser.AutoSize = true;
+            this.radioButton_AddUser.Checked = true;
+            this.radioButton_AddUser.Location = new System.Drawing.Point(57, 43);
+            this.radioButton_AddUser.Name = "radioButton_AddUser";
+            this.radioButton_AddUser.Size = new System.Drawing.Size(90, 20);
+            this.radioButton_AddUser.TabIndex = 4;
+            this.radioButton_AddUser.TabStop = true;
+            this.radioButton_AddUser.Text = "添加用户";
+            this.radioButton_AddUser.UseVisualStyleBackColor = true;
+            this.radioButton_AddUser.CheckedChanged += new System.EventHandler(this.radioButton_AddUser_CheckedChanged);
+            // 
+            // button_EditUserOK
+            // 
+            this.button_EditUserOK.Location = new System.Drawing.Point(115, 292);
+            this.button_EditUserOK.Name = "button_EditUserOK";
+            this.button_EditUserOK.Size = new System.Drawing.Size(110, 43);
+            this.button_EditUserOK.TabIndex = 3;
+            this.button_EditUserOK.Text = "添加";
+            this.button_EditUserOK.UseVisualStyleBackColor = true;
+            this.button_EditUserOK.Click += new System.EventHandler(this.button_EditUserOK_Click);
+            // 
+            // textBox_ChangeUserPasswor2
+            // 
+            this.textBox_ChangeUserPasswor2.Location = new System.Drawing.Point(161, 232);
+            this.textBox_ChangeUserPasswor2.Name = "textBox_ChangeUserPasswor2";
+            this.textBox_ChangeUserPasswor2.PasswordChar = '*';
+            this.textBox_ChangeUserPasswor2.Size = new System.Drawing.Size(121, 26);
+            this.textBox_ChangeUserPasswor2.TabIndex = 2;
+            this.textBox_ChangeUserPasswor2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_UserPassword2_KeyDown);
+            // 
+            // label_ChangeUserTips
+            // 
+            this.label_ChangeUserTips.AutoSize = true;
+            this.label_ChangeUserTips.Location = new System.Drawing.Point(24, 273);
+            this.label_ChangeUserTips.Name = "label_ChangeUserTips";
+            this.label_ChangeUserTips.Size = new System.Drawing.Size(40, 16);
+            this.label_ChangeUserTips.TabIndex = 0;
+            this.label_ChangeUserTips.Text = "提示";
+            // 
+            // textBox_ChangeUserName
+            // 
+            this.textBox_ChangeUserName.Location = new System.Drawing.Point(161, 140);
+            this.textBox_ChangeUserName.Name = "textBox_ChangeUserName";
+            this.textBox_ChangeUserName.Size = new System.Drawing.Size(121, 26);
+            this.textBox_ChangeUserName.TabIndex = 2;
+            this.textBox_ChangeUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_UserPassword1_KeyDown);
+            // 
+            // textBox_ChangeUserPasswor1
+            // 
+            this.textBox_ChangeUserPasswor1.Location = new System.Drawing.Point(161, 186);
+            this.textBox_ChangeUserPasswor1.Name = "textBox_ChangeUserPasswor1";
+            this.textBox_ChangeUserPasswor1.PasswordChar = '*';
+            this.textBox_ChangeUserPasswor1.Size = new System.Drawing.Size(121, 26);
+            this.textBox_ChangeUserPasswor1.TabIndex = 2;
+            this.textBox_ChangeUserPasswor1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_UserPassword1_KeyDown);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(54, 145);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(72, 16);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "用户名：";
+            // 
+            // label_ChangeUserPasswor2
+            // 
+            this.label_ChangeUserPasswor2.AutoSize = true;
+            this.label_ChangeUserPasswor2.Location = new System.Drawing.Point(54, 239);
+            this.label_ChangeUserPasswor2.Name = "label_ChangeUserPasswor2";
+            this.label_ChangeUserPasswor2.Size = new System.Drawing.Size(88, 16);
+            this.label_ChangeUserPasswor2.TabIndex = 0;
+            this.label_ChangeUserPasswor2.Text = "确认密码：";
+            // 
+            // label_ChangeUserPasswor1
+            // 
+            this.label_ChangeUserPasswor1.AutoSize = true;
+            this.label_ChangeUserPasswor1.Location = new System.Drawing.Point(54, 192);
+            this.label_ChangeUserPasswor1.Name = "label_ChangeUserPasswor1";
+            this.label_ChangeUserPasswor1.Size = new System.Drawing.Size(56, 16);
+            this.label_ChangeUserPasswor1.TabIndex = 0;
+            this.label_ChangeUserPasswor1.Text = "密码：";
+            // 
+            // comboBoxSelePLCSystem
+            // 
+            this.comboBoxSelePLCSystem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSelePLCSystem.FormattingEnabled = true;
+            this.comboBoxSelePLCSystem.Location = new System.Drawing.Point(15, 24);
+            this.comboBoxSelePLCSystem.Name = "comboBoxSelePLCSystem";
+            this.comboBoxSelePLCSystem.Size = new System.Drawing.Size(86, 24);
+            this.comboBoxSelePLCSystem.TabIndex = 37;
+            this.comboBoxSelePLCSystem.Enter += new System.EventHandler(this.comboBoxSelePLCSystem_Enter);
+            this.comboBoxSelePLCSystem.Leave += new System.EventHandler(this.comboBoxSelePLCSystem_Leave);
+            // 
+            // comboBoxPLCDevice2
+            // 
+            this.comboBoxPLCDevice2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxPLCDevice2.FormattingEnabled = true;
+            this.comboBoxPLCDevice2.Location = new System.Drawing.Point(493, 9);
+            this.comboBoxPLCDevice2.Name = "comboBoxPLCDevice2";
+            this.comboBoxPLCDevice2.Size = new System.Drawing.Size(71, 24);
+            this.comboBoxPLCDevice2.TabIndex = 28;
+            this.comboBoxPLCDevice2.SelectedIndexChanged += new System.EventHandler(this.comboBoxPLCDevice2_SelectedIndexChanged);
+            this.comboBoxPLCDevice2.Enter += new System.EventHandler(this.comboBoxPLCDevice2_Enter);
+            // 
+            // comboBoxPLCDevice1
+            // 
+            this.comboBoxPLCDevice1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxPLCDevice1.FormattingEnabled = true;
+            this.comboBoxPLCDevice1.Location = new System.Drawing.Point(243, 10);
+            this.comboBoxPLCDevice1.Name = "comboBoxPLCDevice1";
+            this.comboBoxPLCDevice1.Size = new System.Drawing.Size(71, 24);
+            this.comboBoxPLCDevice1.TabIndex = 28;
+            this.comboBoxPLCDevice1.SelectedIndexChanged += new System.EventHandler(this.comboBoxPLCDevice1_SelectedIndexChanged);
+            this.comboBoxPLCDevice1.Enter += new System.EventHandler(this.comboBoxPLCDevice1_Enter);
+            // 
+            // comboBox_UserNmae
+            // 
+            this.comboBox_UserNmae.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_UserNmae.FormattingEnabled = true;
+            this.comboBox_UserNmae.Location = new System.Drawing.Point(161, 142);
+            this.comboBox_UserNmae.Name = "comboBox_UserNmae";
+            this.comboBox_UserNmae.Size = new System.Drawing.Size(121, 24);
+            this.comboBox_UserNmae.TabIndex = 1;
+            this.comboBox_UserNmae.SelectedIndexChanged += new System.EventHandler(this.comboBox_UserNmae_SelectedIndexChanged);
+            // 
+            // mComboBox_DeleUser
+            // 
+            this.mComboBox_DeleUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mComboBox_DeleUser.FormattingEnabled = true;
+            this.mComboBox_DeleUser.Location = new System.Drawing.Point(161, 140);
+            this.mComboBox_DeleUser.Name = "mComboBox_DeleUser";
+            this.mComboBox_DeleUser.Size = new System.Drawing.Size(121, 24);
+            this.mComboBox_DeleUser.TabIndex = 1;
+            this.mComboBox_DeleUser.Visible = false;
+            this.mComboBox_DeleUser.SelectedIndexChanged += new System.EventHandler(this.comboBox_UserNmae_SelectedIndexChanged);
             // 
             // SetForm
             // 
@@ -2228,10 +2230,10 @@
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_PLCAlarmTb)).EndInit();
             this.tabPageUserManager.ResumeLayout(false);
-            this.groupBox_UserManerge.ResumeLayout(false);
-            this.groupBox_UserManerge.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.groupBox_UserManerge.ResumeLayout(false);
+            this.groupBox_UserManerge.PerformLayout();
             this.ResumeLayout(false);
 
         }
