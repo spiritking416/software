@@ -55,6 +55,14 @@ namespace INDNC
         public UserControlSetting()
         {
             InitializeComponent();
+            
+            /*
+            global::INDNC.Properties.Settings.Default.UserCount = 0;
+            global::INDNC.Properties.Settings.Default.User1 = "";
+            global::INDNC.Properties.Settings.Default.User2 = "";
+            global::INDNC.Properties.Settings.Default.User1PW = "";
+            global::INDNC.Properties.Settings.Default.User2PW = "";
+            Properties.Settings.Default.Save();*/
             //mysqlpara初始化
             try
             {
@@ -255,16 +263,39 @@ namespace INDNC
 
         private void SelectUserManage()
         {
-            var superusercount = global::INDNC.Properties.Settings.Default.SuperUserCount;
+            var UserCount = global::INDNC.Properties.Settings.Default.UserCount;
             comboBox1.Items.Clear();
             comboBox1.Items.Add("操作工");
             comboBox1.Items.Add("管理员");
-            for(int i=0;i< superusercount; ++i)
+            switch (UserCount)
             {
-                var tmp = global::INDNC.Properties.Settings.Default.PropertyValues["SuperUser" + i.ToString()];
-                if (tmp == null)
-                    continue;
-                comboBox1.Items.Add(tmp);  //添加自定义用户
+                case 5:
+                    comboBox1.Items.Add(Properties.Settings.Default.User1);
+                    comboBox1.Items.Add(Properties.Settings.Default.User2);
+                    comboBox1.Items.Add(Properties.Settings.Default.User3);
+                    comboBox1.Items.Add(Properties.Settings.Default.User4);
+                    comboBox1.Items.Add(Properties.Settings.Default.User5);
+                    break;
+                case 4:
+                    comboBox1.Items.Add(Properties.Settings.Default.User1);
+                    comboBox1.Items.Add(Properties.Settings.Default.User2);
+                    comboBox1.Items.Add(Properties.Settings.Default.User3);
+                    comboBox1.Items.Add(Properties.Settings.Default.User4);
+                    break;
+                case 3:
+                    comboBox1.Items.Add(Properties.Settings.Default.User1);
+                    comboBox1.Items.Add(Properties.Settings.Default.User2);
+                    comboBox1.Items.Add(Properties.Settings.Default.User3);
+                    break;
+                case 2:
+                    comboBox1.Items.Add(Properties.Settings.Default.User1);
+                    comboBox1.Items.Add(Properties.Settings.Default.User2);
+                    break;
+                case 1:
+                    comboBox1.Items.Add(Properties.Settings.Default.User1);
+                    break;
+                default:
+                    break;
             }
             comboBox1.SelectedIndex = 0;
             short UserType = global::INDNC.Properties.Settings.Default.UserType;
@@ -513,7 +544,7 @@ namespace INDNC
                     label_Tisp.Text = "请先注销管理员账户！";
                     label_Tisp.Visible = true;
                     //label_Tisp两秒后不可见
-                    t = new System.Timers.Timer(3000);
+                    t = new System.Timers.Timer(5000);
                     t.Elapsed += new System.Timers.ElapsedEventHandler(label_Tisp_disappear);
                     t.AutoReset = false;
                     t.Start();
@@ -525,7 +556,7 @@ namespace INDNC
                     label_Tisp.Text = "请先注销当前账户！";
                     label_Tisp.Visible = true;
                     //label_Tisp两秒后不可见
-                    t = new System.Timers.Timer(3000);
+                    t = new System.Timers.Timer(5000);
                     t.Elapsed += new System.Timers.ElapsedEventHandler(label_Tisp_disappear);
                     t.AutoReset = false;
                     t.Start();
@@ -599,18 +630,18 @@ namespace INDNC
             short UserType = global::INDNC.Properties.Settings.Default.UserType;
             if (comboBox1.SelectedIndex == 0)
             {
-                
+
             }
             else if (comboBox1.SelectedIndex == 1) //管理员登录
             {
-                if (UserType == 0)
+                if (UserType == 0 || UserType>1)
                 {
                     if(textBox_UserPassword1.Text== global::INDNC.Properties.Settings.Default.SuperUserPassword)
                     {
                         label_Tisp.Visible = true;
                         label_Tisp.Text = "管理员:登录成功!";
                         //label_Tisp两秒后不可见
-                        t = new System.Timers.Timer(3000);   
+                        t = new System.Timers.Timer(5000);   
                         t.Elapsed += new System.Timers.ElapsedEventHandler(label_Tisp_disappear);  
                         t.AutoReset = false;
                         t.Start();   
@@ -624,6 +655,9 @@ namespace INDNC
                         button_ChangeUserPassword.Text = "修改密码";
                         groupBox_UserManerge.Visible = true;
                         comboBox2.Visible = false;
+                        textBox_ChangeUserName.Visible = true;
+                        radioButton_AddUser.Checked = true;
+                        radioButton_DeleUser.Checked = false;
                         textBox_UserPassword1.Text = "";
                     }
                     else
@@ -631,21 +665,21 @@ namespace INDNC
                         label_Tisp.Visible = true;
                         label_Tisp.Text = "管理员:密码错误，登录失败!";
                         //label_Tisp两秒后不可见
-                        t = new System.Timers.Timer(3000);
+                        t = new System.Timers.Timer(5000);
                         t.Elapsed += new System.Timers.ElapsedEventHandler(label_Tisp_disappear);
                         t.AutoReset = false;
                         textBox_UserPassword1.Text = "";
                         t.Start();
                     }
                 }
-                else if (UserType == 1)
+                else if (UserType == 1) //管理员注销
                 {
                     if (label_UserPasswor2.Visible == false)
                     {
                         label_Tisp.Visible = true;
                         label_Tisp.Text = "管理员:注销成功!";
                         //label_Tisp两秒后不可见
-                        t = new System.Timers.Timer(3000);
+                        t = new System.Timers.Timer(5000);
                         t.Elapsed += new System.Timers.ElapsedEventHandler(label_Tisp_disappear);
                         t.AutoReset = false;
                         t.Start();
@@ -674,17 +708,106 @@ namespace INDNC
                         textBox_UserPassword2.Visible = false;
                         comboBox1.Visible = true;
                         label_UserName.Visible = true;
+                        textBox_UserPassword1.Text = "";
+                        textBox_UserPassword2.Text = "";
                     }
                 }
-                else
+                else 
                 {
                     
                 }
             }
-            else
+            else //其它用户登录
             {
+                if (UserType==2)
+                {
+                    label_Tisp.Visible = true;
+                    label_Tisp.Text = label_CurrentUsername.Text + ":注销成功!";
+                    //label_Tisp两秒后不可见
+                    t = new System.Timers.Timer(5000);
+                    t.Elapsed += new System.Timers.ElapsedEventHandler(label_Tisp_disappear);
+                    t.AutoReset = false;
+                    t.Start();
+                    label_CurrentUsername.Text = "操作者";
+                    global::INDNC.Properties.Settings.Default.UserType = 0;
+                    button_ChangeUserPassword.Visible = false;
+                    groupBox_UserManerge.Visible = false;
+                    label_UserName.Visible = true;
+                    label_UserPasswor1.Visible = true;
+                    textBox_UserPassword1.Visible = true;
+                    button_UserOnOrOff.Visible = true;
+                    button_UserOnOrOff.Text = "登录";
+                    comboBox1.Visible = true;
 
+                }
+                else
+                {
+                    string name = comboBox1.Text;
+                    string pw = null;
+                    if (UserType == 0 || UserType == 1)
+                    {
+                        if (comboBox1.Text == global::INDNC.Properties.Settings.Default.User1)
+                        {
+                            pw = global::INDNC.Properties.Settings.Default.User1PW;
+                        }
+                        else if (comboBox1.Text == global::INDNC.Properties.Settings.Default.User2)
+                        {
+                            pw = global::INDNC.Properties.Settings.Default.User2PW;
+                        }
+                        else if (comboBox1.Text == global::INDNC.Properties.Settings.Default.User3)
+                        {
+                            pw = global::INDNC.Properties.Settings.Default.User3PW;
+                        }
+                        else if (comboBox1.Text == global::INDNC.Properties.Settings.Default.User4)
+                        {
+                            pw = global::INDNC.Properties.Settings.Default.User4PW;
+                        }
+                        else if (comboBox1.Text == global::INDNC.Properties.Settings.Default.User5)
+                        {
+                            pw = global::INDNC.Properties.Settings.Default.User5PW;
+                        }
+
+                        if (textBox_UserPassword1.Text == pw)
+                        {
+                            label_Tisp.Visible = true;
+                            label_Tisp.Text = name + ":登录成功!";
+                            //label_Tisp两秒后不可见
+                            t = new System.Timers.Timer(5000);
+                            t.Elapsed += new System.Timers.ElapsedEventHandler(label_Tisp_disappear);
+                            t.AutoReset = false;
+                            t.Start();
+                            label_CurrentUsername.Text = name;
+                            global::INDNC.Properties.Settings.Default.UserType = 2;
+                            textBox_UserPassword1.Visible = false;
+                            label_UserPasswor1.Visible = false;
+                            button_UserOnOrOff.Visible = true;
+                            button_ChangeUserPassword.Visible = true;
+                            button_UserOnOrOff.Text = "注销";
+                            button_ChangeUserPassword.Text = "修改密码";
+                            groupBox_UserManerge.Visible = false;
+                            comboBox2.Visible = false;
+                            textBox_UserPassword1.Text = "";
+                        }
+                        else
+                        {
+                            label_Tisp.Visible = true;
+                            label_Tisp.Text = name + ":密码错误，登录失败!";
+                            //label_Tisp两秒后不可见
+                            t = new System.Timers.Timer(5000);
+                            t.Elapsed += new System.Timers.ElapsedEventHandler(label_Tisp_disappear);
+                            t.AutoReset = false;
+                            textBox_UserPassword1.Text = "";
+                            t.Start();
+                        }
+                    }
+                }
+                
             }
+        }
+
+        private void label_ChangeUserTips_disappear(Object source, ElapsedEventArgs e)
+        {
+            label_ChangeUserTips.Visible = false;
         }
 
         private void label_Tisp_disappear(Object source, ElapsedEventArgs e)
@@ -720,26 +843,52 @@ namespace INDNC
                 {
                     if (textBox_UserPassword1.Text == textBox_UserPassword2.Text)
                     {
-                        global::INDNC.Properties.Settings.Default.SuperUserPassword = textBox_UserPassword1.Text;
-                        Properties.Settings.Default.Save();
+                        if (textBox_UserPassword1.Text.Length < 6)
+                        {
+                            label_Tisp.Visible = true;
+                            label_ChangeUserTips.Text = "管理员:修改密码失败,密码长度不能小于6位！";
+                            t = new System.Timers.Timer(5000);
+                            t.Elapsed += new System.Timers.ElapsedEventHandler(label_Tisp_disappear);
+                            t.AutoReset = false;
+                            t.Start();
+                            textBox_UserPassword1.Text = "";
+                            textBox_UserPassword2.Text = "";
+                        }
+                        else
+                        {
+                            global::INDNC.Properties.Settings.Default.SuperUserPassword = textBox_UserPassword1.Text;
+                            Properties.Settings.Default.Save();
+                            label_Tisp.Visible = true;
+                            label_Tisp.Text = "管理员:修改密码成功!";
+                            //label_Tisp两秒后不可见
+                            t = new System.Timers.Timer(5000);
+                            t.Elapsed += new System.Timers.ElapsedEventHandler(label_Tisp_disappear);
+                            t.AutoReset = false;
+                            t.Start();
+
+                            textBox_UserPassword1.Visible = false;
+                            label_UserPasswor1.Visible = false;
+                            button_UserOnOrOff.Visible = true;
+                            button_ChangeUserPassword.Visible = true;
+                            button_UserOnOrOff.Text = "注销";
+                            button_ChangeUserPassword.Text = "修改密码";
+                            groupBox_UserManerge.Visible = true;
+                            comboBox1.Visible = false;
+                            textBox_UserPassword2.Visible = false;
+                            label_UserPasswor2.Visible = false;
+                            textBox_UserPassword1.Text = "";
+                            textBox_UserPassword2.Text = "";
+                        }
+                        
+                    }
+                    else
+                    {
                         label_Tisp.Visible = true;
-                        label_Tisp.Text = "管理员:修改密码成功!";
-                        //label_Tisp两秒后不可见
-                        t = new System.Timers.Timer(3000);
+                        label_Tisp.Text = "管理员:修改密码失败,两次输入的密码不一致！";
+                        t = new System.Timers.Timer(5000);
                         t.Elapsed += new System.Timers.ElapsedEventHandler(label_Tisp_disappear);
                         t.AutoReset = false;
                         t.Start();
-
-                        textBox_UserPassword1.Visible = false;
-                        label_UserPasswor1.Visible = false;
-                        button_UserOnOrOff.Visible = true;
-                        button_ChangeUserPassword.Visible = true;
-                        button_UserOnOrOff.Text = "注销";
-                        button_ChangeUserPassword.Text = "修改密码";
-                        groupBox_UserManerge.Visible = true;
-                        comboBox1.Visible = false;
-                        textBox_UserPassword2.Visible = false;
-                        label_UserPasswor2.Visible = false;
                         textBox_UserPassword1.Text = "";
                         textBox_UserPassword2.Text = "";
                     }
@@ -749,6 +898,206 @@ namespace INDNC
             else
             {
 
+            }
+        }
+
+        private void radioButton_AddUser_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton_AddUser.Checked){
+                comboBox2.Visible = false;
+                textBox_ChangeUserName.Visible = true;
+                radioButton_DeleUser.Checked = false;
+                label_ChangeUserPasswor1.Visible = true;
+                label_ChangeUserPasswor2.Visible = true;
+                textBox_ChangeUserPasswor1.Visible = true;
+                textBox_ChangeUserPasswor2.Visible = true;
+                button_EditUserOK.Text = "添加";
+            }
+            else
+            {
+                comboBox2.Visible = true;
+                textBox_ChangeUserName.Visible = false;
+                radioButton_DeleUser.Checked = true;
+                label_ChangeUserPasswor1.Visible = false;
+                label_ChangeUserPasswor2.Visible = false;
+                textBox_ChangeUserPasswor1.Visible = false;
+                textBox_ChangeUserPasswor2.Visible = false;
+                button_EditUserOK.Text = "删除";
+
+                var UserCount = global::INDNC.Properties.Settings.Default.UserCount;
+                comboBox2.Items.Clear();
+                switch (UserCount)
+                {
+                    case 5:
+                        comboBox2.Items.Add(Properties.Settings.Default.User1);
+                        comboBox2.Items.Add(Properties.Settings.Default.User2);
+                        comboBox2.Items.Add(Properties.Settings.Default.User3);
+                        comboBox2.Items.Add(Properties.Settings.Default.User4);
+                        comboBox2.Items.Add(Properties.Settings.Default.User5);
+                        break;
+                    case 4:
+                        comboBox2.Items.Add(Properties.Settings.Default.User1);
+                        comboBox2.Items.Add(Properties.Settings.Default.User2);
+                        comboBox2.Items.Add(Properties.Settings.Default.User3);
+                        comboBox2.Items.Add(Properties.Settings.Default.User4);
+                        break;
+                    case 3:
+                        comboBox2.Items.Add(Properties.Settings.Default.User1);
+                        comboBox2.Items.Add(Properties.Settings.Default.User2);
+                        comboBox2.Items.Add(Properties.Settings.Default.User3);
+                        break;
+                    case 2:
+                        comboBox2.Items.Add(Properties.Settings.Default.User1);
+                        comboBox2.Items.Add(Properties.Settings.Default.User2);
+                        break;
+                    case 1:
+                        comboBox2.Items.Add(Properties.Settings.Default.User1);
+                        break;
+                    default:
+                        break;
+                }
+                if(comboBox2.Items.Count>0)
+                    comboBox2.SelectedIndex = 0;
+            }
+        }
+
+        private void button_EditUserOK_Click(object sender, EventArgs e)
+        {
+            //增加用户
+            if (radioButton_AddUser.Checked)
+            {
+                if(textBox_ChangeUserPasswor1.Text== textBox_ChangeUserPasswor2.Text)
+                {
+                    if (textBox_ChangeUserPasswor1.Text.Length < 6)
+                    {
+                        label_ChangeUserTips.Visible = true;
+                        label_ChangeUserTips.Text = "添加用户失败:密码长度不能小于6位！";
+                        t = new System.Timers.Timer(5000);
+                        t.Elapsed += new System.Timers.ElapsedEventHandler(label_ChangeUserTips_disappear);
+                        t.AutoReset = false;
+                        t.Start();
+                        textBox_ChangeUserPasswor1.Text = "";
+                        textBox_ChangeUserPasswor2.Text = "";
+                    }
+                    else
+                    {
+                        short UserType = global::INDNC.Properties.Settings.Default.UserType;
+                        ++global::INDNC.Properties.Settings.Default.UserCount;
+                        short UserCount = global::INDNC.Properties.Settings.Default.UserCount;
+                        if (UserCount > 5)
+                        {
+                            label_ChangeUserTips.Visible = true;
+                            label_ChangeUserTips.Text = "添加用户失败:用户数目不能超过五个！";
+                            t = new System.Timers.Timer(5000);
+                            t.Elapsed += new System.Timers.ElapsedEventHandler(label_ChangeUserTips_disappear);
+                            t.AutoReset = false;
+                            t.Start();
+                            textBox_ChangeUserPasswor1.Text = "";
+                            textBox_ChangeUserPasswor2.Text = "";
+                            return;
+                        }
+                        switch (UserCount)
+                        {
+                            case 1:
+                                Properties.Settings.Default.User1 = textBox_ChangeUserName.Text;
+                                Properties.Settings.Default.User1PW = textBox_ChangeUserPasswor1.Text;
+                                comboBox1.Items.Add(Properties.Settings.Default.User1);
+                                comboBox2.Items.Add(Properties.Settings.Default.User1);
+                                break;
+                            case 2:
+                                Properties.Settings.Default.User2 = textBox_ChangeUserName.Text;
+                                Properties.Settings.Default.User2PW = textBox_ChangeUserPasswor1.Text;
+                                comboBox1.Items.Add(Properties.Settings.Default.User2);
+                                comboBox2.Items.Add(Properties.Settings.Default.User2);
+                                break;
+                            case 3:
+                                Properties.Settings.Default.User3 = textBox_ChangeUserName.Text;
+                                Properties.Settings.Default.User3PW = textBox_ChangeUserPasswor1.Text;
+                                comboBox1.Items.Add(Properties.Settings.Default.User3);
+                                comboBox2.Items.Add(Properties.Settings.Default.User3);
+                                break;
+                            case 4:
+                                Properties.Settings.Default.User4 = textBox_ChangeUserName.Text;
+                                Properties.Settings.Default.User4PW = textBox_ChangeUserPasswor1.Text;
+                                comboBox1.Items.Add(Properties.Settings.Default.User4);
+                                comboBox2.Items.Add(Properties.Settings.Default.User4);
+                                break;
+                            case 5:
+                                Properties.Settings.Default.User5 = textBox_ChangeUserName.Text;
+                                Properties.Settings.Default.User5PW = textBox_ChangeUserPasswor1.Text;
+                                comboBox1.Items.Add(Properties.Settings.Default.User5);
+                                comboBox2.Items.Add(Properties.Settings.Default.User5);
+                                break;
+                            default:
+                                break;
+                        }
+                        label_ChangeUserTips.Visible = true;
+                        label_ChangeUserTips.Text = "添加用户"+ textBox_ChangeUserName.Text+"成功！";
+                        t = new System.Timers.Timer(5000);
+                        t.Elapsed += new System.Timers.ElapsedEventHandler(label_ChangeUserTips_disappear);
+                        t.AutoReset = false;
+                        t.Start();
+                        textBox_ChangeUserName.Text = "";
+                        textBox_ChangeUserPasswor1.Text = "";
+                        textBox_ChangeUserPasswor2.Text = "";
+                        Properties.Settings.Default.Save();
+                    }
+                }
+                else
+                {
+                    label_ChangeUserTips.Visible = true;
+                    label_ChangeUserTips.Text = "添加用户失败:两次输入的密码不一致！";
+                    t = new System.Timers.Timer(5000);
+                    t.Elapsed += new System.Timers.ElapsedEventHandler(label_ChangeUserTips_disappear);
+                    t.AutoReset = false;
+                    t.Start();
+                    textBox_ChangeUserPasswor1.Text = "";
+                    textBox_ChangeUserPasswor2.Text = "";
+                }
+            }
+            else //删除用户
+            {
+                string name = comboBox2.Text;
+                if(comboBox2.Text== global::INDNC.Properties.Settings.Default.User1)
+                {
+                    global::INDNC.Properties.Settings.Default.User1= "";
+                    global::INDNC.Properties.Settings.Default.User1PW = "";  
+                }
+                else if(comboBox2.Text == global::INDNC.Properties.Settings.Default.User2)
+                {
+                    global::INDNC.Properties.Settings.Default.User2 = "";
+                    global::INDNC.Properties.Settings.Default.User2PW = "";
+                }
+                else if (comboBox2.Text == global::INDNC.Properties.Settings.Default.User3)
+                {
+                    global::INDNC.Properties.Settings.Default.User3 = "";
+                    global::INDNC.Properties.Settings.Default.User3PW = "";
+                }
+                else if (comboBox2.Text == global::INDNC.Properties.Settings.Default.User4)
+                {
+                    global::INDNC.Properties.Settings.Default.User4 = "";
+                    global::INDNC.Properties.Settings.Default.User4PW = "";
+                }
+                else if (comboBox2.Text == global::INDNC.Properties.Settings.Default.User5)
+                {
+                    global::INDNC.Properties.Settings.Default.User5 = "";
+                }
+                comboBox1.Items.Remove(name);
+                comboBox2.Items.Remove(name);
+                if (comboBox2.Items.Count > 0)
+                    comboBox2.SelectedIndex = 0;
+                else
+                    comboBox2.Text = "";
+                label_ChangeUserTips.Visible = true;
+                label_ChangeUserTips.Text = "删除用户" + name + "成功！";
+                t = new System.Timers.Timer(5000);
+                t.Elapsed += new System.Timers.ElapsedEventHandler(label_ChangeUserTips_disappear);
+                t.AutoReset = false;
+                t.Start();
+                comboBox1.Update();
+                comboBox2.Update();
+                --global::INDNC.Properties.Settings.Default.UserCount;
+                Properties.Settings.Default.Save();
             }
         }
     }

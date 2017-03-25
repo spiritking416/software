@@ -1207,6 +1207,7 @@
             this.radioButton_AddUser.TabStop = true;
             this.radioButton_AddUser.Text = "添加用户";
             this.radioButton_AddUser.UseVisualStyleBackColor = true;
+            this.radioButton_AddUser.CheckedChanged += new System.EventHandler(this.radioButton_AddUser_CheckedChanged);
             // 
             // button_EditUserOK
             // 
@@ -1217,6 +1218,7 @@
             this.button_EditUserOK.TabIndex = 3;
             this.button_EditUserOK.Text = "添加";
             this.button_EditUserOK.UseVisualStyleBackColor = true;
+            this.button_EditUserOK.Click += new System.EventHandler(this.button_EditUserOK_Click);
             // 
             // textBox_ChangeUserPasswor2
             // 
@@ -1231,11 +1233,13 @@
             // 
             this.label_ChangeUserTips.AutoSize = true;
             this.label_ChangeUserTips.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_ChangeUserTips.ForeColor = System.Drawing.Color.Red;
             this.label_ChangeUserTips.Location = new System.Drawing.Point(55, 273);
             this.label_ChangeUserTips.Name = "label_ChangeUserTips";
             this.label_ChangeUserTips.Size = new System.Drawing.Size(29, 12);
             this.label_ChangeUserTips.TabIndex = 0;
             this.label_ChangeUserTips.Text = "提示";
+            this.label_ChangeUserTips.Visible = false;
             // 
             // textBox_ChangeUserName
             // 

@@ -278,12 +278,132 @@ namespace INDNC.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public short SuperUserCount {
+        public short UserCount {
             get {
-                return ((short)(this["SuperUserCount"]));
+                return ((short)(this["UserCount"]));
             }
             set {
-                this["SuperUserCount"] = value;
+                this["UserCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string User1 {
+            get {
+                return ((string)(this["User1"]));
+            }
+            set {
+                this["User1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string User2 {
+            get {
+                return ((string)(this["User2"]));
+            }
+            set {
+                this["User2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string User3 {
+            get {
+                return ((string)(this["User3"]));
+            }
+            set {
+                this["User3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string User4 {
+            get {
+                return ((string)(this["User4"]));
+            }
+            set {
+                this["User4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string User5 {
+            get {
+                return ((string)(this["User5"]));
+            }
+            set {
+                this["User5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string User1PW {
+            get {
+                return ((string)(this["User1PW"]));
+            }
+            set {
+                this["User1PW"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string User2PW {
+            get {
+                return ((string)(this["User2PW"]));
+            }
+            set {
+                this["User2PW"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string User3PW {
+            get {
+                return ((string)(this["User3PW"]));
+            }
+            set {
+                this["User3PW"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string User4PW {
+            get {
+                return ((string)(this["User4PW"]));
+            }
+            set {
+                this["User4PW"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string User5PW {
+            get {
+                return ((string)(this["User5PW"]));
+            }
+            set {
+                this["User5PW"] = value;
             }
         }
     }
