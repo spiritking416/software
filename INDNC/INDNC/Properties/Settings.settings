@@ -59,11 +59,14 @@
     <Setting Name="MysqlRobotTable" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="SuperUser" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+    <Setting Name="UserType" Type="System.Int16" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="SuperUserPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SuperUserCount" Type="System.Int16" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

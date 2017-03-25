@@ -1072,6 +1072,7 @@
             this.button_ChangeUserPassword.TabIndex = 3;
             this.button_ChangeUserPassword.Text = "修改密码";
             this.button_ChangeUserPassword.UseVisualStyleBackColor = true;
+            this.button_ChangeUserPassword.Click += new System.EventHandler(this.button_ChangeUserPassword_Click);
             // 
             // button_UserOnOrOff
             // 
@@ -1107,6 +1108,7 @@
             // 
             this.label_Tisp.AutoSize = true;
             this.label_Tisp.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_Tisp.ForeColor = System.Drawing.Color.Red;
             this.label_Tisp.Location = new System.Drawing.Point(54, 273);
             this.label_Tisp.Name = "label_Tisp";
             this.label_Tisp.Size = new System.Drawing.Size(29, 12);

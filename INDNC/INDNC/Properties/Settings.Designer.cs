@@ -253,13 +253,13 @@ namespace INDNC.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool SuperUser {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public short UserType {
             get {
-                return ((bool)(this["SuperUser"]));
+                return ((short)(this["UserType"]));
             }
             set {
-                this["SuperUser"] = value;
+                this["UserType"] = value;
             }
         }
         
@@ -272,6 +272,18 @@ namespace INDNC.Properties {
             }
             set {
                 this["SuperUserPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public short SuperUserCount {
+            get {
+                return ((short)(this["SuperUserCount"]));
+            }
+            set {
+                this["SuperUserCount"] = value;
             }
         }
     }

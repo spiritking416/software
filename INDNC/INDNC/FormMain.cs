@@ -81,7 +81,7 @@ namespace INDNC
         public void Initialize()
         {
             CheckForIllegalCrossThreadCalls = false; //解决线程间的访问限制
-            global::INDNC.Properties.Settings.Default.SuperUser = false;
+            global::INDNC.Properties.Settings.Default.UserType = 0; //默认操作工
 
             //LineNo、WorkShopNo
             LineNo = global::INDNC.Properties.Settings.Default.LineIndex; ;

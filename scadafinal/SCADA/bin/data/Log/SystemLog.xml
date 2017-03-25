@@ -1,6 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
   <System>
+    <System_security Level="消息" TimeCreated="2017/3/25 12:58:33" Provider="SCADA.LogData" EventID="0" Keywords="软件退出" EventData="用户:管理员" />
+    <System_security Level="审核" TimeCreated="2017/3/25 11:47:26" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：第一次输入的密码和第二次输入的密码必须相同！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 11:47:17" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆成功！" />
+    <System_runing Level="严重" TimeCreated="2017/3/25 11:47:11" Provider="SCADA.MainForm" EventID="3" Keywords="设备初始化失败" EventData="System.Exception: 本地网络环境初始化失败；IP = 169.254.8.189  端口 = 10001&#xD;&#xA;   在 SCADA.MainForm.InitEquiment() 位置 C:\Users\mio\software\scadafinal\SCADA\WindowsForm\MainForm.cs:行号 426&#xD;&#xA;   在 SCADA.MainForm..ctor() 位置 C:\Users\mio\software\scadafinal\SCADA\WindowsForm\MainForm.cs:行号 293" />
+    <System_runing Level="消息" TimeCreated="2017/3/25 11:47:11" Provider="SCADA.MainForm" EventID="0" Keywords="CNC初始化" EventData="0初始化成功；IP = 192.168.1.1  端口 = 10001" />
+    <System_runing Level="警告" TimeCreated="2017/3/25 11:47:11" Provider="SCADA.MainForm" EventID="1" Keywords="CNC初始化" EventData="本地网络环境初始化失败；IP = 169.254.8.189  端口 = 10001" />
+    <System_security Level="审核" TimeCreated="2017/3/25 11:47:08" Provider="SCADA.MainForm" EventID="4" Keywords="用户注册" EventData="用户注册成功！" />
+    <System_security Level="消息" TimeCreated="2017/3/25 11:44:45" Provider="SCADA.LogData" EventID="0" Keywords="软件退出" EventData="用户:管理员" />
+    <System_security Level="审核" TimeCreated="2017/3/25 11:31:26" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 11:31:25" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：注销成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 11:24:51" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 11:07:34" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：注销成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 11:07:33" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 11:07:30" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：注销成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 11:07:29" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 11:07:03" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：注销成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:59:18" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:57:47" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆失败！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:57:46" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：注销成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:56:56" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:52:37" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：注销成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:50:34" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:44:30" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="qhw：登陆成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:44:00" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：注销成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:31:26" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:31:23" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆失败！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:29:29" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="qhw：登陆成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:23:11" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:22:57" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="qhw：注销成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:21:58" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="qhw：登陆成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:21:53" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="qhw：登陆失败！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:21:17" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:20:12" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="qhw：登陆成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:19:01" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:18:50" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：注销成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:15:35" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:14:03" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="qhw：登陆成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:13:36" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="qhw：注销成功！" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:11:57" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="qhw：登陆成功！" />
+    <System_runing Level="严重" TimeCreated="2017/3/25 10:11:45" Provider="SCADA.MainForm" EventID="3" Keywords="设备初始化失败" EventData="System.Exception: 本地网络环境初始化失败；IP = 169.254.8.189  端口 = 10001&#xD;&#xA;   在 SCADA.MainForm.InitEquiment() 位置 C:\Users\mio\software\scadafinal\SCADA\WindowsForm\MainForm.cs:行号 426&#xD;&#xA;   在 SCADA.MainForm..ctor() 位置 C:\Users\mio\software\scadafinal\SCADA\WindowsForm\MainForm.cs:行号 293" />
+    <System_runing Level="警告" TimeCreated="2017/3/25 10:11:45" Provider="SCADA.MainForm" EventID="1" Keywords="CNC初始化" EventData="本地网络环境初始化失败；IP = 169.254.8.189  端口 = 10001" />
+    <System_runing Level="消息" TimeCreated="2017/3/25 10:11:45" Provider="SCADA.MainForm" EventID="0" Keywords="CNC初始化" EventData="0初始化成功；IP = 192.168.1.1  端口 = 10001" />
+    <System_security Level="审核" TimeCreated="2017/3/25 10:11:43" Provider="SCADA.MainForm" EventID="4" Keywords="用户注册" EventData="用户注册成功！" />
     <System_security Level="消息" TimeCreated="2017/3/23 22:54:43" Provider="SCADA.LogData" EventID="0" Keywords="软件退出" EventData="用户:管理员" />
     <System_security Level="审核" TimeCreated="2017/3/23 22:54:41" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="管理员：登陆成功！" />
     <System_security Level="审核" TimeCreated="2017/3/23 22:53:14" Provider="SCADA.SetForm" EventID="4" Keywords="用户管理操作" EventData="qhw：注销成功！" />
