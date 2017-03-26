@@ -55,7 +55,7 @@ namespace INDNC
         public UserControlSetting()
         {
             InitializeComponent();
-            
+
             /*
             global::INDNC.Properties.Settings.Default.UserCount = 0;
             global::INDNC.Properties.Settings.Default.User1 = "";
@@ -63,6 +63,27 @@ namespace INDNC
             global::INDNC.Properties.Settings.Default.User1PW = "";
             global::INDNC.Properties.Settings.Default.User2PW = "";
             Properties.Settings.Default.Save();*/
+
+            //初始化CNC Robot panel位置
+            dataGridViewCNC.Location = new Point(3, 3);
+            panel6.Location = new Point(3, 451);
+            dataGridViewCNC.Height = 447;
+            dataGridViewCNC.Width = 945;
+            panel6.Height = 45;
+            panel6.Width = 945;
+            dataGridViewCNC.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+            panel6.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+
+            dataGridViewRobot.Location = new Point(3, 3);
+            panel5.Location = new Point(3, 451);
+            dataGridViewRobot.Height = 447;
+            dataGridViewRobot.Width = 945;
+            panel5.Height = 45;
+            panel5.Width = 945;
+            dataGridViewRobot.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+            panel5.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+
+
             //mysqlpara初始化
             try
             {
@@ -143,6 +164,7 @@ namespace INDNC
 
                 if (checkBox1.Checked)
                     Properties.Settings.Default.Save(); // 存储上一次成功连接的IP地址和端口号
+                MessageBox.Show("服务器参数设置完毕", "提示");
                 //传值给主窗体
                 if (btnServerSettingClick != null)
                     btnServerSettingClick(this, e);
@@ -338,6 +360,7 @@ namespace INDNC
             Properties.Settings.Default.Save(); // 存储上一次成功连接的IP地址和端口号
             workshopno = textBoxworkshop.Text;
             lineno = textBoxline.Text;
+            MessageBox.Show("产线参数设置完毕", "提示");
             if (btnLineSettingClick != null)
                 btnLineSettingClick(this, e);
         }
@@ -426,6 +449,7 @@ namespace INDNC
         {
             mysqlpara.MySQLDatabaseCNCTable = textBox5.Text;
             Properties.Settings.Default.Save();
+            MessageBox.Show("CNC设备数据库名设置完毕", "提示");
             if (btnCNCSettingClick != null)
                 btnCNCSettingClick(this, e);
         }
@@ -434,6 +458,7 @@ namespace INDNC
         {
             mysqlpara.MySQLDatabaseRobotTable = textBox6.Text;
             Properties.Settings.Default.Save();
+            MessageBox.Show("Robot设备数据库名设置完毕", "提示");
             if (btnCNCSettingClick != null)
                 btnRobotSettingClick(this, e);
         }
@@ -846,7 +871,7 @@ namespace INDNC
                         if (textBox_UserPassword1.Text.Length < 6)
                         {
                             label_Tisp.Visible = true;
-                            label_ChangeUserTips.Text = "管理员:修改密码失败,密码长度不能小于6位！";
+                            label_Tisp.Text = "管理员:修改密码失败,密码长度不能小于6位！";
                             t = new System.Timers.Timer(5000);
                             t.Elapsed += new System.Timers.ElapsedEventHandler(label_Tisp_disappear);
                             t.AutoReset = false;

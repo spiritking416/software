@@ -11,6 +11,7 @@ using ServiceStack.Redis;
 using System.IO;
 using HncDCAgentDll_CS;
 using System.Timers;
+using MySql.Data.MySqlClient;
 
 namespace INDNC
 {
@@ -71,6 +72,8 @@ namespace INDNC
         List<Dictionary<string, string>> machineName = new List<Dictionary<string, string>>(); //机床SN码与机床编号映射关系
         List<Dictionary<string, UInt16>> machinePort = new List<Dictionary<string, UInt16>>(); //机床SN码与机床Port映射关系
         List<Dictionary<string, string>> machineIP = new List<Dictionary<string, string>>(); //机床SN码与机床IP映射关系
+        List<MachineInfo> CNCinfo = new List<MachineInfo>();
+        List<MachineInfo> Robotinfo = new List<MachineInfo>();
 
         public FormMain()
         {
@@ -98,6 +101,8 @@ namespace INDNC
                 mysqlpara.MySQLID = global::INDNC.Properties.Settings.Default.localserverid;
                 mysqlpara.MySQLIDPassword = global::INDNC.Properties.Settings.Default.localserverpassword;
                 mysqlpara.MySQLIDDatabase = global::INDNC.Properties.Settings.Default.localMysqlDatabase;
+                mysqlpara.MySQLDatabaseCNCTable = global::INDNC.Properties.Settings.Default.MysqlCNCTable;
+                mysqlpara.MySQLDatabaseRobotTable = global::INDNC.Properties.Settings.Default.MysqlRobotTable;
                 mysqlpara.connectvalid = false;
             }
             catch (Exception ex)
@@ -349,7 +354,7 @@ namespace INDNC
         //机床状态刷新
         public void ListViewRefrush(Object source, ElapsedEventArgs e)
         {
-            /*
+            
             try
             {
                 if (serverpara.connectvalid == false)
@@ -476,7 +481,7 @@ namespace INDNC
                 MessageBox.Show("ERROR:" + ex.Message, "ERROR");
                 if (t != null && t.Enabled)
                     t.Enabled = false;
-            }*/
+            }
         }
 
         private void mySQL数据库ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -590,6 +595,49 @@ namespace INDNC
                 machinestate.Height = this.panel1.Height;
                 machinestate.Width = this.panel1.Width;
 
+                //连接本地服务器
+                string MyconnectionString = "server=" + mysqlpara.MySQLServer + ";user id=" + mysqlpara.MySQLID + ";password=" + mysqlpara.MySQLIDPassword + "; database=" + mysqlpara.MySQLIDDatabase;
+                MySqlConnection mysqlconnection = new MySqlConnection(MyconnectionString);
+                mysqlconnection.Open();   //必须Open
+                if (Client == null || !mysqlconnection.Ping())
+                {
+                    throw new Exception("连接本地MySQL服务器失败!");
+                }
+                //本地服务器连接成功
+                mysqlpara.connectvalid = true;
+                //获取设备信息
+                CNCinfo.Clear();
+                Robotinfo.Clear();
+                string tmp = "select 机床编号,机床IP地址,机床IP端口,SN码,数据库DB from " + mysqlpara.MySQLDatabaseCNCTable;
+                MySqlDataAdapter mysqlcncadapter = new MySqlDataAdapter(tmp, mysqlconnection);
+                DataSet mysqlcncset = new DataSet();
+                DataSet mysqlrobotset = new DataSet();
+                mysqlcncadapter.Fill(mysqlcncset, mysqlpara.MySQLDatabaseCNCTable);  //填充和绑定数据
+                mysqlcncadapter.Fill(mysqlrobotset, mysqlpara.MySQLDatabaseRobotTable);
+                int cncrows = mysqlcncset.Tables[0].Rows.Count;
+                int robotrows = mysqlrobotset.Tables[0].Rows.Count;
+
+                MachineInfo tmp_machineinfo = new MachineInfo();
+                for(int i = 0; i < cncrows; ++i)
+                {
+                    tmp_machineinfo.MachineName = mysqlcncset.Tables[0].Rows[i]["机床编号"].ToString();
+                    tmp_machineinfo.MachineDB = mysqlcncset.Tables[0].Rows[i]["数据库DB"].ToString();
+                    tmp_machineinfo.MachineIP = mysqlcncset.Tables[0].Rows[i]["机床IP地址"].ToString();
+                    tmp_machineinfo.MachinePort = mysqlcncset.Tables[0].Rows[i]["机床IP端口"].ToString();
+
+                    CNCinfo.Add(tmp_machineinfo);
+                }
+
+                for (int i = 0; i < cncrows; ++i)
+                {
+                    tmp_machineinfo.MachineName = mysqlrobotset.Tables[0].Rows[i]["机床编号"].ToString();
+                    tmp_machineinfo.MachineDB = mysqlrobotset.Tables[0].Rows[i]["数据库DB"].ToString();
+                    tmp_machineinfo.MachineIP = mysqlrobotset.Tables[0].Rows[i]["机床IP地址"].ToString();
+                    tmp_machineinfo.MachinePort = mysqlrobotset.Tables[0].Rows[i]["机床IP端口"].ToString();
+
+                    Robotinfo.Add(tmp_machineinfo);
+                }
+
                 //绘制标题
                 try
                 { 
@@ -606,7 +654,7 @@ namespace INDNC
                 this.panel1.Controls.Add(machinestate);
 
                 //机床状态监测画面初始化
-                ListViewInitial();
+                //ListViewInitial();
 
                 //机床状态监测画面刷新  
                 //t = new System.Timers.Timer(1000);   //实例化Timer类，设置间隔时间为10000毫秒；   
@@ -647,26 +695,22 @@ namespace INDNC
         {
             serverpara = controlsetting.serverparaName;
             mysqlpara = controlsetting.mysqlparaName;
-            MessageBox.Show("服务器参数设置完毕", "提示");
         }
 
         private void ControlLineSettingclick(object send, System.EventArgs e)
         {
             WorkShopNo = controlsetting.workshopnoName;
             LineNo = controlsetting.linenoName;
-            MessageBox.Show("产线参数设置完毕", "提示");
         }
 
         private void ControlCNCSettingclick(object send, System.EventArgs e)
         {
             mysqlpara = controlsetting.mysqlparaName;
-            MessageBox.Show("CNC设备数据库名设置完毕", "提示");
         }
 
         private void ControlRobotSettingclick(object send, System.EventArgs e)
         {
             mysqlpara = controlsetting.mysqlparaName;
-            MessageBox.Show("Robot设备数据库名设置完毕", "提示");
         }
 
         private void buttonHome_Cancel()
@@ -973,4 +1017,19 @@ namespace INDNC
         ButtonSetting
     }
 
+    public struct MachineInfo
+    {
+        public string MachineName;
+        public string MachineIP;
+        public string MachinePort;
+        public string MachineDB;
+
+        public void dispose()
+        {
+            MachineName = null;
+            MachineIP = null;
+            MachinePort = null;
+            MachineDB = null;
+        }
+    }
 }
