@@ -56,7 +56,7 @@ namespace INDNC
         UserControlMachineState machinestate = new UserControlMachineState();
         UserControlSetting controlsetting = new UserControlSetting();
         RedisManager redismanager = new RedisManager();
-        MySQLPara mysqlpara = new MySQLPara();
+        MySQLPara mysqlpara = new MySQLPara();          //mysql参数
         UInt16 LineCount = 5;  //生产线数量
         string LineNo = "";  //生产线编号 格式:#+索引
         string WorkShopNo = "";  //车间编号
@@ -576,7 +576,7 @@ namespace INDNC
                 {
                     throw new Exception("连接服务器失败，请设置服务器参数!");
                 }
-                //连接成功
+                //连接云端服务器成功
                 serverpara.connectvalid = true;
                 redismanager.DisposeClient(ref (Client));  //dispose客户端
                 firsttimerun = true;  //第一次运行完成
