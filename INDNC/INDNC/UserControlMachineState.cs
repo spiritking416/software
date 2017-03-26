@@ -19,6 +19,10 @@ namespace INDNC
         public UserControlMachineState()
         {
             InitializeComponent();
+            this.SetStyle(ControlStyles.ResizeRedraw |
+              ControlStyles.OptimizedDoubleBuffer |
+              ControlStyles.AllPaintingInWmPaint, true);
+            this.UpdateStyles();
         }
 
         public bool ListViewTitleDraw()

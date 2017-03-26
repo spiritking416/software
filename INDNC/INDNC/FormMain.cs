@@ -83,6 +83,12 @@ namespace INDNC
 
         public void Initialize()
         {
+            //双缓冲
+            this.SetStyle(ControlStyles.ResizeRedraw |
+              ControlStyles.OptimizedDoubleBuffer |
+              ControlStyles.AllPaintingInWmPaint, true);
+            this.UpdateStyles();
+
             CheckForIllegalCrossThreadCalls = false; //解决线程间的访问限制
             global::INDNC.Properties.Settings.Default.UserType = 0; //默认操作工
 
@@ -311,7 +317,7 @@ namespace INDNC
                                 {
                                     ++workmachinenum;
                                     lvi.SubItems.Add("在线");
-                                    lvi.SubItems.Add("\\");
+                                    lvi.SubItems.Add("无");
                                     lvi.SubItems.Add(time.ToString());
                                     lvi.SubItems[1].BackColor = Color.Green;
                                 }
@@ -354,7 +360,7 @@ namespace INDNC
         //机床状态刷新
         public void ListViewRefrush(Object source, ElapsedEventArgs e)
         {
-            
+            machinestate.listView1.Items.Clear();
             try
             {
                 if (serverpara.connectvalid == false)
@@ -369,15 +375,6 @@ namespace INDNC
                 {
                     throw new Exception("未能连接云端服务器，请检查相关参数！");
                 }
-                if (int.TryParse(redispara.RedisPort, out port) != true)
-                {
-                    throw new Exception("Redis本地服务器参数错误，请重新设置！");
-                }
-                RedisClient LocalClient = new RedisClient(redispara.RedisIP, port, redispara.RedisPassword);  //连接本地服务器
-                if (!LocalClient.Ping())
-                {
-                    throw new Exception("未能连接本地服务器，请检查相关参数！");
-                }
 
                 //绘制机床状态
                 UInt16 connectedmachinenum = 0;  //服务器可连接机床数量
@@ -385,96 +382,169 @@ namespace INDNC
                 UInt16 workmachinenum = 0;  //在线机床数量
                 UInt16 disconnectedmachinenum = 0;  //离线机床数量
                 UInt16 invisiblemachinenum = 0;  //因参数错误未显示机床数量
-                int lineno = LineNo - 1;
-                int index = 0;
+                UInt16 index = 0;
 
                 machinestate.listView1.BeginUpdate();
-                foreach (string key in machineDB[lineno].Keys)
+                foreach (MachineInfo key in CNCinfo)
                 {
-                    Client.Db = machineDB[lineno][key];
+                    Client.Db = key.MachineDB;
                     byte[] machine = new byte[] { };
                     machine = Client.Get("Machine");
-                    string machinestr = System.Text.Encoding.Default.GetString(machine);
-                    if (machinestr == key)
+                    if(machine==null)
                     {
-                        string tmpstr = machineName[lineno][key];
-                        if (tmpstr != null && tmpstr != "")
+                        ++invisiblemachinenum;
+                        continue;
+                    }
+                    string machinestr = System.Text.Encoding.Default.GetString(machine);
+                    if (machinestr == key.MachineSN) //本地和云端数据对应
+                    {
+                        ++index;
+                        ListViewItem lvi = new ListViewItem(index.ToString());
+                        lvi.UseItemStyleForSubItems = false; //可以设置单元格背景
+                        ++connectedmachinenum;
+
+                        //机床状态
+                        DCAgentApi dcagentApi = DCAgentApi.GetInstance(serverpara.RedisIP);
+
+                        //获取时间
+                        byte[] timebyte = Client.Get("TimeStamp");
+                        string timestampstr = System.Text.Encoding.Default.GetString(timebyte);
+                        long timestamp = Convert.ToInt64(timestampstr);
+                        var time = System.DateTime.FromBinary(timestamp);
+
+                        Int16 clientNo = dcagentApi.HNC_NetConnect(key.MachineIP, (ushort) key.MachinePort);
+                        bool isConnect = dcagentApi.HNC_NetIsConnect(clientNo);
+                        if (isConnect == false)
                         {
-                            if (index >= machinestate.listView1.Items.Count)
-                                break;
-                            ListViewItem lvi = machinestate.listView1.Items[index];
-                            if (lvi.Text != tmpstr)
+                            
+                            ++disconnectedmachinenum;
+                            lvi.SubItems.Add(key.MachineName);
+                            lvi.SubItems.Add("离线");
+                            lvi.SubItems.Add("无");
+                            lvi.SubItems.Add(time.ToString());
+                            lvi.SubItems[2].BackColor = Color.Gray;
+                        }
+                        else
+                        {
+                            byte[] machinealarmbyte = new byte[] { };
+                            byte[] alarmbyte = Encoding.UTF8.GetBytes("ALARMNUM_CURRENT");
+                            machinealarmbyte = Client.HGet("Alarm:AlarmNum", alarmbyte);
+                            string machinealarmstr = System.Text.Encoding.Default.GetString(machinealarmbyte);
+                            long machinealarm = Convert.ToInt64(machinealarmstr);
+
+                            if (machinealarm == 0)
                             {
-                                ++invisiblemachinenum;
-                                continue; //跳过未显示的key
-                            }
-
-                            ++index;
-                            lvi.UseItemStyleForSubItems = false; //可以设置单元格背景
-                            ++connectedmachinenum;
-
-                            //机床状态
-                            DCAgentApi dcagentApi = DCAgentApi.GetInstance(serverpara.RedisIP);
-
-                            //获取时间
-                            byte[] timebyte = Client.Get("TimeStamp");
-                            string timestampstr = System.Text.Encoding.Default.GetString(timebyte);
-                            long timestamp = Convert.ToInt64(timestampstr);
-                            var time = System.DateTime.FromBinary(timestamp);
-
-                            Int16 clientNo = dcagentApi.HNC_NetConnect(machineIP[lineno][key], machinePort[lineno][key]);
-                            bool isConnect = dcagentApi.HNC_NetIsConnect(clientNo);
-                            if (isConnect == false)
-                            {
-                                ++disconnectedmachinenum;
-                                lvi.SubItems[1].Text = "离线";
-                                lvi.SubItems[2].Text = "\\";
-                                lvi.SubItems[3].Text = time.ToString();
-                                lvi.SubItems[1].BackColor = Color.Gray;
+                                ++workmachinenum;
+                                lvi.SubItems.Add(key.MachineName);
+                                lvi.SubItems.Add("在线");
+                                lvi.SubItems.Add("无");
+                                lvi.SubItems.Add(time.ToString());
+                                lvi.SubItems[2].BackColor = Color.Green;
                             }
                             else
                             {
-                                byte[] machinealarmbyte = new byte[] { };
-                                byte[] alarmbyte = Encoding.UTF8.GetBytes("ALARMNUM_CURRENT");
-                                machinealarmbyte = Client.HGet("Alarm:AlarmNum", alarmbyte);
-                                string machinealarmstr = System.Text.Encoding.Default.GetString(machinealarmbyte);
-                                long machinealarm = Convert.ToInt64(machinealarmstr);
-
-                                if (machinealarm == 0)
-                                {
-                                    ++workmachinenum;
-                                    lvi.SubItems[1].Text = "在线";
-                                    lvi.SubItems[2].Text = "\\";
-                                    lvi.SubItems[3].Text = time.ToString();
-                                    lvi.SubItems[1].BackColor = Color.Green;
-                                }
-                                else
-                                {
-                                    ++Alarmmachinenum;
-                                    lvi.SubItems[1].Text = "告警";
-                                    lvi.SubItems[2].Text = "\\";
-                                    lvi.SubItems[3].Text = time.ToString();
-                                    lvi.SubItems[1].BackColor = Color.Red;
-                                }
+                                ++Alarmmachinenum;
+                                lvi.SubItems.Add(key.MachineName);
+                                lvi.SubItems.Add("告警");
+                                lvi.SubItems.Add("\\");
+                                lvi.SubItems.Add(time.ToString());
+                                lvi.SubItems[2].BackColor = Color.Red;
                             }
                         }
+                        machinestate.listView1.Items.Add(lvi);
+                    }
+                    else
+                    {
+                        ++invisiblemachinenum;
+                    }
+                }
 
+                foreach (MachineInfo key in Robotinfo)
+                {
+                    Client.Db = key.MachineDB;
+                    byte[] machine = new byte[] { };
+                    machine = Client.Get("Machine");
+                    if (machine == null)
+                    {
+                        ++invisiblemachinenum;
+                        continue;
+                    }
+                    string machinestr = System.Text.Encoding.Default.GetString(machine);
+                    if (machinestr == key.MachineSN) //本地和云端数据对应
+                    {
+                        ++index;
+                        ListViewItem lvi = new ListViewItem(index.ToString());
+                        lvi.UseItemStyleForSubItems = false; //可以设置单元格背景
+                        ++connectedmachinenum;
+
+                        //机床状态
+                        DCAgentApi dcagentApi = DCAgentApi.GetInstance(serverpara.RedisIP);
+
+                        //获取时间
+                        byte[] timebyte = Client.Get("TimeStamp");
+                        string timestampstr = System.Text.Encoding.Default.GetString(timebyte);
+                        long timestamp = Convert.ToInt64(timestampstr);
+                        var time = System.DateTime.FromBinary(timestamp);
+
+                        Int16 clientNo = dcagentApi.HNC_NetConnect(key.MachineIP, (ushort)key.MachinePort);
+                        bool isConnect = dcagentApi.HNC_NetIsConnect(clientNo);
+                        if (isConnect == false)
+                        {
+                            ++disconnectedmachinenum;
+                            lvi.SubItems.Add(key.MachineName);
+                            lvi.SubItems.Add("离线");
+                            lvi.SubItems.Add("无");
+                            lvi.SubItems.Add(time.ToString());
+                            lvi.SubItems[2].BackColor = Color.Gray;
+                        }
+                        else
+                        {
+                            byte[] machinealarmbyte = new byte[] { };
+                            byte[] alarmbyte = Encoding.UTF8.GetBytes("ALARMNUM_CURRENT");
+                            machinealarmbyte = Client.HGet("Alarm:AlarmNum", alarmbyte);
+                            string machinealarmstr = System.Text.Encoding.Default.GetString(machinealarmbyte);
+                            long machinealarm = Convert.ToInt64(machinealarmstr);
+
+                            if (machinealarm == 0)
+                            {
+                                ++workmachinenum;
+                                lvi.SubItems.Add(key.MachineName);
+                                lvi.SubItems.Add("在线");
+                                lvi.SubItems.Add("无");
+                                lvi.SubItems.Add(time.ToString());
+                                lvi.SubItems[2].BackColor = Color.Green;
+                            }
+                            else
+                            {
+                                ++Alarmmachinenum;
+                                lvi.SubItems.Add(key.MachineName);
+                                lvi.SubItems.Add("告警");
+                                lvi.SubItems.Add("\\");
+                                lvi.SubItems.Add(time.ToString());
+                                lvi.SubItems[2].BackColor = Color.Red;
+                            }
+                        }
+                        machinestate.listView1.Items.Add(lvi);
+                    }
+                    else
+                    {
+                        ++invisiblemachinenum;
                     }
                 }
 
                 machinestate.listView1.EndUpdate();
 
                 //设备数量显示
-                label7.Visible = true;
-                label8.Visible = true;
-                label9.Visible = true;
-                label10.Visible = true;
-                label11.Visible = true;
-                label7.Text = "生产线" + LineNo.ToString() + "设备数目:" + machineDB[lineno].Count.ToString() + "台";
-                label8.Text = "在线设备数目:" + workmachinenum.ToString() + "台";
-                label9.Text = "离线设备数目:" + disconnectedmachinenum.ToString() + "台";
-                label10.Text = "告警设备数目:" + Alarmmachinenum.ToString() + "台";
-                label11.Text = "未显示设备数目:" + invisiblemachinenum.ToString() + "台";
+                machinestate.label1.Visible = true;
+                machinestate.label2.Visible = true;
+                machinestate.label3.Visible = true;
+                machinestate.label4.Visible = true;
+                machinestate.label5.Visible = true;
+                machinestate.label1.Text = "生产线" + LineNo.ToString() + "设备数目:" +(CNCinfo.Count()+Robotinfo.Count()).ToString() + "台";
+                machinestate.label2.Text = "在线设备数目:" + workmachinenum.ToString() + "台";
+                machinestate.label3.Text = "离线设备数目:" + disconnectedmachinenum.ToString() + "台";
+                machinestate.label4.Text = "告警设备数目:" + Alarmmachinenum.ToString() + "台";
+                machinestate.label5.Text = "未显示设备数目:" + invisiblemachinenum.ToString() + "台";
             }
             catch (Exception ex)
             {
@@ -610,10 +680,12 @@ namespace INDNC
                 Robotinfo.Clear();
                 string tmp = "select 机床编号,机床IP地址,机床IP端口,SN码,数据库DB from " + mysqlpara.MySQLDatabaseCNCTable;
                 MySqlDataAdapter mysqlcncadapter = new MySqlDataAdapter(tmp, mysqlconnection);
+                tmp = "select 机器人编号,机器人IP地址,机器人IP端口,SN码,数据库DB from " + mysqlpara.MySQLDatabaseRobotTable;
+                MySqlDataAdapter mysqlrobotadapter = new MySqlDataAdapter(tmp, mysqlconnection);
                 DataSet mysqlcncset = new DataSet();
                 DataSet mysqlrobotset = new DataSet();
                 mysqlcncadapter.Fill(mysqlcncset, mysqlpara.MySQLDatabaseCNCTable);  //填充和绑定数据
-                mysqlcncadapter.Fill(mysqlrobotset, mysqlpara.MySQLDatabaseRobotTable);
+                mysqlrobotadapter.Fill(mysqlrobotset, mysqlpara.MySQLDatabaseRobotTable);
                 int cncrows = mysqlcncset.Tables[0].Rows.Count;
                 int robotrows = mysqlrobotset.Tables[0].Rows.Count;
 
@@ -621,19 +693,21 @@ namespace INDNC
                 for(int i = 0; i < cncrows; ++i)
                 {
                     tmp_machineinfo.MachineName = mysqlcncset.Tables[0].Rows[i]["机床编号"].ToString();
-                    tmp_machineinfo.MachineDB = mysqlcncset.Tables[0].Rows[i]["数据库DB"].ToString();
+                    tmp_machineinfo.MachineDB = Int32.Parse(mysqlcncset.Tables[0].Rows[i]["数据库DB"].ToString());
                     tmp_machineinfo.MachineIP = mysqlcncset.Tables[0].Rows[i]["机床IP地址"].ToString();
-                    tmp_machineinfo.MachinePort = mysqlcncset.Tables[0].Rows[i]["机床IP端口"].ToString();
+                    tmp_machineinfo.MachinePort = Int32.Parse(mysqlcncset.Tables[0].Rows[i]["机床IP端口"].ToString());
+                    tmp_machineinfo.MachineSN = mysqlcncset.Tables[0].Rows[i]["SN码"].ToString();
 
                     CNCinfo.Add(tmp_machineinfo);
                 }
 
-                for (int i = 0; i < cncrows; ++i)
+                for (int i = 0; i < robotrows; ++i)
                 {
-                    tmp_machineinfo.MachineName = mysqlrobotset.Tables[0].Rows[i]["机床编号"].ToString();
-                    tmp_machineinfo.MachineDB = mysqlrobotset.Tables[0].Rows[i]["数据库DB"].ToString();
-                    tmp_machineinfo.MachineIP = mysqlrobotset.Tables[0].Rows[i]["机床IP地址"].ToString();
-                    tmp_machineinfo.MachinePort = mysqlrobotset.Tables[0].Rows[i]["机床IP端口"].ToString();
+                    tmp_machineinfo.MachineName = mysqlrobotset.Tables[0].Rows[i]["机器人编号"].ToString();
+                    tmp_machineinfo.MachineDB = Int32.Parse(mysqlrobotset.Tables[0].Rows[i]["数据库DB"].ToString());
+                    tmp_machineinfo.MachineIP = mysqlrobotset.Tables[0].Rows[i]["机器人IP地址"].ToString();
+                    tmp_machineinfo.MachinePort = Int32.Parse(mysqlrobotset.Tables[0].Rows[i]["机器人IP端口"].ToString());
+                    tmp_machineinfo.MachineSN = mysqlrobotset.Tables[0].Rows[i]["SN码"].ToString();
 
                     Robotinfo.Add(tmp_machineinfo);
                 }
@@ -657,10 +731,10 @@ namespace INDNC
                 //ListViewInitial();
 
                 //机床状态监测画面刷新  
-                //t = new System.Timers.Timer(1000);   //实例化Timer类，设置间隔时间为10000毫秒；   
-                //t.Elapsed += new System.Timers.ElapsedEventHandler(ListViewRefrush); //到达时间的时候执行事件；   
-                //t.AutoReset = true;   //设置是执行一次（false）还是一直执行(true)；   
-                //t.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件；   
+                t = new System.Timers.Timer(1000);   //实例化Timer类，设置间隔时间为10000毫秒；   
+                t.Elapsed += new System.Timers.ElapsedEventHandler(ListViewRefrush); //到达时间的时候执行事件；   
+                t.AutoReset = true;   //设置是执行一次（false）还是一直执行(true)；   
+                t.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件；   
 
             }
             catch (Exception ex)
@@ -1021,15 +1095,17 @@ namespace INDNC
     {
         public string MachineName;
         public string MachineIP;
-        public string MachinePort;
-        public string MachineDB;
+        public string MachineSN;
+        public int MachinePort;
+        public int MachineDB;
 
         public void dispose()
         {
             MachineName = null;
             MachineIP = null;
-            MachinePort = null;
-            MachineDB = null;
+            MachineSN = null;
+            MachinePort = -1;
+            MachineDB = -1;
         }
     }
 }
