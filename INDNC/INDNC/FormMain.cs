@@ -50,6 +50,8 @@ namespace INDNC
             connectvalid = false;
         }
     }
+
+
     internal partial class FormMain : Form
     {
         //用来记录from是否打开过
@@ -332,6 +334,7 @@ namespace INDNC
         //机床状态刷新
         public void ListViewRefrush(Object source, ElapsedEventArgs e)
         {
+            machinestate.listView1.BeginUpdate();
             try
             {
                 if (serverpara.connectvalid == false)
@@ -355,7 +358,6 @@ namespace INDNC
                 UInt16 invisiblemachinenum = 0;  //因参数错误未显示机床数量
                 UInt16 index = 0;
 
-                machinestate.listView1.BeginUpdate();
                 foreach (MachineInfo key in CNCinfo)
                 {
                     Client.Db = key.MachineDB;
@@ -369,7 +371,11 @@ namespace INDNC
                     string machinestr = System.Text.Encoding.Default.GetString(machine);
                     if (machinestr == key.MachineSN) //本地和云端数据对应
                     {
-                        ListViewItem lvi = machinestate.listView1.Items[index];
+                        ListViewItem lvi;
+                        if (machinestate.listView1.Items != null)
+                            lvi = machinestate.listView1.Items[index];
+                        else
+                            return;
                         ++connectedmachinenum;
 
                         //机床状态
@@ -425,6 +431,7 @@ namespace INDNC
                     }
                 }
 
+
                 foreach (MachineInfo key in Robotinfo)
                 {
                     Client.Db = key.MachineDB;
@@ -438,9 +445,11 @@ namespace INDNC
                     string machinestr = System.Text.Encoding.Default.GetString(machine);
                     if (machinestr == key.MachineSN) //本地和云端数据对应
                     {
-                        ++index;
-                        ListViewItem lvi = new ListViewItem(index.ToString());
-                        lvi.UseItemStyleForSubItems = false; //可以设置单元格背景
+                        ListViewItem lvi;
+                        if (machinestate.listView1.Items != null)
+                            lvi = machinestate.listView1.Items[index];
+                        else
+                            return;
                         ++connectedmachinenum;
 
                         //机床状态
@@ -456,11 +465,11 @@ namespace INDNC
                         bool isConnect = dcagentApi.HNC_NetIsConnect(clientNo);
                         if (isConnect == false)
                         {
+
                             ++disconnectedmachinenum;
-                            lvi.SubItems.Add(key.MachineName);
-                            lvi.SubItems.Add("离线");
-                            lvi.SubItems.Add("无");
-                            lvi.SubItems.Add(time.ToString());
+                            lvi.SubItems[2].Text = "离线";
+                            lvi.SubItems[3].Text = "无";
+                            lvi.SubItems[4].Text = time.ToString();
                             lvi.SubItems[2].BackColor = Color.Gray;
                         }
                         else
@@ -474,31 +483,27 @@ namespace INDNC
                             if (machinealarm == 0)
                             {
                                 ++workmachinenum;
-                                lvi.SubItems.Add(key.MachineName);
-                                lvi.SubItems.Add("在线");
-                                lvi.SubItems.Add("无");
-                                lvi.SubItems.Add(time.ToString());
+                                lvi.SubItems[2].Text = "在线";
+                                lvi.SubItems[3].Text = "无";
+                                lvi.SubItems[4].Text = time.ToString();
                                 lvi.SubItems[2].BackColor = Color.Green;
                             }
                             else
                             {
                                 ++Alarmmachinenum;
-                                lvi.SubItems.Add(key.MachineName);
-                                lvi.SubItems.Add("告警");
-                                lvi.SubItems.Add("\\");
-                                lvi.SubItems.Add(time.ToString());
+                                lvi.SubItems[2].Text = "告警";
+                                lvi.SubItems[3].Text = "有";
+                                lvi.SubItems[4].Text = time.ToString();
                                 lvi.SubItems[2].BackColor = Color.Red;
                             }
                         }
-                        machinestate.listView1.Items.Add(lvi);
+                        ++index;
                     }
                     else
                     {
                         ++invisiblemachinenum;
                     }
                 }
-
-                machinestate.listView1.EndUpdate();
 
                 //设备数量显示
                 machinestate.label1.Visible = true;
@@ -517,6 +522,10 @@ namespace INDNC
                 MessageBox.Show("ERROR:" + ex.Message, "ERROR");
                 if (t != null && t.Enabled)
                     t.Enabled = false;
+            }
+            finally
+            {
+                machinestate.listView1.EndUpdate();
             }
         }
 
@@ -584,7 +593,8 @@ namespace INDNC
                     t = new System.Timers.Timer(1000);   //实例化Timer类，设置间隔时间为10000毫秒；   
                     t.Elapsed += new System.Timers.ElapsedEventHandler(ListViewRefrush); //到达时间的时候执行事件；   
                     t.AutoReset = true;   //设置是执行一次（false）还是一直执行(true)；   
-                    t.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件；  s
+                    t.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件；  
+
                 }
                 catch (Exception ex)
                 {
@@ -764,10 +774,6 @@ namespace INDNC
 
         private void buttonnCheck_Cancel()
         {
-            panel1.Controls.Clear();
-            machinestate.listView1.Items.Clear();
-            machinestate.listView1.Columns.Clear();
-
             if (redismanager != null && redismanager.RedisManagerNull())
                 return;
             try
@@ -780,6 +786,9 @@ namespace INDNC
             {
                 MessageBox.Show("ERROR:" + ex.Message, "Error");
             }
+            panel1.Controls.Clear();
+            machinestate.listView1.Items.Clear();
+            machinestate.listView1.Columns.Clear();
         }
         private void buttonSetting_Cancel()
         {
