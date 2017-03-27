@@ -23,6 +23,13 @@ namespace INDNC
               ControlStyles.OptimizedDoubleBuffer |
               ControlStyles.AllPaintingInWmPaint, true);
             this.UpdateStyles();
+
+            comboBoxMachineview.Items.Add("可连接设备");
+            comboBoxMachineview.Items.Add("在线设备");
+            comboBoxMachineview.Items.Add("离线设备");
+            comboBoxMachineview.Items.Add("告警设备数目");
+            comboBoxMachineview.Items.Add("未显示设备数目");
+            comboBoxMachineview.SelectedIndex = 0;
         }
 
         public bool ListViewTitleDraw()
@@ -50,5 +57,9 @@ namespace INDNC
 
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

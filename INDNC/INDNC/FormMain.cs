@@ -65,7 +65,6 @@ namespace INDNC
         ButtonIndex button_onindex = ButtonIndex.NOButton;
         RedisPara serverpara;  //服务器参数
         System.Timers.Timer t;  //timer
-        bool sizechange = false;
         bool firsttimerun = false;
         //CustomTabControl customtabcontrol = new CustomTabControl();
         List<Dictionary<string, UInt16>> machineDB = new List<Dictionary<string, UInt16>>(); //机床SN码与数据库db映射关系
@@ -83,6 +82,8 @@ namespace INDNC
 
         public void Initialize()
         {
+            firsttimerun = false;
+
             //双缓冲
             this.SetStyle(ControlStyles.ResizeRedraw |
               ControlStyles.OptimizedDoubleBuffer |
@@ -562,30 +563,34 @@ namespace INDNC
 
         private void FormMain_Resize(object sender, EventArgs e)
         {
-            /*
-            sizechange = true;
             if (firsttimerun)
             {
-                if (t != null && t.Enabled)
-                    t.Enabled = false;
-                machinestate.listView1.Columns.Clear();
-
-                //绘制标题
-                if (!machinestate.ListViewTitleDraw())
+                try
                 {
-                    throw new Exception();
+                    if (t != null && t.Enabled)
+                        t.Enabled = false;
+                    machinestate.listView1.Columns.Clear();
+                    machinestate.listView1.Items.Clear();
+                    //绘制标题
+                    if (!machinestate.ListViewTitleDraw())
+                    {
+                        throw new Exception("listview error!");
+                    }
+
+                    //机床状态监测画面初始化
+                    ListViewInitial();
+
+                    //机床状态监测画面刷新
+                    t = new System.Timers.Timer(1000);   //实例化Timer类，设置间隔时间为10000毫秒；   
+                    t.Elapsed += new System.Timers.ElapsedEventHandler(ListViewRefrush); //到达时间的时候执行事件；   
+                    t.AutoReset = true;   //设置是执行一次（false）还是一直执行(true)；   
+                    t.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件；  s
                 }
-                this.panel1.Controls.Add(machinestate);
-
-                //机床状态监测画面初始化
-                ListViewInitial();
-
-                //机床状态监测画面刷新
-                t = new System.Timers.Timer(1000);   //实例化Timer类，设置间隔时间为10000毫秒；   
-                t.Elapsed += new System.Timers.ElapsedEventHandler(ListViewRefrush); //到达时间的时候执行事件；   
-                t.AutoReset = true;   //设置是执行一次（false）还是一直执行(true)；   
-                t.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件；   
-            }*/
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ERROR:" + ex.Message, "ERROR");
+                }
+            }
         }
 
         private void buttonHome_Click(object sender, EventArgs e)
@@ -769,7 +774,6 @@ namespace INDNC
             {
                 if (t != null && t.Enabled)
                     t.Enabled = false;
-                sizechange = false;
                 redismanager.dispose();
             }
             catch (Exception ex)
