@@ -28,6 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.button4 = new System.Windows.Forms.Button();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControlSetting = new INDNC.CustomTabControl();
             this.tabPageServerSetting = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -80,29 +88,17 @@
             this.label29 = new System.Windows.Forms.Label();
             this.buttonCNCSave = new System.Windows.Forms.Button();
             this.buttonCNCSetting = new System.Windows.Forms.Button();
-            this.labelCNCCount = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.labelCNCTable = new System.Windows.Forms.Label();
+            this.labelCNCCount = new System.Windows.Forms.Label();
             this.dataGridViewCNC = new System.Windows.Forms.DataGridView();
             this.tabPageRobotSetting = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.labelRobotTable = new System.Windows.Forms.Label();
             this.labelRobotCount = new System.Windows.Forms.Label();
             this.buttonRobotSave = new System.Windows.Forms.Button();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.buttonRobotSetting = new System.Windows.Forms.Button();
-            this.label28 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.labelRobotTable = new System.Windows.Forms.Label();
             this.dataGridViewRobot = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -137,16 +133,90 @@
             this.groupBoxLineSetting.SuspendLayout();
             this.tabPageCNC.SuspendLayout();
             this.panel6.SuspendLayout();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCNC)).BeginInit();
             this.tabPageRobotSetting.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRobot)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox_UserManerge.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(766, 12);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "保存数据";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.buttonRobotSave_Click);
+            // 
+            // textBox6
+            // 
+            this.textBox6.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "MysqlRobotTable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox6.Location = new System.Drawing.Point(408, 12);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(100, 21);
+            this.textBox6.TabIndex = 3;
+            this.textBox6.Text = global::INDNC.Properties.Settings.Default.MysqlRobotTable;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(326, 17);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(89, 12);
+            this.label26.TabIndex = 2;
+            this.label26.Text = "设置数据库名：";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(542, 11);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "设置";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.buttonRobotSetting_Click);
+            // 
+            // textBox5
+            // 
+            this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "MysqlCNCTable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox5.Location = new System.Drawing.Point(408, 12);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(100, 21);
+            this.textBox5.TabIndex = 3;
+            this.textBox5.Text = global::INDNC.Properties.Settings.Default.MysqlCNCTable;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(326, 17);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(89, 12);
+            this.label25.TabIndex = 2;
+            this.label25.Text = "设置数据库名：";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(766, 12);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "保存数据";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.buttonCNCSave_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(542, 11);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "设置";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.buttonCNCSetting_Click);
             // 
             // tabControlSetting
             // 
@@ -706,7 +776,6 @@
             // tabPageCNC
             // 
             this.tabPageCNC.Controls.Add(this.panel6);
-            this.tabPageCNC.Controls.Add(this.panel3);
             this.tabPageCNC.Controls.Add(this.dataGridViewCNC);
             this.tabPageCNC.Location = new System.Drawing.Point(4, 20);
             this.tabPageCNC.Name = "tabPageCNC";
@@ -724,8 +793,8 @@
             this.panel6.Controls.Add(this.label29);
             this.panel6.Controls.Add(this.buttonCNCSave);
             this.panel6.Controls.Add(this.buttonCNCSetting);
+            this.panel6.Controls.Add(this.labelCNCTable);
             this.panel6.Controls.Add(this.labelCNCCount);
-            this.panel6.Controls.Add(this.label30);
             this.panel6.Location = new System.Drawing.Point(3, 451);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(945, 45);
@@ -769,6 +838,15 @@
             this.buttonCNCSetting.UseVisualStyleBackColor = true;
             this.buttonCNCSetting.Click += new System.EventHandler(this.buttonCNCSetting_Click);
             // 
+            // labelCNCTable
+            // 
+            this.labelCNCTable.AutoSize = true;
+            this.labelCNCTable.Location = new System.Drawing.Point(292, 18);
+            this.labelCNCTable.Name = "labelCNCTable";
+            this.labelCNCTable.Size = new System.Drawing.Size(89, 12);
+            this.labelCNCTable.TabIndex = 0;
+            this.labelCNCTable.Text = "当前数据库表名";
+            // 
             // labelCNCCount
             // 
             this.labelCNCCount.AutoSize = true;
@@ -777,76 +855,6 @@
             this.labelCNCCount.Size = new System.Drawing.Size(77, 12);
             this.labelCNCCount.TabIndex = 0;
             this.labelCNCCount.Text = "当前设备数目";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(270, 18);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(89, 12);
-            this.label30.TabIndex = 0;
-            this.label30.Text = "当前数据库表名";
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.AliceBlue;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.textBox5);
-            this.panel3.Controls.Add(this.label25);
-            this.panel3.Controls.Add(this.button3);
-            this.panel3.Controls.Add(this.button1);
-            this.panel3.Controls.Add(this.labelCNCTable);
-            this.panel3.Location = new System.Drawing.Point(93, 460);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(186, 0);
-            this.panel3.TabIndex = 1;
-            // 
-            // textBox5
-            // 
-            this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "MysqlCNCTable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox5.Location = new System.Drawing.Point(408, 12);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 21);
-            this.textBox5.TabIndex = 3;
-            this.textBox5.Text = global::INDNC.Properties.Settings.Default.MysqlCNCTable;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(326, 17);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(89, 12);
-            this.label25.TabIndex = 2;
-            this.label25.Text = "设置数据库名：";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(766, 12);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "保存数据";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.buttonCNCSave_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(542, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "设置";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.buttonCNCSetting_Click);
-            // 
-            // labelCNCTable
-            // 
-            this.labelCNCTable.AutoSize = true;
-            this.labelCNCTable.Location = new System.Drawing.Point(20, 17);
-            this.labelCNCTable.Name = "labelCNCTable";
-            this.labelCNCTable.Size = new System.Drawing.Size(89, 12);
-            this.labelCNCTable.TabIndex = 0;
-            this.labelCNCTable.Text = "当前数据库表名";
             // 
             // dataGridViewCNC
             // 
@@ -860,7 +868,6 @@
             // tabPageRobotSetting
             // 
             this.tabPageRobotSetting.Controls.Add(this.panel5);
-            this.tabPageRobotSetting.Controls.Add(this.panel4);
             this.tabPageRobotSetting.Controls.Add(this.dataGridViewRobot);
             this.tabPageRobotSetting.Location = new System.Drawing.Point(4, 20);
             this.tabPageRobotSetting.Name = "tabPageRobotSetting";
@@ -874,16 +881,25 @@
             // 
             this.panel5.BackColor = System.Drawing.Color.AliceBlue;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.labelRobotTable);
             this.panel5.Controls.Add(this.labelRobotCount);
             this.panel5.Controls.Add(this.buttonRobotSave);
             this.panel5.Controls.Add(this.textBox7);
             this.panel5.Controls.Add(this.label27);
             this.panel5.Controls.Add(this.buttonRobotSetting);
-            this.panel5.Controls.Add(this.label28);
             this.panel5.Location = new System.Drawing.Point(3, 451);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(945, 45);
             this.panel5.TabIndex = 2;
+            // 
+            // labelRobotTable
+            // 
+            this.labelRobotTable.AutoSize = true;
+            this.labelRobotTable.Location = new System.Drawing.Point(292, 18);
+            this.labelRobotTable.Name = "labelRobotTable";
+            this.labelRobotTable.Size = new System.Drawing.Size(89, 12);
+            this.labelRobotTable.TabIndex = 6;
+            this.labelRobotTable.Text = "当前数据库表名";
             // 
             // labelRobotCount
             // 
@@ -931,76 +947,6 @@
             this.buttonRobotSetting.Text = "设置";
             this.buttonRobotSetting.UseVisualStyleBackColor = true;
             this.buttonRobotSetting.Click += new System.EventHandler(this.buttonRobotSetting_Click);
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(270, 18);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(89, 12);
-            this.label28.TabIndex = 0;
-            this.label28.Text = "当前数据库表名";
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.AliceBlue;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.button4);
-            this.panel4.Controls.Add(this.textBox6);
-            this.panel4.Controls.Add(this.label26);
-            this.panel4.Controls.Add(this.button2);
-            this.panel4.Controls.Add(this.labelRobotTable);
-            this.panel4.Location = new System.Drawing.Point(3, 426);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(186, 0);
-            this.panel4.TabIndex = 2;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(766, 12);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "保存数据";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.buttonRobotSave_Click);
-            // 
-            // textBox6
-            // 
-            this.textBox6.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::INDNC.Properties.Settings.Default, "MysqlRobotTable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox6.Location = new System.Drawing.Point(408, 12);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 21);
-            this.textBox6.TabIndex = 3;
-            this.textBox6.Text = global::INDNC.Properties.Settings.Default.MysqlRobotTable;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(326, 17);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(89, 12);
-            this.label26.TabIndex = 2;
-            this.label26.Text = "设置数据库名：";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(542, 11);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "设置";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.buttonRobotSetting_Click);
-            // 
-            // labelRobotTable
-            // 
-            this.labelRobotTable.AutoSize = true;
-            this.labelRobotTable.Location = new System.Drawing.Point(20, 17);
-            this.labelRobotTable.Name = "labelRobotTable";
-            this.labelRobotTable.Size = new System.Drawing.Size(89, 12);
-            this.labelRobotTable.TabIndex = 0;
-            this.labelRobotTable.Text = "当前数据库表名";
             // 
             // dataGridViewRobot
             // 
@@ -1310,14 +1256,10 @@
             this.tabPageCNC.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCNC)).EndInit();
             this.tabPageRobotSetting.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRobot)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
@@ -1364,16 +1306,12 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.DataGridView dataGridViewRobot;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label labelCNCTable;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label labelRobotTable;
         private System.Windows.Forms.DataGridView dataGridViewCNC;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
@@ -1382,13 +1320,11 @@
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Button buttonRobotSetting;
-        private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Button buttonCNCSave;
         private System.Windows.Forms.Button buttonCNCSetting;
-        private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label labelCNCCount;
         private System.Windows.Forms.Label labelRobotCount;
         private System.Windows.Forms.GroupBox groupBox6;
@@ -1430,5 +1366,7 @@
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label labelCNCTable;
+        private System.Windows.Forms.Label labelRobotTable;
     }
 }

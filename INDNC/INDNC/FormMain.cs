@@ -60,7 +60,6 @@ namespace INDNC
         UserControlSetting controlsetting = new UserControlSetting();
         RedisManager redismanager = new RedisManager();
         MySQLPara mysqlpara = new MySQLPara();          //mysql参数
-        UInt16 LineCount = 5;  //生产线数量
         string LineNo = "";  //生产线编号 格式:#+索引
         string WorkShopNo = "";  //车间编号
         //bool bythreadstate = false; //线程运行flag
@@ -85,6 +84,9 @@ namespace INDNC
         public void Initialize()
         {
             firsttimerun = false;
+
+            button_onindex = ButtonIndex.ButtonHome;
+            button_refrush();
 
             //双缓冲
             this.SetStyle(ControlStyles.ResizeRedraw |
@@ -529,47 +531,6 @@ namespace INDNC
             }
         }
 
-        private void mySQL数据库ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RedisParaSetting redisparasetting = new RedisParaSetting();
-            redisparasetting.ShowDialog();
-            RedisPara tmp = new RedisPara();
-            tmp = redisparasetting.redisparaName;
-            if (tmp.connectvalid)
-            {
-                //if (tmp.RedisIP == redispara.RedisIP && tmp.RedisPort == redispara.RedisPort && tmp.RedisPassword == redispara.RedisPassword)
-                    //return;
-                try
-                {
-                    FileStream fs = new FileStream(@"../LocalRedisPara.conf", FileMode.Create);
-                    StreamWriter sw = new StreamWriter(fs);
-                    sw.Write("RedisIP="+tmp.RedisIP+";RedisPort="+tmp.RedisPort+";RedisPassword="+tmp.RedisPassword);
-                    //清空缓冲区
-                    sw.Flush();
-                    //关闭流
-                    sw.Close();
-                    fs.Close();
-                }
-                catch (IOException ex)
-                {
-                    MessageBox.Show("ERROR:" + ex.Message, "ERROR");
-                }
-            }
-        }
-
-        private void 产线设备参数SToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LineParaSetting lineparasetting = new LineParaSetting();
-            lineparasetting.ShowDialog();
-            LineCount = lineparasetting.LineCountName;
-        }
-
-        private void 添加或删除设备ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AddOrDelSetting addordelsetting = new AddOrDelSetting();
-            addordelsetting.ShowDialog();
-        }
-
         private void FormMain_Resize(object sender, EventArgs e)
         {
             if (firsttimerun)
@@ -595,6 +556,7 @@ namespace INDNC
                     t.AutoReset = true;   //设置是执行一次（false）还是一直执行(true)；   
                     t.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件；  
 
+
                 }
                 catch (Exception ex)
                 {
@@ -607,6 +569,7 @@ namespace INDNC
         {
             if (button_onindex == ButtonIndex.ButtonHome)
                 return;
+
             button_onindex = ButtonIndex.ButtonHome;
             button_refrush();
 
@@ -825,57 +788,12 @@ namespace INDNC
             }
         }
 
-        private void tabControlSetting_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void tabPageServerSetting_Resize(object sender, EventArgs e)
         {
             if (button_onindex != ButtonIndex.ButtonSetting)
                 return;
-
         }
 
-        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
 
         /// 通用按钮点击选项卡 在选项卡上显示对应的窗体
         /// </summary>
