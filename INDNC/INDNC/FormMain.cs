@@ -220,9 +220,9 @@ namespace INDNC
         //机床状态初始化
         public void ListViewRefrush(Object source, ElapsedEventArgs e)
         {
-            machinestate.listView1.Items.Clear();
             try
             {
+                machinestate.listView1.Items.Clear();
                 if (serverpara.connectvalid == false)
                     throw new Exception("云端服务器参数错误，请重新设置！");
                 int port = -1;
@@ -263,6 +263,7 @@ namespace INDNC
                         ++invisiblemachinenum;
                         if (ComboBoxFlag == MachineView.Disvisiable)
                         {
+                            ++index;
                             ListViewItem lvi = new ListViewItem(index.ToString());
                             lvi.UseItemStyleForSubItems = false; //可以设置单元格背景
                             var time = System.DateTime.Now;
@@ -344,14 +345,17 @@ namespace INDNC
                                 } 
                             }
                         }
-                        if(lvi.SubItems.Count>1)
+                        if (lvi.SubItems.Count > 1)
                             machinestate.listView1.Items.Add(lvi);
+                        else
+                            --index;
                     }
                     else
                     {
                         ++invisiblemachinenum;
                         if (ComboBoxFlag == MachineView.Disvisiable)
                         {
+                            ++index;
                             ListViewItem lvi = new ListViewItem(index.ToString());
                             lvi.UseItemStyleForSubItems = false; //可以设置单元格背景
                             var time = System.DateTime.Now;
@@ -379,6 +383,7 @@ namespace INDNC
                         ++invisiblemachinenum;
                         if (ComboBoxFlag == MachineView.Disvisiable)
                         {
+                            ++index;
                             ListViewItem lvi = new ListViewItem(index.ToString());
                             lvi.UseItemStyleForSubItems = false; //可以设置单元格背景
                             var time = System.DateTime.Now;
@@ -461,12 +466,15 @@ namespace INDNC
                         }
                         if (lvi.SubItems.Count > 1)
                             machinestate.listView1.Items.Add(lvi);
+                        else
+                            --index;
                     }
                     else
                     {
                         ++invisiblemachinenum;
                         if (ComboBoxFlag == MachineView.Disvisiable)
                         {
+                            ++index;
                             ListViewItem lvi = new ListViewItem(index.ToString());
                             lvi.UseItemStyleForSubItems = false; //可以设置单元格背景
                             var time = System.DateTime.Now;
@@ -829,7 +837,7 @@ namespace INDNC
                 //机床状态监测画面刷新  
                 t = new System.Timers.Timer(1000);   //实例化Timer类，设置间隔时间为10000毫秒；   
                 t.Elapsed += new System.Timers.ElapsedEventHandler(ListViewRefrush); //到达时间的时候执行事件；   
-                t.AutoReset = true;   //设置是执行一次（false）还是一直执行(true)；   
+                t.AutoReset = false;   //设置是执行一次（false）还是一直执行(true)；   
                 t.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件；   
 
             }
@@ -929,7 +937,7 @@ namespace INDNC
             //机床状态监测画面刷新  
             t = new System.Timers.Timer(1000);   //实例化Timer类，设置间隔时间为10000毫秒；   
             t.Elapsed += new System.Timers.ElapsedEventHandler(ListViewRefrush); //到达时间的时候执行事件；   
-            t.AutoReset = true;   //设置是执行一次（false）还是一直执行(true)；   
+            t.AutoReset = false;   //设置是执行一次（false）还是一直执行(true)；   
             t.Enabled = true;     //是否执行System.Timers.Timer.Elapsed事件；   
         }
 
