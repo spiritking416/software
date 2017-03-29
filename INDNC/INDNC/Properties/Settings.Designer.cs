@@ -134,30 +134,6 @@ namespace INDNC.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LineCount {
-            get {
-                return ((string)(this["LineCount"]));
-            }
-            set {
-                this["LineCount"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LineIndex {
-            get {
-                return ((string)(this["LineIndex"]));
-            }
-            set {
-                this["LineIndex"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string serverpassword {
             get {
                 return ((string)(this["serverpassword"]));
@@ -404,6 +380,18 @@ namespace INDNC.Properties {
             }
             set {
                 this["User5PW"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LineIndex {
+            get {
+                return ((string)(this["LineIndex"]));
+            }
+            set {
+                this["LineIndex"] = value;
             }
         }
     }

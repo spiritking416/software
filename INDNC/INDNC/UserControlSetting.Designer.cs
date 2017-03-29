@@ -816,7 +816,7 @@
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(89, 12);
             this.label29.TabIndex = 2;
-            this.label29.Text = "设置数据库名：";
+            this.label29.Text = "设置数据库表：";
             // 
             // buttonCNCSave
             // 
@@ -936,7 +936,7 @@
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(89, 12);
             this.label27.TabIndex = 2;
-            this.label27.Text = "设置数据库名：";
+            this.label27.Text = "设置数据库表：";
             // 
             // buttonRobotSetting
             // 
@@ -1272,7 +1272,7 @@
 
         #endregion
         private System.Windows.Forms.Button buttonServerConnect;
-        private CustomTabControl tabControlSetting;
+        public CustomTabControl tabControlSetting;
         private System.Windows.Forms.TabPage tabPageServerSetting;
         private System.Windows.Forms.TabPage tabPageLineSetting;
         private System.Windows.Forms.TextBox textBoxMysqlPW;
@@ -1296,7 +1296,6 @@
         private System.Windows.Forms.TabPage tabPageRobotSetting;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox textBoxline;
         private System.Windows.Forms.TextBox textBoxworkshop;
         private System.Windows.Forms.TextBox textBoxMysqlserver;
@@ -1368,5 +1367,6 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label labelCNCTable;
         private System.Windows.Forms.Label labelRobotTable;
+        private System.Windows.Forms.Label label20;
     }
 }

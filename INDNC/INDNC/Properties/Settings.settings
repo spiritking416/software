@@ -29,12 +29,6 @@
     <Setting Name="line4" Type="System.Windows.Forms.CheckState" Scope="User">
       <Value Profile="(Default)">Unchecked</Value>
     </Setting>
-    <Setting Name="LineCount" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="LineIndex" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="serverpassword" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
@@ -96,6 +90,9 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="User5PW" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LineIndex" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

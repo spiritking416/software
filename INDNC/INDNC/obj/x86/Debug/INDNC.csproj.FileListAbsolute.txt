@@ -5,11 +5,9 @@ C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\MySql.Data.dll
 C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.Common.dll
 C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.Interfaces.dll
 C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.Redis.dll
-C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.Text.dll
 C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\MySql.Data.xml
 C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.Common.xml
 C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.Redis.xml
-C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.Text.xml
 C:\Users\mio\software\INDNC\INDNC\obj\x86\Debug\INDNC.FormMain.resources
 C:\Users\mio\software\INDNC\INDNC\obj\x86\Debug\INDNC.Properties.Resources.resources
 C:\Users\mio\software\INDNC\INDNC\obj\x86\Debug\INDNC.UserControlMachineState.resources
@@ -108,3 +106,16 @@ C:\Users\mio\Desktop\INDNC - 20170321\INDNC\obj\x86\Debug\INDNC.UserControlLineS
 C:\Users\mio\Desktop\INDNC - 20170321\INDNC\obj\x86\Debug\INDNC.UserControlMachineState.resources
 C:\Users\mio\Desktop\INDNC - 20170321\INDNC\obj\x86\Debug\INDNC.UserControlSetting.resources
 C:\Users\mio\Desktop\INDNC - 20170321\INDNC\obj\x86\Debug\INDNC.csproj.GenerateResource.Cache
+C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.dll
+C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.OrmLite.dll
+C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.OrmLite.SqlServer.dll
+C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.ServiceInterface.dll
+C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.xml
+C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.Interfaces.xml
+C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.OrmLite.pdb
+C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.OrmLite.SqlServer.pdb
+C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.Razor.dll
+C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.Text.dll
+C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\System.Web.Razor.dll
+C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.Text.xml
+C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\System.Web.Razor.pdb

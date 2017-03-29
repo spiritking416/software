@@ -7,7 +7,8 @@ namespace INDNC
 {
     public partial class UserControlMachineState : UserControl
     {
-        public Thread threadRefrush;
+        public event btnOkClickEventHander ComboBoxMachineViewChange; //监测显示切换委托
+        public MachineView ComboBoxFlag;
 
         public UserControlMachineState()
         {
@@ -17,11 +18,11 @@ namespace INDNC
               ControlStyles.AllPaintingInWmPaint, true);
             this.UpdateStyles();
 
-            comboBoxMachineview.Items.Add("可连接设备");
+            comboBoxMachineview.Items.Add("可显示设备");
             comboBoxMachineview.Items.Add("在线设备");
             comboBoxMachineview.Items.Add("离线设备");
-            comboBoxMachineview.Items.Add("告警设备数目");
-            comboBoxMachineview.Items.Add("未显示设备数目");
+            comboBoxMachineview.Items.Add("告警设备数");
+            comboBoxMachineview.Items.Add("未显示设备");
             comboBoxMachineview.SelectedIndex = 0;
 
             this.listView1.View = View.Details;
@@ -58,11 +59,6 @@ namespace INDNC
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
         {/*
             if (this.listView1.Sorting == SortOrder.Ascending)
@@ -75,6 +71,40 @@ namespace INDNC
                 this.listView1.ListViewItemSorter = new ListViewItemComparer(SortOrder.Ascending, e.Column);
                 this.listView1.Sorting = SortOrder.Ascending;
             }*/
+        }
+
+        private void comboBoxMachineview_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBoxMachineview.SelectedIndex)
+            {
+                case 0:
+                    ComboBoxFlag = MachineView.Visiable;
+                    if (ComboBoxMachineViewChange != null)
+                        ComboBoxMachineViewChange(sender, e);
+                    break;
+                case 1:
+                    ComboBoxFlag = MachineView.Online;
+                    if (ComboBoxMachineViewChange != null)
+                        ComboBoxMachineViewChange(sender, e);
+                    break;
+                case 2:
+                    ComboBoxFlag = MachineView.Offline;
+                    if (ComboBoxMachineViewChange != null)
+                        ComboBoxMachineViewChange(sender, e);
+                    break;
+                case 3:
+                    ComboBoxFlag = MachineView.Alarm;
+                    if (ComboBoxMachineViewChange != null)
+                        ComboBoxMachineViewChange(sender, e);
+                    break;
+                case 4:
+                    ComboBoxFlag = MachineView.Disvisiable;
+                    if (ComboBoxMachineViewChange != null)
+                        ComboBoxMachineViewChange(sender, e);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

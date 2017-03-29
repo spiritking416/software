@@ -1,4 +1,5 @@
-﻿namespace INDNC
+﻿using System;
+namespace INDNC
 {
     partial class UserControlMachineState
     {
@@ -17,7 +18,14 @@
             {
                 components.Dispose();
             }
-            base.Dispose(disposing);
+            try
+            {
+                base.Dispose(disposing);
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         #region 组件设计器生成的代码
@@ -121,7 +129,7 @@
             this.comboBoxMachineview.Name = "comboBoxMachineview";
             this.comboBoxMachineview.Size = new System.Drawing.Size(121, 20);
             this.comboBoxMachineview.TabIndex = 1;
-            this.comboBoxMachineview.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBoxMachineview.SelectedIndexChanged += new System.EventHandler(this.comboBoxMachineview_SelectedIndexChanged);
             // 
             // panel3
             // 

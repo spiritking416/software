@@ -25,11 +25,13 @@ namespace INDNC
         public event btnOkClickEventHander btnLineSettingClick; //产线设置委托
         public event btnOkClickEventHander btnCNCSettingClick; //CNC设备设置委托
         public event btnOkClickEventHander btnRobotSettingClick; //Robot设备设置委托
+        public event btnOkClickEventHander btnCNCSaveClick; //CNC设备参数保存委托
+        public event btnOkClickEventHander btnRobotSaveClick; //Robot设备参数保存委托
         private MySqlConnection mysqlconnection; // mysql连接
         private MySqlDataAdapter mysqlcncadapter; //mysql数据适配器
         private MySqlDataAdapter mysqlrobotadapter; //mysql数据适配器
-        private DataSet mysqlcncset; //数据集
-        private DataSet mysqlrobotset; //数据集
+        public DataSet mysqlcncset; //数据集
+        public DataSet mysqlrobotset; //数据集
         private string MyconnectionString;
         private string workshopno;
         private string lineno;
@@ -100,6 +102,35 @@ namespace INDNC
                 MessageBox.Show("ERROR:" + ex.Message, "ERROR");
             }
             MyconnectionString = "server=" + mysqlpara.MySQLServer + ";user id=" + mysqlpara.MySQLID + ";password=" + mysqlpara.MySQLIDPassword + "; database=" + mysqlpara.MySQLIDDatabase;
+           
+            //CNC设备初始化
+            if (mysqlconnection == null)
+                mysqlconnection = new MySqlConnection(MyconnectionString);
+            mysqlconnection.Open();   //必须Open
+            if (!mysqlconnection.Ping())
+            {
+                MessageBox.Show("错误：无法连接本地MySQL服务器！", "错误");
+            }
+            string tmp = "select* from " + mysqlpara.MySQLDatabaseCNCTable;
+            mysqlcncadapter = new MySqlDataAdapter(tmp, mysqlconnection);
+            mysqlcncset = new DataSet();
+
+            //填充和绑定数据
+            mysqlcncadapter.Fill(mysqlcncset, mysqlpara.MySQLDatabaseCNCTable);
+            dataGridViewCNC.DataSource = mysqlcncset;
+            dataGridViewCNC.DataMember = mysqlpara.MySQLDatabaseCNCTable;
+
+            tmp = "select* from " + mysqlpara.MySQLDatabaseRobotTable;
+            mysqlrobotadapter = new MySqlDataAdapter(tmp, mysqlconnection);
+            mysqlrobotset = new DataSet();
+
+            //填充和绑定数据
+            mysqlrobotadapter.Fill(mysqlrobotset, mysqlpara.MySQLDatabaseRobotTable);
+            dataGridViewRobot.DataSource = mysqlrobotset;
+            dataGridViewRobot.DataMember = mysqlpara.MySQLDatabaseRobotTable;
+
+            mysqlconnection.Close();
+
         }
 
         private void buttonServerConnect_Click(object sender, EventArgs e)
@@ -136,7 +167,7 @@ namespace INDNC
                 //host主机参数  格式“password@ip:port”
                 string[] host = { serverpara.RedisPassword + '@' + serverpara.RedisIP + ':' + serverpara.RedisPort };
                 //从连接池获得只读连接客户端
-                long initialDB = 0;
+                int initialDB = 0;
                 RedisClient Client = (RedisClient)redismanager.GetReadOnlyClient(ref (initialDB), ref (host));
                 if (Client == null || !Client.Ping())
                 {
@@ -189,8 +220,7 @@ namespace INDNC
                     
                     break;
                 case 1:
-                    
-
+                    SelectLineSetting();
                     break;
                 case 2:
                     SelectCNC();
@@ -206,6 +236,11 @@ namespace INDNC
                     break;
             }
         }
+        private void SelectLineSetting()
+        {
+            label20.Text = mysqlcncset.Tables[mysqlpara.MySQLDatabaseCNCTable].Rows.Count.ToString();
+            label21.Text = mysqlrobotset.Tables[mysqlpara.MySQLDatabaseRobotTable].Rows.Count.ToString();
+        }
 
         private void SelectCNC()
         {
@@ -220,6 +255,7 @@ namespace INDNC
                 {
                     throw new Exception("无法连接本地MySQL服务器！");
                 }
+                /*
                 string tmp = "select* from " + mysqlpara.MySQLDatabaseCNCTable;
                 if(mysqlcncadapter==null)
                     mysqlcncadapter = new MySqlDataAdapter(tmp, mysqlconnection);
@@ -230,9 +266,9 @@ namespace INDNC
                 //填充和绑定数据
                 mysqlcncadapter.Fill(mysqlcncset, mysqlpara.MySQLDatabaseCNCTable);
                 dataGridViewCNC.DataSource = mysqlcncset;
-                dataGridViewCNC.DataMember = mysqlpara.MySQLDatabaseCNCTable;
+                dataGridViewCNC.DataMember = mysqlpara.MySQLDatabaseCNCTable;*/
                 labelCNCTable.Text = "当前数据库表名:" + mysqlpara.MySQLDatabaseCNCTable;
-                labelCNCCount.Text = "当前设备数目:" + mysqlcncset.Tables[mysqlpara.MySQLDatabaseCNCTable].Rows.Count;
+                labelCNCCount.Text = "当前设备数目:" + mysqlcncset.Tables[mysqlpara.MySQLDatabaseCNCTable].Rows.Count.ToString();
             }
             catch(Exception ex)
             {
@@ -258,6 +294,7 @@ namespace INDNC
                 {
                     throw new Exception("无法连接本地MySQL服务器！");
                 }
+                /*
                 string tmp = "select* from " + mysqlpara.MySQLDatabaseRobotTable;
                 mysqlrobotadapter = new MySqlDataAdapter(tmp, mysqlconnection);
 
@@ -268,9 +305,9 @@ namespace INDNC
                 //填充和绑定数据
                 mysqlrobotadapter.Fill(mysqlrobotset, mysqlpara.MySQLDatabaseRobotTable);
                 dataGridViewRobot.DataSource = mysqlrobotset;
-                dataGridViewRobot.DataMember = mysqlpara.MySQLDatabaseRobotTable;
+                dataGridViewRobot.DataMember = mysqlpara.MySQLDatabaseRobotTable;*/
                 labelRobotTable.Text = "当前数据库表名:" + mysqlpara.MySQLDatabaseRobotTable;
-                labelRobotCount.Text = "当前设备数目:" + mysqlrobotset.Tables[mysqlpara.MySQLDatabaseRobotTable].Rows.Count;
+                labelRobotCount.Text = "当前设备数目:" + mysqlrobotset.Tables[mysqlpara.MySQLDatabaseRobotTable].Rows.Count.ToString();
             }
             catch (Exception ex)
             {
@@ -497,6 +534,8 @@ namespace INDNC
                 mysqlcncadapter.Update(mysqlcncset, mysqlpara.MySQLDatabaseCNCTable);
 
                 MessageBox.Show("保存数据成功！", "提示");
+                if (btnCNCSaveClick != null)
+                    btnCNCSaveClick(this, e);
             }
             catch (Exception ex)
             {
@@ -538,6 +577,8 @@ namespace INDNC
                 var mysqlcommamdbuilder = new MySqlCommandBuilder(mysqlrobotadapter);
                 mysqlrobotadapter.Update(mysqlrobotset, mysqlpara.MySQLDatabaseRobotTable);
                 MessageBox.Show("保存数据成功！", "提示");
+                if (btnRobotSaveClick != null)
+                    btnRobotSaveClick(this, e);
             }
             catch (Exception ex)
             {
@@ -599,6 +640,7 @@ namespace INDNC
                     textBox_UserPassword1.Visible = true;
                     button_UserOnOrOff.Visible = true;
                     button_UserOnOrOff.Text = "登录";
+                    button_ChangeUserPassword.Visible = false;
                 }
                 else if (UserType == 1)
                 {
@@ -614,6 +656,7 @@ namespace INDNC
                     textBox_UserPassword1.Visible = true;
                     button_UserOnOrOff.Visible = true;
                     button_UserOnOrOff.Text = "登录";
+                    button_ChangeUserPassword.Visible = false;
                 }
             }
             else
@@ -625,6 +668,7 @@ namespace INDNC
                     textBox_UserPassword1.Visible = true;
                     button_UserOnOrOff.Visible = true;
                     button_UserOnOrOff.Text = "登录";
+                    button_ChangeUserPassword.Visible = false;
                 }
                 else if (UserType == 1)
                 {
@@ -632,6 +676,7 @@ namespace INDNC
                     textBox_UserPassword1.Visible = true;
                     button_UserOnOrOff.Visible = true;
                     button_UserOnOrOff.Text = "登录";
+                    button_ChangeUserPassword.Visible = false;
                 }
                 else
                 {
@@ -641,6 +686,7 @@ namespace INDNC
                         textBox_UserPassword1.Visible = true;
                         button_UserOnOrOff.Visible = true;
                         button_UserOnOrOff.Text = "登录";
+                        button_ChangeUserPassword.Visible = false;
                     }
                     if (index == UserType)
                     {
@@ -723,6 +769,7 @@ namespace INDNC
                         textBox_UserPassword1.Visible = true;
                         button_UserOnOrOff.Visible = true;
                         button_UserOnOrOff.Text = "登录";
+                        button_ChangeUserPassword.Visible = false;
                         comboBox1.Visible = true;
 
                     }
@@ -786,6 +833,7 @@ namespace INDNC
                         textBox_UserPassword1.Visible = true;
                         button_UserOnOrOff.Visible = true;
                         button_UserOnOrOff.Text = "登录";
+                        button_ChangeUserPassword.Visible = false;
                         comboBox1.Visible = true;
 
                     }
