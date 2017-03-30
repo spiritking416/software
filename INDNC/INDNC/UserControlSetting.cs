@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ServiceStack.Redis;
-using System.IO;
 using MySql.Data.MySqlClient;
 using System.Timers;
 
@@ -508,7 +502,6 @@ namespace INDNC
         {
             try
             {
-                
                 if (MyconnectionString == null || MyconnectionString == "")
                     throw new Exception("本地MySQL数据库参数错误，请重新设置！");
                 if (mysqlconnection == null)

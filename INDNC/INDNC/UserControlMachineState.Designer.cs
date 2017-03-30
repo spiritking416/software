@@ -125,7 +125,7 @@ namespace INDNC
             // comboBoxMachineview
             // 
             this.comboBoxMachineview.FormattingEnabled = true;
-            this.comboBoxMachineview.Location = new System.Drawing.Point(36, 71);
+            this.comboBoxMachineview.Location = new System.Drawing.Point(36, 109);
             this.comboBoxMachineview.Name = "comboBoxMachineview";
             this.comboBoxMachineview.Size = new System.Drawing.Size(121, 20);
             this.comboBoxMachineview.TabIndex = 1;
@@ -145,7 +145,7 @@ namespace INDNC
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(34, 49);
+            this.label6.Location = new System.Drawing.Point(34, 87);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(29, 12);
             this.label6.TabIndex = 0;
@@ -167,6 +167,7 @@ namespace INDNC
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
+            this.listView1.ItemMouseHover += new System.Windows.Forms.ListViewItemMouseHoverEventHandler(this.listView1_ItemMouseHover);
             // 
             // UserControlMachineState
             // 

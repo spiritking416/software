@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Threading;
 using System.Collections;
+using System.Drawing;
 
 namespace INDNC
 {
     public partial class UserControlMachineState : UserControl
     {
         public event btnOkClickEventHander ComboBoxMachineViewChange; //监测显示切换委托
+        public event btnOkClickEventHander listViewItemMouseMove; //listview item选中委托
         public MachineView ComboBoxFlag;
 
         public UserControlMachineState()
@@ -42,8 +43,8 @@ namespace INDNC
 
                 int width = (this.listView1.Width - 60) / 4;
                 this.listView1.Columns.Add("序号", 60, HorizontalAlignment.Left);
-                this.listView1.Columns.Add("机床编号", width, HorizontalAlignment.Left);
-                this.listView1.Columns.Add("机床状态", width, HorizontalAlignment.Left);
+                this.listView1.Columns.Add("设备编号", width, HorizontalAlignment.Left);
+                this.listView1.Columns.Add("设备状态", width, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("当前告警", width, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("发生时间", width, HorizontalAlignment.Left);
 
@@ -98,13 +99,19 @@ namespace INDNC
                         ComboBoxMachineViewChange(sender, e);
                     break;
                 case 4:
-                    ComboBoxFlag = MachineView.Disvisiable;
+                    ComboBoxFlag = MachineView.Invisiable;
                     if (ComboBoxMachineViewChange != null)
                         ComboBoxMachineViewChange(sender, e);
                     break;
                 default:
                     break;
             }
+        }
+
+        private void listView1_ItemMouseHover(object sender, ListViewItemMouseHoverEventArgs e)
+        {
+            if (listViewItemMouseMove != null)
+                listViewItemMouseMove(sender, e);
         }
     }
 }
