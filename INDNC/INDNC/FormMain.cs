@@ -63,7 +63,8 @@ namespace INDNC
         ButtonIndex button_onindex = ButtonIndex.NOButton;
         RedisPara serverpara;  //服务器参数
         bool threadrunning = false;  //线程运行
-        MachineView ComboBoxFlag=MachineView.Visiable;
+        bool threadflag = false;
+        MachineView ComboBoxFlag = MachineView.Visiable;
         List<Dictionary<string, UInt16>> machineDB = new List<Dictionary<string, UInt16>>(); //机床SN码与数据库db映射关系
         List<Dictionary<string, string>> machineName = new List<Dictionary<string, string>>(); //机床SN码与机床编号映射关系
         List<Dictionary<string, UInt16>> machinePort = new List<Dictionary<string, UInt16>>(); //机床SN码与机床Port映射关系
@@ -99,7 +100,7 @@ namespace INDNC
             //LineNo、WorkShopNo
             LineNo = global::INDNC.Properties.Settings.Default.LineIndex; ;
             WorkShopNo = global::INDNC.Properties.Settings.Default.workshopno; ;
-            if(LineNo == "" || WorkShopNo == "")
+            if (LineNo == "" || WorkShopNo == "")
             {
                 LineNo = "#1";
                 WorkShopNo = "#1";
@@ -512,7 +513,7 @@ namespace INDNC
         {
             try
             {
-                if(machinestate.listView1.Items!=null)
+                if (machinestate.listView1.Items != null)
                     machinestate.listView1.Items.Clear();
 
                 DataMachineVisible.Clear();
@@ -799,6 +800,7 @@ namespace INDNC
                 machinestate.label5.Text = "未显示设备数目:" + DataMachineInvisible.Count.ToString() + "台";
 
                 machinestate.listView1.EndUpdate();
+
             }
             catch (Exception ex)
             {
@@ -844,7 +846,7 @@ namespace INDNC
                     Client.Db = key.MachineDB;
                     byte[] machine = new byte[] { };
                     machine = Client.Get("Machine");
-                    if(machine==null)
+                    if (machine == null)
                     {
                         ++invisiblemachinenum;
                         continue;
@@ -868,12 +870,12 @@ namespace INDNC
                         long timestamp = Convert.ToInt64(timestampstr);
                         var time = System.DateTime.FromBinary(timestamp);
 
-                        Int16 clientNo = dcagentApi.HNC_NetConnect(key.MachineIP, (ushort) key.MachinePort);
+                        Int16 clientNo = dcagentApi.HNC_NetConnect(key.MachineIP, (ushort)key.MachinePort);
                         bool isConnect = dcagentApi.HNC_NetIsConnect(clientNo);
                         if (isConnect == false)
                         {
                             ++disconnectedmachinenum;
-                            if(ComboBoxFlag == MachineView.Visiable || ComboBoxFlag == MachineView.Offline)
+                            if (ComboBoxFlag == MachineView.Visiable || ComboBoxFlag == MachineView.Offline)
                             {
                                 lvi.SubItems[2].Text = "离线";
                                 lvi.SubItems[3].Text = "无";
@@ -1009,7 +1011,7 @@ namespace INDNC
                 machinestate.label3.Visible = true;
                 machinestate.label4.Visible = true;
                 machinestate.label5.Visible = true;
-                machinestate.label1.Text = "生产线" + LineNo.ToString() + "设备数目:" +(CNCinfo.Count()+Robotinfo.Count()).ToString() + "台";
+                machinestate.label1.Text = "生产线" + LineNo.ToString() + "设备数目:" + (CNCinfo.Count() + Robotinfo.Count()).ToString() + "台";
                 machinestate.label2.Text = "在线设备数目:" + workmachinenum.ToString() + "台";
                 machinestate.label3.Text = "离线设备数目:" + disconnectedmachinenum.ToString() + "台";
                 machinestate.label4.Text = "告警设备数目:" + Alarmmachinenum.ToString() + "台";
@@ -1030,7 +1032,7 @@ namespace INDNC
         {
 
             try
-            {           
+            {
                 machinestate.listView1.Columns.Clear();
                 machinestate.listView1.Items.Clear();
                 //绘制标题
@@ -1045,7 +1047,7 @@ namespace INDNC
             catch (Exception ex)
             {
                 MessageBox.Show("ERROR:" + ex.Message, "ERROR");
-                threadrunning = true;
+                threadrunning = false;
             }
         }
 
@@ -1062,7 +1064,7 @@ namespace INDNC
 
         private void buttonCheck_Click(object sender, EventArgs e)
         {
-            
+
             if (button_onindex == ButtonIndex.ButtonCheck)
                 return;
             button_onindex = ButtonIndex.ButtonCheck;
@@ -1102,7 +1104,7 @@ namespace INDNC
 
                 //绘制标题
                 try
-                { 
+                {
                     if (!machinestate.ListViewTitleDraw())
                     {
                         throw new Exception("listview error!");
@@ -1115,14 +1117,10 @@ namespace INDNC
 
                 this.panel1.Controls.Add(machinestate);
 
-                //初始化
-                ListViewInitial();
-
-                //启动刷新线程
-                threadrunning = true;
-                Thread Listviewrefrush = new Thread(ThreadReadData);
-                Listviewrefrush.Start();
-
+                threadflag = true;
+                threadrunning = false;
+                Thread Listviewrefrushthreadflag = new Thread(listviewthread);
+                Listviewrefrushthreadflag.Start();
             }
             catch (Exception ex)
             {
@@ -1135,7 +1133,25 @@ namespace INDNC
                 redismanager.dispose();
                 //redispara.dispose();
             }
-            
+
+        }
+        private void listviewthread() //监视线程
+        {
+            while (threadflag)
+            {
+                if (threadrunning == false)
+                {
+                    //初始化
+                    ListViewInitial();
+
+                    //启动刷新线程
+                    threadrunning = true;
+                    Thread Listviewrefrush = new Thread(ThreadReadData);
+                    Listviewrefrush.Start();
+                }
+
+                Thread.Sleep(1000);
+            }
         }
 
         private void ThreadReadData() //读取数据线程
@@ -1160,6 +1176,137 @@ namespace INDNC
             {
                 try
                 {
+                    DataMachineVisible.Clear();
+                    DataMachineAlarm.Clear();
+                    DataMachineInvisible.Clear();
+                    DataMachineOffline.Clear();
+                    DataMachineOnline.Clear();
+                    
+                    //更新
+                    foreach (MachineInfo key in CNCinfo)
+                    {
+                        Client.ChangeDb(key.MachineDB);
+                        byte[] machine = new byte[] { };
+                        machine = Client.Get("Machine");
+                        byte[] machineIP = new byte[] { };
+                        machineIP = Client.Get("IP");
+                        byte[] machinePort = new byte[] { };
+                        machinePort = Client.Get("Port");
+                        if (machine == null || machineIP == null || machinePort == null)
+                        {
+                            DataMachineInvisible.Add(key);
+                            continue;
+                        }
+                        string machinestr = System.Text.Encoding.Default.GetString(machine);
+                        string machineIPstr = System.Text.Encoding.Default.GetString(machineIP);
+                        string machinePortstr = System.Text.Encoding.Default.GetString(machinePort);
+
+                        int machinePortInt = int.Parse(machinePortstr);
+                        if (machinestr == key.MachineSN && machineIPstr == key.MachineIP && machinePortInt == key.MachinePort) //本地和云端数据对应
+                        {
+                            DataMachineVisible.Add(key);
+
+                            //机床状态
+                            DCAgentApi dcagentApi = DCAgentApi.GetInstance(serverpara.RedisIP);
+
+                            //获取时间
+                            byte[] timebyte = Client.Get("TimeStamp");
+                            string timestampstr = System.Text.Encoding.Default.GetString(timebyte);
+                            long timestamp = Convert.ToInt64(timestampstr);
+                            var time = System.DateTime.FromBinary(timestamp);
+
+                            Int16 clientNo = dcagentApi.HNC_NetConnect(key.MachineIP, (ushort)key.MachinePort);
+                            bool isConnect = dcagentApi.HNC_NetIsConnect(clientNo);
+                            if (isConnect == false)
+                            {
+                                DataMachineOffline.Add(key);
+                            }
+                            else
+                            {
+                                byte[] machinealarmbyte = new byte[] { };
+                                byte[] alarmbyte = Encoding.UTF8.GetBytes("ALARMNUM_CURRENT");
+                                machinealarmbyte = Client.HGet("Alarm:AlarmNum", alarmbyte);
+                                string machinealarmstr = System.Text.Encoding.Default.GetString(machinealarmbyte);
+                                long machinealarm = Convert.ToInt64(machinealarmstr);
+
+                                if (machinealarm == 0)
+                                {
+                                    DataMachineOnline.Add(key);
+                                }
+                                else
+                                {
+                                    DataMachineAlarm.Add(key);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            DataMachineInvisible.Add(key);
+                        }
+                    }
+
+                    foreach (MachineInfo key in Robotinfo)
+                    {
+                        Client.ChangeDb(key.MachineDB);
+                        byte[] machine = new byte[] { };
+                        machine = Client.Get("Machine");
+                        byte[] machineIP = new byte[] { };
+                        machineIP = Client.Get("IP");
+                        byte[] machinePort = new byte[] { };
+                        machinePort = Client.Get("Port");
+                        if (machine == null || machineIP == null || machinePort == null)
+                        {
+                            DataMachineInvisible.Add(key);
+                            continue;
+                        }
+                        string machinestr = System.Text.Encoding.Default.GetString(machine);
+                        string machineIPstr = System.Text.Encoding.Default.GetString(machineIP);
+                        string machinePortstr = System.Text.Encoding.Default.GetString(machinePort);
+
+                        int machinePortInt = int.Parse(machinePortstr);
+                        if (machinestr == key.MachineSN && machineIPstr == key.MachineIP && machinePortInt == key.MachinePort) //本地和云端数据对应
+                        {
+                            DataMachineVisible.Add(key);
+
+                            //机床状态
+                            DCAgentApi dcagentApi = DCAgentApi.GetInstance(serverpara.RedisIP);
+
+                            //获取时间
+                            byte[] timebyte = Client.Get("TimeStamp");
+                            string timestampstr = System.Text.Encoding.Default.GetString(timebyte);
+                            long timestamp = Convert.ToInt64(timestampstr);
+                            var time = System.DateTime.FromBinary(timestamp);
+
+                            Int16 clientNo = dcagentApi.HNC_NetConnect(key.MachineIP, (ushort)key.MachinePort);
+                            bool isConnect = dcagentApi.HNC_NetIsConnect(clientNo);
+                            if (isConnect == false)
+                            {
+                                DataMachineOffline.Add(key);
+                            }
+                            else
+                            {
+                                byte[] machinealarmbyte = new byte[] { };
+                                byte[] alarmbyte = Encoding.UTF8.GetBytes("ALARMNUM_CURRENT");
+                                machinealarmbyte = Client.HGet("Alarm:AlarmNum", alarmbyte);
+                                string machinealarmstr = System.Text.Encoding.Default.GetString(machinealarmbyte);
+                                long machinealarm = Convert.ToInt64(machinealarmstr);
+
+                                if (machinealarm == 0)
+                                {
+                                    DataMachineOnline.Add(key);
+                                }
+                                else
+                                {
+                                    DataMachineAlarm.Add(key);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            DataMachineInvisible.Add(key);
+                        }
+                    }
+
                     if (ComboBoxFlag == MachineView.Visiable)
                     {
                         int index = 0;
@@ -1417,7 +1564,7 @@ namespace INDNC
                     break;
                 }
             }
-            ListViewInitial();
+            
         }
 
         private void buttonSetting_Click(object sender, EventArgs e)
@@ -1542,7 +1689,6 @@ namespace INDNC
             tooltip.ReshowDelay = 0;
             tooltip.InitialDelay = 0;
             tooltip.Active = true;
-           
         }
             
 
@@ -1563,6 +1709,7 @@ namespace INDNC
             {
                 MessageBox.Show("ERROR:" + ex.Message, "Error");
             }
+            threadflag = false;
             threadrunning = false;
             panel1.Controls.Clear();
             machinestate.listView1.Items.Clear();
@@ -1609,6 +1756,11 @@ namespace INDNC
                 return;
         }
 
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            threadflag = false;
+            threadrunning = false;
+        }
 
         /// 通用按钮点击选项卡 在选项卡上显示对应的窗体
         /// </summary>

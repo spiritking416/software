@@ -108,7 +108,7 @@ namespace INDNC
             }
         }
 
-        private void listView1_ItemMouseHover(object sender, ListViewItemMouseHoverEventArgs e)
+        private void listView1_ItemActivate(object sender, EventArgs e)
         {
             if (listViewItemMouseMove != null)
                 listViewItemMouseMove(sender, e);
