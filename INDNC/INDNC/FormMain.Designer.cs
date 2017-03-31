@@ -124,11 +124,13 @@ namespace INDNC
             this.ClientSize = new System.Drawing.Size(966, 637);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "INDNC";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
-            this.Resize += new System.EventHandler(this.FormMain_Resize);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 

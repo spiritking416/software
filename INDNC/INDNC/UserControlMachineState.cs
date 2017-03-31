@@ -19,11 +19,11 @@ namespace INDNC
               ControlStyles.AllPaintingInWmPaint, true);
             this.UpdateStyles();
 
-            comboBoxMachineview.Items.Add("可显示设备");
+            comboBoxMachineview.Items.Add("生产线设备");
             comboBoxMachineview.Items.Add("在线设备");
             comboBoxMachineview.Items.Add("离线设备");
-            comboBoxMachineview.Items.Add("告警设备数");
-            comboBoxMachineview.Items.Add("未显示设备");
+            comboBoxMachineview.Items.Add("告警设备");
+            comboBoxMachineview.Items.Add("参数错误设备");
             comboBoxMachineview.SelectedIndex = 0;
 
             this.listView1.View = View.Details;
@@ -40,6 +40,12 @@ namespace INDNC
             try
             {
                 this.listView1.BeginUpdate();
+                if (listView1.Items != null)
+                    listView1.Items.Clear();
+                if (listView1.Columns!=null)
+                {
+                    listView1.Columns.Clear();
+                }
 
                 int width = (this.listView1.Width - 60) / 4;
                 this.listView1.Columns.Add("序号", 60, HorizontalAlignment.Left);
@@ -58,20 +64,6 @@ namespace INDNC
 
             return true;
 
-        }
-
-        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
-        {/*
-            if (this.listView1.Sorting == SortOrder.Ascending)
-            {
-                this.listView1.ListViewItemSorter = new ListViewItemComparer(SortOrder.Descending, e.Column);
-                this.listView1.Sorting = SortOrder.Descending;
-            }
-            else
-            {
-                this.listView1.ListViewItemSorter = new ListViewItemComparer(SortOrder.Ascending, e.Column);
-                this.listView1.Sorting = SortOrder.Ascending;
-            }*/
         }
 
         private void comboBoxMachineview_SelectedIndexChanged(object sender, EventArgs e)
@@ -132,8 +124,10 @@ class ListViewItemComparer : IComparer
     }
 
     //实现接口的 Compare 方法，x、y 为要比较的两个对象   
+
     public int Compare(object x, object y)
     {
+        /*
         //默认升序。判断传入的排序枚举，如果为降序就对换要比较的对象  
         if (sort == SortOrder.Descending)
         {
@@ -151,7 +145,8 @@ class ListViewItemComparer : IComparer
         //判断是否可以转换为数字，如果可以就按数字比较  
         if (int.TryParse(xx.ToString(), out xxx) && int.TryParse(yy.ToString(), out yyy))
             return xxx.CompareTo(yyy);//按数字比较  
-        return string.Compare(xx, yy);//按字符比较  
+        return string.Compare(xx, yy);//按字符比较  */
+        return 0;
     }
 }
 
