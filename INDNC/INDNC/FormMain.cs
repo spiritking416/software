@@ -512,7 +512,8 @@ namespace INDNC
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR:" + ex.Message, "ERROR");
+                if(ThreadFlag==true && ThreadRefrush==true)
+                    MessageBox.Show("ERROR:" + ex.Message, "ERROR");
             }
         }
 
@@ -731,97 +732,14 @@ namespace INDNC
             }
         }
 
-        private void buttonHome_Click(object sender, EventArgs e)
-        {
-            if (button_onindex == ButtonIndex.ButtonHome)
-                return;
-
-            button_onindex = ButtonIndex.ButtonHome;
-            button_refrush();
-
-        }
-
-        private void buttonCheck_Click(object sender, EventArgs e)
-        {
-
-            if (button_onindex == ButtonIndex.ButtonCheck)
-                return;
-            button_onindex = ButtonIndex.ButtonCheck;
-            button_refrush();
-
-            //host主机参数  格式“password@ip:port”
-            string[] host = { serverpara.RedisPassword + '@' + serverpara.RedisIP + ':' + serverpara.RedisPort };
-            try
-            {
-                //从连接池获得只读连接客户端
-                int initialDB = 0;
-                RedisClient Client = (RedisClient)redismanager.GetReadOnlyClient(ref (initialDB), ref (host));
-                if (Client == null || !Client.Ping())
-                {
-                    throw new Exception("连接服务器失败，请设置服务器参数!");
-                }
-                //连接云端服务器成功
-                serverpara.connectvalid = true;
-                redismanager.DisposeClient(ref (Client));  //dispose客户端
-
-                //属性设置
-                machinestate.Dock = DockStyle.Fill;
-                machinestate.Height = this.panel1.Height;
-                machinestate.Width = this.panel1.Width;
-
-                //连接本地服务器
-                string MyconnectionString = "server=" + mysqlpara.MySQLServer + ";user id=" + mysqlpara.MySQLID + ";password=" + mysqlpara.MySQLIDPassword + "; database=" + mysqlpara.MySQLIDDatabase;
-                MySqlConnection mysqlconnection = new MySqlConnection(MyconnectionString);
-                mysqlconnection.Open();   //必须Open
-                if (Client == null || !mysqlconnection.Ping())
-                {
-                    throw new Exception("连接本地MySQL服务器失败!");
-                }
-                //本地服务器连接成功
-                mysqlpara.connectvalid = true;
-                machinestate.comboBoxMachineview.SelectedIndex = 0;
-
-                //绘制标题
-                try
-                {
-                    if (!machinestate.ListViewTitleDraw())
-                    {
-                        throw new Exception("listview error!");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("ERROR:" + ex.Message, "ERROR");
-                }
-
-                this.panel1.Controls.Add(machinestate);
-                ThreadFlag = false;
-                ThreadRefrush = true;
-                Thread timerrefrush = new Thread(ThreadWatch);
-                timerrefrush.Start();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR:" + ex.Message, "ERROR");
-                if (machinestate != null)
-                {
-                    machinestate.Visible = false;
-                    machinestate = null;
-                }
-                redismanager.dispose();
-                //redispara.dispose();
-            }
-
-        }
-
         private void ThreadWatch()
         {
             while(ThreadRefrush)
             {
                 if (ThreadFlag==false)
                 {
+                    ThreadFlag = true;
                     ListViewInitial();
-                    ThreadFlag=true;
                     Thread newthread = new Thread(ThreadReadData);
                     newthread.Start();
                 }
@@ -1260,18 +1178,6 @@ namespace INDNC
             }
         }
 
-        private void buttonSetting_Click(object sender, EventArgs e)
-        {
-            if (button_onindex == ButtonIndex.ButtonSetting)
-                return;
-            button_onindex = ButtonIndex.ButtonSetting;
-            button_refrush();
-            controlsetting.tabControlSetting.SelectedIndex = 0;
-            //设置用户控件大小
-            controlsetting.Dock = DockStyle.Fill;
-            panel1.Controls.Add(controlsetting);
-        }
-
         //
         private void ControlServerSettingclick(object send, System.EventArgs e)
         {
@@ -1381,7 +1287,108 @@ namespace INDNC
             tooltip.InitialDelay = 0;
             tooltip.Active = true;
         }
-            
+
+        private void buttonHome_Click(object sender, EventArgs e)
+        {
+            if (button_onindex == ButtonIndex.ButtonHome)
+                return;
+
+            button_onindex = ButtonIndex.ButtonHome;
+            button_refrush();
+
+        }
+
+        private void buttonCheck_Click(object sender, EventArgs e)
+        {
+
+            if (button_onindex == ButtonIndex.ButtonCheck)
+                return;
+            button_onindex = ButtonIndex.ButtonCheck;
+            button_refrush();
+
+            //host主机参数  格式“password@ip:port”
+            string[] host = { serverpara.RedisPassword + '@' + serverpara.RedisIP + ':' + serverpara.RedisPort };
+            try
+            {
+                //从连接池获得只读连接客户端
+                int initialDB = 0;
+                RedisClient Client = (RedisClient)redismanager.GetReadOnlyClient(ref (initialDB), ref (host));
+                if (Client == null || !Client.Ping())
+                {
+                    throw new Exception("连接服务器失败，请设置服务器参数!");
+                }
+                //连接云端服务器成功
+                serverpara.connectvalid = true;
+                redismanager.DisposeClient(ref (Client));  //dispose客户端
+
+                //属性设置
+                machinestate.Dock = DockStyle.Fill;
+                machinestate.Height = this.panel1.Height;
+                machinestate.Width = this.panel1.Width;
+
+                //连接本地服务器
+                string MyconnectionString = "server=" + mysqlpara.MySQLServer + ";user id=" + mysqlpara.MySQLID + ";password=" + mysqlpara.MySQLIDPassword + "; database=" + mysqlpara.MySQLIDDatabase;
+                MySqlConnection mysqlconnection = new MySqlConnection(MyconnectionString);
+                mysqlconnection.Open();   //必须Open
+                if (Client == null || !mysqlconnection.Ping())
+                {
+                    throw new Exception("连接本地MySQL服务器失败!");
+                }
+                //本地服务器连接成功
+                mysqlpara.connectvalid = true;
+                machinestate.comboBoxMachineview.SelectedIndex = 0;
+
+                //绘制标题
+                try
+                {
+                    if (!machinestate.ListViewTitleDraw())
+                    {
+                        throw new Exception("listview error!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ERROR:" + ex.Message, "ERROR");
+                }
+
+                this.panel1.Controls.Add(machinestate);
+                ThreadFlag = false;
+                ThreadRefrush = true;
+                Thread timerrefrush = new Thread(ThreadWatch);
+                timerrefrush.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR:" + ex.Message, "ERROR");
+                if (machinestate != null)
+                {
+                    machinestate.Visible = false;
+                    machinestate = null;
+                }
+                redismanager.dispose();
+                //redispara.dispose();
+            }
+
+        }
+
+        private void buttonSetting_Click(object sender, EventArgs e)
+        {
+            if (button_onindex == ButtonIndex.ButtonSetting)
+                return;
+            button_onindex = ButtonIndex.ButtonSetting;
+            button_refrush();
+            controlsetting.tabControlSetting.SelectedIndex = 0;
+            //设置用户控件大小
+            controlsetting.Dock = DockStyle.Fill;
+            panel1.Controls.Add(controlsetting);
+        }
+        private void buttonDataAnalysis_Click(object sender, EventArgs e)
+        {
+            if (button_onindex == ButtonIndex.ButtonDataAnalysis)
+                return;
+            button_onindex = ButtonIndex.ButtonDataAnalysis;
+            button_refrush();
+        }
 
         private void buttonHome_Cancel()
         {
@@ -1406,7 +1413,13 @@ namespace INDNC
             machinestate.listView1.Items.Clear();
             machinestate.listView1.Columns.Clear();
         }
+
         private void buttonSetting_Cancel()
+        {
+            panel1.Controls.Clear();
+        }
+
+        private void buttonDataAnalysis_Cancel()
         {
             panel1.Controls.Clear();
         }
@@ -1419,22 +1432,37 @@ namespace INDNC
                     buttonHome.BackgroundImage = Image.FromFile("../../../../Image/TabBackground.bmp");
                     buttonCheck.BackgroundImage = null;
                     buttonSetting.BackgroundImage = null;
+                    buttonDataAnalysis.BackgroundImage = null;
                     buttonnCheck_Cancel();
                     buttonSetting_Cancel();
+                    buttonDataAnalysis_Cancel();
                     break;
                 case ButtonIndex.ButtonCheck:
                     buttonCheck.BackgroundImage = Image.FromFile("../../../../Image/TabBackground.bmp");
                     buttonHome.BackgroundImage = null;
                     buttonSetting.BackgroundImage = null;
+                    buttonDataAnalysis.BackgroundImage = null;
                     buttonHome_Cancel();
                     buttonSetting_Cancel();
+                    buttonDataAnalysis_Cancel();
                     break;
                 case ButtonIndex.ButtonSetting:
                     buttonSetting.BackgroundImage = Image.FromFile("../../../../Image/TabBackground.bmp");
                     buttonHome.BackgroundImage = null;
                     buttonCheck.BackgroundImage = null;
+                    buttonDataAnalysis.BackgroundImage = null;
                     buttonHome_Cancel();
                     buttonnCheck_Cancel();
+                    buttonDataAnalysis_Cancel();
+                    break;
+                case ButtonIndex.ButtonDataAnalysis:
+                    buttonDataAnalysis.BackgroundImage = Image.FromFile("../../../../Image/TabBackground.bmp");
+                    buttonHome.BackgroundImage = null;
+                    buttonCheck.BackgroundImage = null;
+                    buttonSetting.BackgroundImage = null;
+                    buttonHome_Cancel();
+                    buttonnCheck_Cancel();
+                    buttonSetting_Cancel();
                     break;
                 default:
                     break;
@@ -1452,6 +1480,7 @@ namespace INDNC
             ThreadRefrush = false;
             ThreadFlag = false;
         }
+    
 
         /// 通用按钮点击选项卡 在选项卡上显示对应的窗体
         /// </summary>
@@ -1636,7 +1665,8 @@ namespace INDNC
         NOButton=0,
         ButtonHome=3,
         ButtonCheck,
-        ButtonSetting
+        ButtonSetting,
+        ButtonDataAnalysis
     }
 
     public struct MachineInfo

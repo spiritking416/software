@@ -36,6 +36,7 @@ namespace INDNC
             this.buttonSetting = new System.Windows.Forms.Button();
             this.buttonCheck = new System.Windows.Forms.Button();
             this.buttonHome = new System.Windows.Forms.Button();
+            this.buttonDataAnalysis = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +58,7 @@ namespace INDNC
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.buttonDataAnalysis);
             this.panel3.Controls.Add(this.buttonSetting);
             this.panel3.Controls.Add(this.buttonCheck);
             this.panel3.Controls.Add(this.buttonHome);
@@ -70,7 +72,7 @@ namespace INDNC
             this.buttonSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.buttonSetting.FlatAppearance.BorderSize = 0;
             this.buttonSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSetting.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.buttonSetting.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.buttonSetting.Image = ((System.Drawing.Image)(resources.GetObject("buttonSetting.Image")));
             this.buttonSetting.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.buttonSetting.Location = new System.Drawing.Point(160, 15);
@@ -87,7 +89,7 @@ namespace INDNC
             this.buttonCheck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.buttonCheck.FlatAppearance.BorderSize = 0;
             this.buttonCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCheck.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.buttonCheck.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.buttonCheck.Image = ((System.Drawing.Image)(resources.GetObject("buttonCheck.Image")));
             this.buttonCheck.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.buttonCheck.Location = new System.Drawing.Point(86, 15);
@@ -104,7 +106,7 @@ namespace INDNC
             this.buttonHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.buttonHome.FlatAppearance.BorderSize = 0;
             this.buttonHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonHome.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.buttonHome.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.buttonHome.Image = ((System.Drawing.Image)(resources.GetObject("buttonHome.Image")));
             this.buttonHome.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.buttonHome.Location = new System.Drawing.Point(12, 15);
@@ -115,6 +117,23 @@ namespace INDNC
             this.buttonHome.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonHome.UseVisualStyleBackColor = true;
             this.buttonHome.Click += new System.EventHandler(this.buttonHome_Click);
+            // 
+            // buttonDataAnalysis
+            // 
+            this.buttonDataAnalysis.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonDataAnalysis.FlatAppearance.BorderSize = 0;
+            this.buttonDataAnalysis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDataAnalysis.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.buttonDataAnalysis.Image = ((System.Drawing.Image)(resources.GetObject("buttonDataAnalysis.Image")));
+            this.buttonDataAnalysis.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonDataAnalysis.Location = new System.Drawing.Point(234, 15);
+            this.buttonDataAnalysis.Name = "buttonDataAnalysis";
+            this.buttonDataAnalysis.Size = new System.Drawing.Size(68, 73);
+            this.buttonDataAnalysis.TabIndex = 1;
+            this.buttonDataAnalysis.Text = "数据分析";
+            this.buttonDataAnalysis.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonDataAnalysis.UseVisualStyleBackColor = true;
+            this.buttonDataAnalysis.Click += new System.EventHandler(this.buttonDataAnalysis_Click);
             // 
             // FormMain
             // 
@@ -142,6 +161,7 @@ namespace INDNC
         private Button buttonHome;
         private Button buttonCheck;
         private Button buttonSetting;
+        private Button buttonDataAnalysis;
     }
 }
 
