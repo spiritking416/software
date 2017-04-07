@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms.DataVisualization.Charting;
+using ServiceStack.Redis;
 
 namespace INDNC
 {
@@ -17,6 +14,7 @@ namespace INDNC
         private DataTable myTab = new DataTable("mytab");
         List<MachineInfo> CNCinfo = new List<MachineInfo>();
         List<MachineInfo> Robotinfo = new List<MachineInfo>();
+        RedisPara serverpara;  //服务器参数
         public List<MachineInfo> CNCinfoName
         {
             set
@@ -30,6 +28,14 @@ namespace INDNC
             set
             {
                 Robotinfo = value;
+            }
+        }
+
+        public RedisPara serverparaName
+        {
+            set
+            {
+                serverpara = value;
             }
         }
         public UserControlAlarmAnlysis()
@@ -55,7 +61,37 @@ namespace INDNC
 
         private void InitialTab()
         {
+            string[] host = { serverpara.RedisPassword + '@' + serverpara.RedisIP + ':' + serverpara.RedisPort };
+            try
+            {
+                //从连接池获得只读连接客户端
+                int initialDB = 0;
+                RedisClient Client = new RedisClient();
+                if (Client == null || !Client.Ping())
+                {
+                    throw new Exception("连接服务器失败，请设置服务器参数!");
+                }
+                //连接云端服务器成功
+            }
+            catch
+            {
 
+            }
+
+                myTab.Columns.Add("ID", Type.GetType("System.Int32"));
+            myTab.Columns[0].AutoIncrement = true;
+            myTab.Columns[0].Unique = true;
+            myTab.Columns[0].AutoIncrementSeed = 1;
+            myTab.Columns[0].AutoIncrementStep = 1;
+            myTab.Columns.Add("Yvalue", Type.GetType("System.Int32"));
+            myTab.Columns.Add("Xvalue", Type.GetType("System.DateTime"));
+
+            myTab.Rows.Add(new object[] { null, 22D, "2015-02-01 8:00" });
+            myTab.Rows.Add(new object[] { null, 23D, "2015-03-01 9:00" });
+            myTab.Rows.Add(new object[] { null, 25D, "2015-04-01 10:00" });
+            myTab.Rows.Add(new object[] { null, 24D, "2015-05-01 11:00" });
+            myTab.Rows.Add(new object[] { null, 22D, "2015-06-01 12:00" });
+            myTab.Rows.Add(new object[] { null, 21D, "2015-07-01 13:00" });
         }
 
         //绘制
@@ -63,7 +99,7 @@ namespace INDNC
         {
             try
             {
-                
+                InitialTab();
                 chart1.Update();
             }
             catch

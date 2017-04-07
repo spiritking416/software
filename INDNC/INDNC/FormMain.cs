@@ -203,6 +203,7 @@ namespace INDNC
 
                 dataanlysis.alarmanalysis.CNCinfoName = CNCinfo;
                 dataanlysis.alarmanalysis.RobotinfoName = Robotinfo;
+                dataanlysis.alarmanalysis.serverparaName = serverpara;
             }
             catch (Exception ex)
             {
@@ -1187,6 +1188,7 @@ namespace INDNC
         {
             serverpara = controlsetting.serverparaName;
             mysqlpara = controlsetting.mysqlparaName;
+            dataanlysis.alarmanalysis.serverparaName = serverpara;
         }
 
         private void ControlLineSettingclick(object send, System.EventArgs e)
