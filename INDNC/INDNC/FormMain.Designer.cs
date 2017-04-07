@@ -33,10 +33,10 @@ namespace INDNC
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.buttonDataAnalysis = new System.Windows.Forms.Button();
             this.buttonSetting = new System.Windows.Forms.Button();
             this.buttonCheck = new System.Windows.Forms.Button();
             this.buttonHome = new System.Windows.Forms.Button();
-            this.buttonDataAnalysis = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,6 +66,23 @@ namespace INDNC
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(959, 104);
             this.panel3.TabIndex = 11;
+            // 
+            // buttonDataAnalysis
+            // 
+            this.buttonDataAnalysis.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonDataAnalysis.FlatAppearance.BorderSize = 0;
+            this.buttonDataAnalysis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDataAnalysis.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.buttonDataAnalysis.Image = ((System.Drawing.Image)(resources.GetObject("buttonDataAnalysis.Image")));
+            this.buttonDataAnalysis.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonDataAnalysis.Location = new System.Drawing.Point(234, 15);
+            this.buttonDataAnalysis.Name = "buttonDataAnalysis";
+            this.buttonDataAnalysis.Size = new System.Drawing.Size(68, 73);
+            this.buttonDataAnalysis.TabIndex = 1;
+            this.buttonDataAnalysis.Text = "数据分析";
+            this.buttonDataAnalysis.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonDataAnalysis.UseVisualStyleBackColor = true;
+            this.buttonDataAnalysis.Click += new System.EventHandler(this.buttonDataAnalysis_Click);
             // 
             // buttonSetting
             // 
@@ -118,23 +135,6 @@ namespace INDNC
             this.buttonHome.UseVisualStyleBackColor = true;
             this.buttonHome.Click += new System.EventHandler(this.buttonHome_Click);
             // 
-            // buttonDataAnalysis
-            // 
-            this.buttonDataAnalysis.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buttonDataAnalysis.FlatAppearance.BorderSize = 0;
-            this.buttonDataAnalysis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDataAnalysis.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.buttonDataAnalysis.Image = ((System.Drawing.Image)(resources.GetObject("buttonDataAnalysis.Image")));
-            this.buttonDataAnalysis.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonDataAnalysis.Location = new System.Drawing.Point(234, 15);
-            this.buttonDataAnalysis.Name = "buttonDataAnalysis";
-            this.buttonDataAnalysis.Size = new System.Drawing.Size(68, 73);
-            this.buttonDataAnalysis.TabIndex = 1;
-            this.buttonDataAnalysis.Text = "数据分析";
-            this.buttonDataAnalysis.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.buttonDataAnalysis.UseVisualStyleBackColor = true;
-            this.buttonDataAnalysis.Click += new System.EventHandler(this.buttonDataAnalysis_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -143,13 +143,12 @@ namespace INDNC
             this.ClientSize = new System.Drawing.Size(966, 637);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "INDNC";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -55,6 +55,7 @@ namespace INDNC
         private int[] s = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         UserControlMachineState machinestate = new UserControlMachineState();
         UserControlSetting controlsetting = new UserControlSetting();
+        UserControlDataAnalysis dataanlysis = new UserControlDataAnalysis();
         RedisManager redismanager = new RedisManager();
         MySQLPara mysqlpara = new MySQLPara();          //mysql参数
         string LineNo = "";  //生产线编号 格式:#+索引
@@ -199,6 +200,9 @@ namespace INDNC
 
                     Robotinfo.Add(tmp_machineinfo);
                 };
+
+                dataanlysis.alarmanalysis.CNCinfoName = CNCinfo;
+                dataanlysis.alarmanalysis.RobotinfoName = Robotinfo;
             }
             catch (Exception ex)
             {
@@ -1216,6 +1220,8 @@ namespace INDNC
 
                 CNCinfo.Add(tmp_machineinfo);
             }
+            dataanlysis.alarmanalysis.CNCinfoName = CNCinfo;
+            dataanlysis.alarmanalysis.AlarmDraw();
         }
 
         private void ControlRobotSaveclick(object send, System.EventArgs e)
@@ -1233,6 +1239,8 @@ namespace INDNC
 
                 Robotinfo.Add(tmp_machineinfo);
             }
+            dataanlysis.alarmanalysis.RobotinfoName = Robotinfo;
+            dataanlysis.alarmanalysis.AlarmDraw();
         }
 
         private void ComboBoxMachineViewChange(object send, System.EventArgs e)
@@ -1305,6 +1313,7 @@ namespace INDNC
                 return;
             button_onindex = ButtonIndex.ButtonCheck;
             button_refrush();
+            machinestate.Dock = DockStyle.Fill;
 
             //host主机参数  格式“password@ip:port”
             string[] host = { serverpara.RedisPassword + '@' + serverpara.RedisIP + ':' + serverpara.RedisPort };
@@ -1388,6 +1397,11 @@ namespace INDNC
                 return;
             button_onindex = ButtonIndex.ButtonDataAnalysis;
             button_refrush();
+            dataanlysis.Dock = DockStyle.Fill;
+            dataanlysis.alarmanalysis.AlarmDraw();
+            dataanlysis.radioButtonAlarm.Checked = true;
+
+            panel1.Controls.Add(dataanlysis);
         }
 
         private void buttonHome_Cancel()
@@ -1480,7 +1494,11 @@ namespace INDNC
             ThreadRefrush = false;
             ThreadFlag = false;
         }
-    
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+        }
 
         /// 通用按钮点击选项卡 在选项卡上显示对应的窗体
         /// </summary>

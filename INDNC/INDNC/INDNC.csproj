@@ -147,6 +147,7 @@
       <HintPath>..\packages\System.Web.Razor.Unofficial.2.0.1\lib\net40\System.Web.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -174,6 +175,18 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ThemedColors.cs" />
+    <Compile Include="UserControlAlarmAnlysis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlAlarmAnlysis.Designer.cs">
+      <DependentUpon>UserControlAlarmAnlysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlDataAnalysis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlDataAnalysis.Designer.cs">
+      <DependentUpon>UserControlDataAnalysis.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControlMachineState.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -199,6 +212,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControlAlarmAnlysis.resx">
+      <DependentUpon>UserControlAlarmAnlysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlDataAnalysis.resx">
+      <DependentUpon>UserControlDataAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControlMachineState.resx">
       <DependentUpon>UserControlMachineState.cs</DependentUpon>
     </EmbeddedResource>

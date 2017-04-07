@@ -119,3 +119,5 @@ C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.Text.dll
 C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\System.Web.Razor.dll
 C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\ServiceStack.Text.xml
 C:\Users\mio\software\INDNC\INDNC\bin\x86\Debug\System.Web.Razor.pdb
+C:\Users\mio\software\INDNC\INDNC\obj\x86\Debug\INDNC.UserControlDataAnalysis.resources
+C:\Users\mio\software\INDNC\INDNC\obj\x86\Debug\INDNC.UserControlAlarmAnlysis.resources
