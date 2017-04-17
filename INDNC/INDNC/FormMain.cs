@@ -65,6 +65,7 @@ namespace INDNC
         RedisPara serverpara;  //服务器参数
         bool ThreadFlag; //线程flag
         bool ThreadRefrush; //刷新线程
+        Thread timerrefrush;  //线程
         MachineView ComboBoxFlag = MachineView.Visiable;
         List<Dictionary<string, UInt16>> machineDB = new List<Dictionary<string, UInt16>>(); //机床SN码与数据库db映射关系
         List<Dictionary<string, string>> machineName = new List<Dictionary<string, string>>(); //机床SN码与机床编号映射关系
@@ -737,16 +738,23 @@ namespace INDNC
             }
         }
 
-        private void ThreadWatch()
+        private void ThreadWatch(object o)
         {
             while(ThreadRefrush)
             {
-                if (ThreadFlag==false)
+                try
                 {
-                    ThreadFlag = true;
-                    ListViewInitial();
-                    Thread newthread = new Thread(ThreadReadData);
-                    newthread.Start();
+                    if (ThreadFlag == false)
+                    {
+                        ThreadFlag = true;
+                        ListViewInitial();
+                        Thread newthread = new Thread(ThreadReadData);
+                        newthread.Start();
+                    }
+                }
+                catch (Exception)
+                {
+                    break;
                 }
             }
         }
@@ -1365,7 +1373,8 @@ namespace INDNC
                 this.panel1.Controls.Add(machinestate);
                 ThreadFlag = false;
                 ThreadRefrush = true;
-                Thread timerrefrush = new Thread(ThreadWatch);
+                timerrefrush = new Thread(ThreadWatch);
+                timerrefrush.IsBackground = true;
                 timerrefrush.Start();
             }
             catch (Exception ex)
