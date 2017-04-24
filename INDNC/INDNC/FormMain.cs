@@ -350,11 +350,27 @@ namespace INDNC
                                 if (ComboBoxFlag == MachineView.Alarm || ComboBoxFlag == MachineView.Visiable)
                                 {
                                     ++index;
+                                    string alarmstr=null;
+                                    for(int i=0;i< machinealarm; ++i)
+                                    {
+                                        alarmbyte = Encoding.UTF8.GetBytes(i.ToString());
+                                        machinealarmbyte = Client.HGet("Alarm:AlarmCurrent", alarmbyte);
+                                        string tmp = System.Text.Encoding.Default.GetString(machinealarmbyte);
+                                        if(tmp != null && tmp != "")
+                                        {
+                                            if (alarmstr == null)
+                                                alarmstr = tmp;
+                                            else
+                                                alarmstr += "; " + tmp;
+                                        }
+                                    }
+                                  
+
                                     ListViewItem lvi = new ListViewItem(index.ToString());
                                     lvi.UseItemStyleForSubItems = false; //可以设置单元格背景
                                     lvi.SubItems.Add(key.MachineName);
                                     lvi.SubItems.Add("告警");
-                                    lvi.SubItems.Add("\\");
+                                    lvi.SubItems.Add(alarmstr);
                                     lvi.SubItems.Add(time.ToString());
                                     lvi.SubItems[2].BackColor = Color.Red;
                                     machinestate.listView1.Items.Add(lvi);
@@ -473,11 +489,26 @@ namespace INDNC
                                 if (ComboBoxFlag == MachineView.Alarm || ComboBoxFlag == MachineView.Visiable)
                                 {
                                     ++index;
+                                    string alarmstr = null;
+                                    for (int i = 0; i < machinealarm; ++i)
+                                    {
+                                        alarmbyte = Encoding.UTF8.GetBytes(i.ToString());
+                                        machinealarmbyte = Client.HGet("Alarm:AlarmCurrent", alarmbyte);
+                                        string tmp = System.Text.Encoding.Default.GetString(machinealarmbyte);
+                                        if (tmp != null && tmp != "")
+                                        {
+                                            if (alarmstr == null)
+                                                alarmstr = tmp;
+                                            else
+                                                alarmstr += "; " + tmp;
+                                        }
+                                    }
+
                                     ListViewItem lvi = new ListViewItem(index.ToString());
                                     lvi.UseItemStyleForSubItems = false; //可以设置单元格背景
                                     lvi.SubItems.Add(key.MachineName);
                                     lvi.SubItems.Add("告警");
-                                    lvi.SubItems.Add("\\");
+                                    lvi.SubItems.Add(alarmstr);
                                     lvi.SubItems.Add(time.ToString());
                                     lvi.SubItems[2].BackColor = Color.Red;
                                     machinestate.listView1.Items.Add(lvi);
