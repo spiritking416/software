@@ -1,11 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
   <linetype linetype="一拖二" />
-  <LocalIpAddr CNCLocalIp="192.168.213.10" />
-  <User SUM="3" name="User" password="">
+  <LocalIpAddr CNCLocalIp="169.254.200.29" />
+  <User SUM="2" name="User" password="">
     <Item0 serial="0" name="操作者" password="" />
     <Item1 serial="1" name="管理员" password="" />
-    <Item2 serial="2" name="qhw" password="-1544136802418493190346-15544366804184919036-154436804184919036" />
   </User>
   <CNC SUM="1" id="1" workshop="#1" productionline="#1" type="A" system="hnc8" ip="192.168.1.1" port="10001" SN="0" EQUIP_CODE="0" remark="">
     <Item0 serial="0" id="1" workshop="#1" productionline="#1" type="A" system="hnc8" ip="192.168.213.197" port="10001" SN="137FFD89DF366E7" EQUIP_CODE="0" remark="" />

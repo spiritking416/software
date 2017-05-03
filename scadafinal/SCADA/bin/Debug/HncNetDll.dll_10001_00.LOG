@@ -173,3 +173,31 @@
 20170417 14:03:53:555 [WARN] Close ListenSocket, socket=-1
 20170417 14:03:53:559 [ERRO] NetInit failed! ip = 192.168.4.100, port = 10001, ret = 1009
 
+20170503 15:02:21:203 [INFO] *******************Call TCPInit, IP=192.168.4.100, ListenPort=10001*******************
+20170503 15:02:21:220 [INFO] WinSocket Start Success, version=2.2
+20170503 15:02:21:220 [ERRO] Create TCP Listen Socket failed errno:0, IP=192.168.4.100, Port=10001
+20170503 15:02:21:220 [WARN] Close UdpRecSocket, socket=-1
+20170503 15:02:21:220 [WARN] Close ListenSocket, socket=-1
+20170503 15:02:21:225 [ERRO] NetInit failed! ip = 192.168.4.100, port = 10001, ret = 1009
+
+20170503 16:22:39:750 [INFO] *******************Call TCPInit, IP=192.168.4.100, ListenPort=10001*******************
+20170503 16:22:39:767 [INFO] WinSocket Start Success, version=2.2
+20170503 16:22:39:768 [ERRO] Create TCP Listen Socket failed errno:0, IP=192.168.4.100, Port=10001
+20170503 16:22:39:768 [WARN] Close UdpRecSocket, socket=-1
+20170503 16:22:39:768 [WARN] Close ListenSocket, socket=-1
+20170503 16:22:39:771 [ERRO] NetInit failed! ip = 192.168.4.100, port = 10001, ret = 1009
+
+20170503 16:49:05:029 [INFO] *******************Call TCPInit, IP=192.168.4.100, ListenPort=10001*******************
+20170503 16:49:05:047 [INFO] WinSocket Start Success, version=2.2
+20170503 16:49:05:048 [ERRO] Create TCP Listen Socket failed errno:0, IP=192.168.4.100, Port=10001
+20170503 16:49:05:048 [WARN] Close UdpRecSocket, socket=-1
+20170503 16:49:05:048 [WARN] Close ListenSocket, socket=-1
+20170503 16:49:05:052 [ERRO] NetInit failed! ip = 192.168.4.100, port = 10001, ret = 1009
+
+20170503 17:01:43:419 [INFO] *******************Call TCPInit, IP=192.168.4.100, ListenPort=10001*******************
+20170503 17:01:43:462 [INFO] WinSocket Start Success, version=2.2
+20170503 17:01:43:462 [ERRO] Create TCP Listen Socket failed errno:0, IP=192.168.4.100, Port=10001
+20170503 17:01:43:462 [WARN] Close UdpRecSocket, socket=-1
+20170503 17:01:43:462 [WARN] Close ListenSocket, socket=-1
+20170503 17:01:43:466 [ERRO] NetInit failed! ip = 192.168.4.100, port = 10001, ret = 1009
+
