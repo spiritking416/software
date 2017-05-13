@@ -67,9 +67,14 @@ namespace INDNC
 
         private void InitialTab()
         {
-            string[] host = { serverpara.RedisPassword + '@' + serverpara.RedisIP + ':' + serverpara.RedisPort };
+            
             try
             {
+                
+                if (serverpara.connectvalid == false)
+                    throw new Exception("服务器参数获取失败，请检查参数设置是否有误！");
+                string[] host = { serverpara.RedisPassword + '@' + serverpara.RedisIP + ':' + serverpara.RedisPort };
+
                 //从连接池获得只读连接客户端
                 int initialDB = 0;
                 RedisClient Client = (RedisClient)redismanager.GetReadOnlyClient(ref (initialDB), ref (host));

@@ -62,6 +62,7 @@ namespace INDNC
             this.panel3.Controls.Add(this.buttonSetting);
             this.panel3.Controls.Add(this.buttonCheck);
             this.panel3.Controls.Add(this.buttonHome);
+            this.panel3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panel3.Location = new System.Drawing.Point(4, 2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(959, 104);

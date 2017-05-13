@@ -90,8 +90,6 @@ namespace INDNC
 
         public void Initialize()
         {
-            button_onindex = ButtonIndex.ButtonHome;
-            button_refrush();
 
             //双缓冲
             this.SetStyle(ControlStyles.ResizeRedraw |
@@ -140,6 +138,7 @@ namespace INDNC
                 MessageBox.Show("ERROR:" + ex.Message, "ERROR");
             }
 
+            
             //初始化设备信息
             //host主机参数  格式“password@ip:port”
             string[] host = { serverpara.RedisPassword + '@' + serverpara.RedisIP + ':' + serverpara.RedisPort };
@@ -212,6 +211,7 @@ namespace INDNC
             {
                 MessageBox.Show("ERROR:" + ex.Message, "ERROR");
             }
+            
 
             //事件初始化
             controlsetting.btnServerSettingClick += new btnOkClickEventHander(ControlServerSettingclick);
@@ -1147,6 +1147,8 @@ namespace INDNC
             if (button_onindex == ButtonIndex.ButtonHome)
                 return;
 
+            panel1.BackgroundImage = Image.FromFile(@"logo.png");
+            this.Refresh();
             button_onindex = ButtonIndex.ButtonHome;
             button_refrush();
 
@@ -1255,6 +1257,7 @@ namespace INDNC
         private void buttonHome_Cancel()
         {
             panel1.Controls.Clear();
+            panel1.BackgroundImage = null;
         }
 
         private void buttonnCheck_Cancel()
@@ -1345,7 +1348,7 @@ namespace INDNC
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
+            buttonHome_Click(sender, e);
         }
 
         /// 通用按钮点击选项卡 在选项卡上显示对应的窗体

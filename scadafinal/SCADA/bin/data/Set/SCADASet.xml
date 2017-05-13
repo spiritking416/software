@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
   <linetype linetype="一拖二" />
-  <LocalIpAddr CNCLocalIp="169.254.200.29" />
+  <LocalIpAddr CNCLocalIp="169.254.41.55" />
   <User SUM="2" name="User" password="">
     <Item0 serial="0" name="操作者" password="" />
     <Item1 serial="1" name="管理员" password="" />
